@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title> if구문_04 </title>
+  <script>
+  
+  let userID=prompt("관리자 아이디를 입력하세요")
+
+  let userPW=prompt("관리자 비밀번호를 입력하세요")
+
+  if(userID=="test" && userPW=="1234"){
+
+    document.write(userID+" 님 환영합니다.")
+
+  }else if(userID!="test"){
+
+    document.write("아이디를 잘못입력 하셨습니다.")
+
+  }else{ // 앞의 조건의 논리순서에서 따라 아이디는 맞고 패스워드가 틀린경우 
+
+    document.write("패스워들 잘못입력 하셨습니다.")
+
+  }  
+  
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

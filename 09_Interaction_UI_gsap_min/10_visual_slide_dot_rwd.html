@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">  
+
+  <style>
+
+    html,body{
+	    height:100%; overflow:hidden; 
+    }
+    
+    body,p,ul,li{
+      margin:0px; padding:0px; list-style:none;
+    }
+
+    body{
+      background:url("images/index_back.gif");
+    }
+
+    div#visual_wrap{
+      width:100%; height:469px; float:left; margin-top:100px; overflow:hidden;       
+    }
+
+    div#visual_inner{
+      width:1200px; height:100%; margin:0px auto; position:relative; left:0px; top:0px; overflow:hidden;
+      border:solid 1px white; box-sizing:border-box;
+    }
+
+    ul#visual_list{
+      width:100%; height:100%;  position:absolute; left:0px; top:0px; 
+    }
+
+    ul#visual_list li{
+      width:100%; height:100%;  float:left; 
+    }
+    ul#visual_list li img{
+      display:block; 
+    }
+
+    
+    ul#dot_list{
+      width:130px; position:absolute; left:50%; margin-left:-65px; bottom:20px; 
+    }
+
+    ul#dot_list li{
+      width:16px; height:16px; float:left; margin-right:10px; border-radius:8px; background:#FFF;
+      -webkit-transition:0.2s ease;
+    }
+
+    ul#dot_list li.selected{
+      background:orange;  
+    }
+
+
+
+    @media screen and (max-width:1200px) {
+
+      div#visual_inner{
+        width:100%; 
+      }
+
+    }
+
+   
+ 
+  </style>
+
+
+  <title> visual_slide_dot_rwd </title>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.4.2/gsap.min.js "></script>
+  <!--GSAP CDN 코드 -->
+
+  <script> 
+
+    window.addEventListener('load',()=>{ 
+    // 반응형 작업할때는 window.addEventListenter('load') 이벤트를 사용하여 window 크기나 이미지 리소스등을 읽은다음 최적화 해서 작업하는것이 좋음
+
+      const visualWrap=document.querySelector('#visual_wrap') // 비주얼 전체 #visual_wrap 찾음 
+      const visualInner=document.querySelector('#visual_inner'); // 중앙 #visual_inner 찾음 
+      const visualList=document.querySelector('#visual_list'); // 슬라이드할 요소 #visual_list 찾음 
+      const visualLi=document.querySelectorAll('#visual_list>li'); // 각 슬라이드 #visual_list>li 찾음  
+      const visualImg=document.querySelectorAll('#visual_list>li>img') // 각 슬라이드 #visual_list>li>img 찾음 
+      const dot=document.querySelectorAll('#dot_list>li') // 모든 dot 버튼 찾음     
+
+      let visualLength=visualLi.length; // 슬라이드 총갯수 구함  
+      let visualWidth; // 슬라이드 가로크기 구함       
+      let selectedDot // 선택되어있는 dot를 대입할 변수 
+      let dotOverNum=0 // 선택한 Dot의 순번 ( 초기값0 )
+      let isSlide=false; // 현제 슬라이드를 하고있는 체크하는 상태변수 ( 초기값 false )
+      let timer; // setInterval() 대입할 변수       
+
+      visualReset() // 비쥬얼전체 크기를 반응형으로 최적화 해주는 함수실행 
+      initEvent(); // 이벤트 함수실행
+      
+      dotActivate(0) // Dot버튼 활성화 함수실행 (초기값 dot 0번을 활성화 ) 
+      autoPlay(); // 자동슬라이드 함수실행       
+      
+      function visualReset(){ // 비쥬얼 전체 크기를 반응형으로 최적화 해주는 함수 
+
+        visualWidth=visualInner.offsetWidth; // 슬라이드 가로크기 구함 
+
+        gsap.set(visualList, {width:visualWidth*visualLength}) // visualList 전체 가로크기 적용       
+        gsap.set(visualLi, {width:visualWidth}) // 모든 visualLi 크기를 visualWidth 크기에 맞추어 최적화
+        gsap.set(visualImg, {width:visualWidth}) // 모든 visualImg 크기를 visualWidth 크기에 맞추어 최적화 
+        gsap.set(visualWrap, {height:visualImg[0].offsetHeight}) // visualWrap 전체 높이값을 visualImg 높이값에 맞춤 ( CSS 스타일에서는 안됨 )
+        // 주의) visualImg[0] 반드시 순번을 정해서 찾아야함        
+        gsap.set(visualList, {left:-visualWidth*dotOverNum})
+        // 중요) window를 resize 할때 visualWidth 값이 변화므로 선택된 dot번호에 따른 visualList 의 좌표도 다시지정
+       
+      }    
+
+      function initEvent(){ // 이벤트 함수
+
+        window.addEventListener('resize',visualReset) // window크기를 조절할때 비주얼 크기를 다시 최적화 ( 반응형 적용 )
+
+        for(const item of dot){ // 모든 dot버튼에 이벤트 적용하여 dotOver 함수실행 
+          item.addEventListener('mouseenter',dotOver)
+        }
+
+        visualWrap.addEventListener('mouseenter',stopAutoPlay); // visualWrap 전체에 마우스를 올리면 자동슬라이드 함수 멈춤           
+        visualWrap.addEventListener('mouseleave',autoPlay); // visualWrap 전체에서 마우스를 빼면 다시 자동슬라이드 함수 실행 
+
+      }
+
+      function dotActivate(num){ // 선택된 dot 번호를 활성화 해주는 함수 ( 매개변수활용 )
+        if(selectedDot!=null){
+          selectedDot.classList.remove('selected'); // 기존에 선택되었는 dot 버튼 비활성화 
+        }
+        selectedDot=dot[num]
+        selectedDot.classList.add('selected') // 새로 선택된 dot 버튼 활성화 
+      }
+
+
+      function dotOver(){ // 모든 dot 버튼에 마우스 올리면 실행할 함수 
+
+        dotOverNum=getIndex(this) // 순번을 구하는 getIndex()함수를 이용하여 dot 버튼에 마우스를 올린 순번을 구해서 dotOverNum 변수에 대입 
+        //alert(dotOverNum)
+        dotActivate(dotOverNum); // 해당 순번에 대한 dot 버튼 활성화 함수실행 ( 매개변수활용 )
+        visualSlide(dotOverNum); // 해당 순번에 대한 비주얼 슬라이드 함수 실행 ( 매개변수활용 ) 
+
+      }
+
+      function getIndex(checkMenu){ // 이벤트에 따른 순번구하는 함수 
+        
+        let selectedIndex=0;
+
+        while((checkMenu=checkMenu.previousElementSibling)!=null){
+          selectedIndex++
+        }
+        return selectedIndex;
+      }
+
+
+      function visualSlide(){ // 비주얼 슬라이드 실행함수 
+        
+        if(isSlide==false){ // 현제 슬라이드 하지 않을때만 슬라이드 실행 
+          
+          isSlide=true; // 슬라이드를 진행하면 isSlide 상태변수를 true로 지정하여 슬라이드하는 동안 다음 슬라이드 명령이 중복되지 않게 설정 
+          
+          let currentPosition=visualList.offsetLeft; // 슬라이드 할 visualList 요소의 현제 좌표를 구함          
+          
+          // 현제 좌표에서 비주얼 가로크기 만큼 왼쪽으로 슬라이드 하는 에니메이션 
+          gsap.to(visualList, {left:-visualWidth*dotOverNum, duration:.5, ease:'power1.out', onComplete:()=>{
+            isSlide=false; // 슬라이드가 종료되었을때 isSlide 상태변수를 false로 지정하여 다음 슬라이드를 적용할수 있게 설정             
+          }})
+          
+        }
+      }      
+
+      function autoPlay(){ // 2초마다 slideCount 함수실행하여 자동 슬라이드 실행         
+        timer=setInterval(slideCount,2000);
+      }
+
+      function slideCount(){ // dotOverNum 순번을 1씩 증가하면서 dotActivate(), visualSlide() 함수실행 
+        dotOverNum++;
+        if(dotOverNum>=visualLength){
+          dotOverNum=0
+        }
+        dotActivate(dotOverNum); // dot 버튼을 활성화 함수실행 (매개변수활용)
+        visualSlide(dotOverNum); // 비쥬얼 슬라이드 함수실행 (매개변수활용)
+      }
+
+      function stopAutoPlay(){ // timer에 대입되어있는 자동슬라이드 함수를 멈춤 
+        clearInterval(timer)
+      }
+
+  })     
+    
+  </script>
+
+
+</head>
+<body>
+   
+  <div id="visual_wrap">   
+    
+      <div id="visual_inner">
+
+        <ul id="visual_list">
+            <li><img src="images/img1.gif" alt="" /></li>
+            <li><img src="images/img2.gif" alt="" /></li>
+            <li><img src="images/img3.gif" alt="" /></li>
+            <li><img src="images/img4.gif" alt="" /></li> 
+            <li><img src="images/img5.gif" alt="" /></li>           
+        </ul>       
+            
+        <ul id="dot_list">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>           
+        </ul>       
+    
+      </div>
+
+</div>
+
+
+
+
+
+  
+</body>
+</html>

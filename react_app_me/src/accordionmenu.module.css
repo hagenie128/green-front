@@ -1,0 +1,161 @@
+
+html,body{
+    height:100%;
+}
+
+header{
+    width:100%; 
+    height:70px; 
+    background:rgba(73,10,115,1); 
+    position:absolute; 
+    left:0px; 
+    top:0px;     
+    z-index:1;
+} 
+
+nav#mobilemenu{
+    width:60vw; 
+    height:100vh; 
+    position:absolute; 
+    right:0px; 
+    top:0px; 
+    background:white; 
+    overflow:scroll; /* 모바일 메뉴영역을 열렸을때 밖으로 나가서 안보이는것을 방지 ( 스크롤로 보이게함 ) */
+    z-index:10; 
+}
+
+nav#mobilemenu a{
+  display:block; 
+  width:100%; 
+  height:100%; 
+  color:#3c3c3c; 
+  text-decoration:none; 
+}
+h2.mobilemenu_icon{
+    width:30px; 
+    height:20px; 
+    position: absolute; 
+    right:20px; 
+    top:30px;
+    overflow: hidden;  
+    cursor: pointer;
+}
+h2.mobilemenu_icon img{
+    width:100%;    
+}
+div#mobilemenu_inner{
+    width:100%; 
+    height:100%; 
+    position:absolute; 
+    right:0px; 
+    top:0px; 
+}
+div#mobilemenu_inner p{
+    width:100%; 
+    height:180px; 
+    background:#490a73; 
+    font:normal 20px/30px "NanumBarunGothic"; 
+    color:white; 
+    padding-top:60px; 
+    padding-left:30px; 
+    box-sizing:border-box;
+}
+span#mobileclose_btn{
+    width:20px; 
+    height:20px; 
+    display:block; 
+    position:absolute; 
+    right:30px; 
+    top:40px; 
+    cursor: pointer;
+}
+ul#mobileloginmenu{
+    width:100%; 
+    height:50px; 
+}
+ul#mobileloginmenu li{
+    width:50%; 
+    height:100%; 
+    background:#3c3c3c; 
+    font:normal 14px/50px "NanumBarunGothic";  
+    text-align:center; 
+    float:left; 
+    border-right:solid 1px white; 
+    box-sizing:border-box;
+    color:white;
+}
+ul#mobileloginmenu li a{
+  display:block; 
+  width:100%; 
+  height:100%; 
+  color:white; 
+  text-decoration:none;
+}
+ul#mobileloginmenu li:last-child{
+    border-right:none;
+}
+ul#mobilemenu_list{
+    width:100%; 
+    height:400px; 
+}
+ul#mobilemenu_list>li{
+    width:100%; 
+    height:55px; 
+    font:normal 14px/55px "NanumBarunGothic"; 
+    border-bottom:solid 1px #E3E3E3; 
+    box-sizing:border-box; 
+    text-indent:30px; 
+    position:relative; 
+    left:0px; 
+    top:0px; 
+    overflow:hidden; /* 서브메뉴가 안보이게 초기값 height:55px; overflow:hidden 설정 */
+    cursor: pointer;
+    transition:0.3s ease-out;
+}       
+
+span.mobile_icon{
+    width:55px; 
+    height:55px; 
+    text-align:center; 
+    text-indent:0px; 
+    display:block; 
+    position:absolute; 
+    right:10px; 
+    top:0px; 
+    transform:rotate(-90deg);
+    -webkit-transition:0.4s ease; /* 연속적인 모션효과 transition 지정 */
+    
+ 
+}
+ul#mobilemenu_list>li.selected span{ /* 모바일메뉴 화살표 아이콘 활성화 스타일 지정 (회전) */
+    -webkit-transform:rotate(0deg); 
+  
+}
+ul.mobilesubmenu_list{
+    width:100%; 
+    position:absolute; 
+    left:0px; 
+    top:55px; 
+}
+ul.mobilesubmenu_list>li{
+    width:100%; 
+    height:55px; 
+    background:#f6f6f6; 
+    font:normal 13px/50px "NanumBarunGothic"; 
+    border-bottom:solid 1px #E3E3E3; 
+    box-sizing:border-box; 
+    text-indent:40px; 
+}
+ul.mobilesubmenu_list>li:first-child{
+    border-top:solid 1px #E3E3E3; 
+}
+
+div#mobile_grayLayer{ /* 전체를 어둡게 해주는 div 스타일 지정 */
+    width:100%; 
+    height:100vh; 
+    background:black; 
+    opacity:0.8; 
+    position:fixed; 
+    left:0px; 
+    top:0px; 
+}

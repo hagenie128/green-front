@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">   
+		<title>Media screen_orientation</title>	
+
+		<style>	
+
+			body,p{
+				margin:0px; padding:0px; 
+			}	
+			p img{
+				width:100%;
+			}
+			p#portrait{
+				text-align:center; display:none;
+			}	
+			p#landscape{
+				text-align:center; display:none;
+			}	
+			@media screen and (orientation:portrait ){
+				
+				p#portrait{
+					display:block;
+				}
+				
+			}	
+			@media screen and (orientation:landscape ){
+				
+				p#landscape{
+					display:block;
+				}
+				
+			}
+		</style>
+
+	</head>
+
+	<body>
+				
+					<p id="portrait">        
+						<img src="images/woman.jpg" alt="">                    
+					</p>
+					
+					
+					<p id="landscape">        
+						<img src="images/man.jpg" alt="">        
+					</p>        
+					
+
+	</body>
+</html>

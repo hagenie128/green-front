@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title> 복합연산자_증감연산자 </title>
+  <script>
+  
+  // 복합연산자 += -=  *=  /=  %=
+  
+  let a=10;
+  
+  a+=10  // a=a+10 줄여서 표현  
+
+  console.log(a);  // 결과 : 20 
+
+  
+  a=10;
+
+  a-=10; // a=a-10 줄여서 표현 
+
+  console.log(a) // 결과 0 
+
+  a=10;
+
+  a*=2 // a=a*2 줄여서 표현 
+
+  console.log(a) // 결과 20 
+
+ // 증감연산자  (후위연산자, 전위연산자  ++ -- )
+
+  // 후위연산자 
+
+  a=1;
+
+  a++; // a=a+1 줄여서 표현 
+
+  console.log(a) // 결과 2
+
+  a=1;
+  
+  a--; // a=a-1 줄여서 표현 
+
+  console.log(a) // 결과 0
+
+  
+  // 전위연산자 
+
+  a=1;
+
+  ++a // (1을 더해서 a 값에 대입)
+
+  console.log(a) // 결과 2
+
+  /*
+    a++ (a=a+1) : a값을 현제 a 값에 대입한후 1을 더함 
+    ++a (a+1=a) : a값에 1을 더하고 a 값에 대입 
+  */
+
+  a=1;
+
+  --a;  
+
+  console.log(a) // 결과 0 
+
+  // 후위 연산자와 전위 연산자의 차이 
+
+  a=1;
+  
+  b=a++; // a 값을 먼저 b에 대입한 다음 a값을 1증가 
+
+  console.log(b); // 결과 1
+
+  a=1;
+
+  b=++a; // a 값을 먼저 1을 더하고 b에 대입 
+
+  console.log(b)  // 결과 2
+
+
+
+  a=1; 
+  
+  b=2;   
+  
+  
+ console.log(a++ +b*4) // 결과 9  ( 10 아님 ) 
+
+ console.log(++a + b*4)  // 결과 10 
+
+
+
+  
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

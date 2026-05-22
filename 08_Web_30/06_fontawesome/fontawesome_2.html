@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">   
+    <title>fontawesome_2</title>
+    
+    <!-- <link rel="stylesheet" href="fontawesome-free-5.12.1-web/css/all.css"> 소스로컬연결 ( 용량 많음 ) -->
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css'/>
+    <!-- CDN 코드로 바로연결 ( 용량 최적화 ) -->
+
+    <style>
+
+      p{
+        margin:0px; padding:0px; 
+      }
+
+      div#button{
+        width:250px; height:80px; position:absolute; left:400px; top:300px; border-radius:40px;  
+        background: -webkit-linear-gradient(top, #e570e7 0%,#c85ec7 47%,#a849a3 100%);
+        box-shadow:5px 5px 5px gray; border:solid 1px #eeeeee;  
+      }
+
+      p.menu_list{
+        width:250px; height:80px; text-align:center; 
+        font:normal 21px/80px "verdana"; color:white;
+        text-shadow:1px 1px 1px #742e70;
+      }  
+
+      p.menu_list::before{
+        content:"\f778";
+        font:normal 24px "Font Awesome 5 Brands"; position:relative; left:0px; top:2px; 
+        margin-right:20px;
+         
+
+        /* 
+        해당요소의 :: before 선택자를 활용하여 content: 속성값에 선택한 아이콘의 Unicode 코드 붙여넣기 
+        주의) 앞에 \(역슬래시) 주의 
+        font 속성값을 해당 글꼴이름 "Font Awesome 5 Free" 설정하고 크기 및 색상 조절 가능
+        ( 아이콘별 Reguler Style 은 font-weight 값이 없어도 됨 , 
+          Solid Style 은 font-weight 값이 500 이상이어야 적용
+          Brands Style 은 글꼴 이름을 “Font Awesome 5 Brands” 라고 적용해야됨 ) 
+        */ 
+
+      }
+
+
+      div#button:hover{
+        background: -webkit-linear-gradient(top, #ff3019 0%,#cf0404 100%);
+      }
+
+                          
+    </style>
+  </head> 
+
+  <body>  
+
+    <div id="button">
+
+      <p class="menu_list">adobe</p>
+
+    </div>
+    
+    
+    <!-- <i> 테그를 복사하여 class 이름으로 불러들인 외부스타일 소스에서 아이콘을 적용 -->
+    <!-- fa-배수x 형식으로 class 명을 추가하여 아이콘의 기본크기 조절 (2x, 3x, 5x, 7x, 9x )-->
+      
+
+  </body>
+</html>                  

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge"> 
+
+  <style> 
+
+      body {
+				margin:0px; padding:0px; 
+				min-width:960px;
+				min-height:10000px;
+			}
+			#start_bg {
+				width:100%;
+				height:962px;
+				background:url("images/start_bg.jpg") no-repeat;
+				background-size:cover;
+				position: fixed;
+				top:0;
+				z-index:2;
+			}
+			
+			#copy_1 {
+				width:355px;
+				height:46px;
+				position:absolute; left:50%;
+				margin-left:-177px ;
+				top:60px;
+				background:url("images/copyright_01.png") no-repeat;
+			}
+			
+			#copy_2 {
+				width:566px;
+				height:66px;
+				position:absolute; left:50%;
+				margin-left:-283px ;
+				top:120px;
+				background:url("images/copyright_02.png") no-repeat;
+				
+			}			
+			#camera_bottom {
+				width:527px;
+				height:74px;
+				background:url("images/camara_bottom.png") no-repeat;
+				position:fixed; left:50%;
+				margin-left:-256px; 
+				top:686px;
+				z-index:5;
+				
+			}
+			#camera_top {
+				width:527px;
+				height:432px;
+				background:url("images/camera_top.png") no-repeat;
+				position: fixed; left:50%; margin-left:-255px;
+				top:254px;
+				z-index:7;
+				
+			}
+			
+			#main_photo {
+				width:411px;
+				height:361px;
+				background:url("images/bg_paper.png") no-repeat;
+				position: fixed; left:50%; 
+				/* 누구도 따라가지 않고 그자리에 붙여둠 */
+				margin-left:-200px;
+				top:430px;
+        z-index: 6;
+        -webkit-transition:0.3s ease;		
+			}
+			
+			#main_photo.rotate {					
+				-webkit-transform:rotate(20deg);
+			}
+			
+			#cover_left {
+        background: url("images/bg_pattern_copy.jpg") repeat 0 0;
+        height: 3000px; left: 0;  overflow: hidden; position: fixed;
+        width: 50%;
+        top:962px;
+        z-index: 4;
+			}
+			#cover_right {
+        background: url("images/bg_pattern_copy.jpg") repeat 0 0;
+        height: 3000px;
+        right: 0;
+        overflow: hidden;
+        position: fixed;
+        width: 50%;
+        top:962px;
+        z-index: 4;
+			}			
+			#copy_tistory {
+        width:100%;
+        background: url("images/txt_tistory.png") no-repeat 50% 0;
+        height: 149px;
+        position: fixed;
+        top: 1500px;
+        z-index: 1;
+			  
+			}
+    
+
+   
+  </style>
+
+  <title> scroll_Tistory </title>
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.4.2/gsap.min.js "></script>
+  <!--GSAP CDN 코드 -->
+
+  <script> 
+//포지션이 픽스드로 되어있어서 요소별로 속도를 다르게 줄 수 있음
+//이런 시각적인 페이지는 접근성은 배제하고
+//현재 페이지는 반응형 적용이 안되어있음
+	document.addEventListener('DOMContentLoaded',()=>{
+
+		window.addEventListener('scroll',scrollWindow)
+
+		function scrollWindow(){
+			let scrollHeight=window.pageYOffset//스크롤 된 높이 구하기
+			const mainPhoto=document.querySelector('#main_photo')
+			//gsap은 아이디를 그대로 넣어도 됨
+			gsap.set('#start_bg',{top:-scrollHeight/2})//n분의1로 속도 조절 가능
+			gsap.set('#camera_top',{top:254-scrollHeight/4})
+			gsap.set('#camera_bottom',{top:686-scrollHeight/4})
+			gsap.set('#cover_left,#cover_right',{top:962-scrollHeight/1.5})
+			if(scrollHeight>=900){
+				mainPhoto.classList.add('rotate')
+			}else{
+				mainPhoto.classList.remove('rotate')
+			}
+			let coverPosition=0//양쪽 준 위치 속성이 다르니 -가 되면 벌어짐
+			if(scrollHeight>=2000 && scrollHeight<=3600){//불필요하게 많이 움직이지 않도록
+				coverPosition=(2000-scrollHeight)/2//벌어지는 속도 조절
+			}else if(scrollHeight>3600){
+				coverPosition=-2000//고정값주기
+			}else{
+				coverPosition=0
+			}//움직일 값 설정
+
+			gsap.set('#cover_left',{left:coverPosition})
+			gsap.set('#cover_right',{right:coverPosition})
+
+			if(scrollHeight>=3000){
+				gsap.to('#copy_tistory',{top:150})
+			}else{
+				gsap.to('#copy_tistory',{top:1500})
+			}
+		}
+	})
+
+
+
+
+
+
+
+
+		
+		   
+    
+  </script>
+
+
+</head>
+<body> 
+
+  <div id="start_bg">
+    <div id="copy_1"></div>
+    <div id="copy_2"></div>
+  </div>
+  
+  <div id="camera_bottom"></div>        
+  <div id="main_photo"></div>
+  <div id="camera_top"></div>
+      
+  <div id="cover_left"> </div>
+  <div id="cover_right"> </div>
+  
+  <div id="copy_tistory"></div>
+  
+  
+  
+</body>
+</html>

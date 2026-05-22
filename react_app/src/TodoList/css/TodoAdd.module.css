@@ -1,0 +1,31 @@
+section#addtodo{
+    width:100%;
+    height:54px; 
+    background: #CCCCCC;          
+    /* dark-mode : background:#212A3E; */
+    
+    position:fixed;
+    left:0px;
+    bottom:0px; 
+    padding:0px 16px; 
+    box-sizing:border-box;
+}
+
+form#add_form{
+    width:100%;
+    height:100%;
+    display:flex;
+    flex-wrap:wrap;
+    flex-direction:row;
+    justify-content:space-around;
+    align-content: center;
+}
+
+input.add_input{
+    width:70%;
+    height:20px;  
+}
+button.add_btn{
+    width:80px; 
+         
+}       

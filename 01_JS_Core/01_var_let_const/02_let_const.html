@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title> let_const 변수선언자 </title>
+  <script>
+  
+  //var a=1;
+   
+  //var a=2; 
+   
+  //console.log(a) // 같은 이름의 변수를 중복선언하면 최근선언한 값이 지정된다. (변수 충돌 )
+   
+     
+   let a=1;
+   
+   let a=2; 
+   
+   console.log(a) // 결과 : 에러  ES6버전  let 선언자로 변수로 선언하면  전역변수나 또는 같은 함수, 블럭{} 내에서 같은 변수명을 사용할수 없다. 
+   
+   
+   /* var 선언자와 let 선언자와의 차이 
+
+   var 선언자
+
+   - 전역변수에서든 지역변수내에서 또는 블럭{}내에서 같은 변수명을 할수 있다. ( 상황에 따라 변수값이 달리 해석 - 충돌염려 )
+
+   - 지역변수내에서 선언된 var 변수는 사용 유효범위가 함수전체이다. 
+
+   let 선언자 
+
+   - let 선언자는 전역변수나 또는 같은 함수, 블럭{} 내에서 같은 변수명을 사용할수 없다.  ( 충돌방지 ) 
+   
+      참고) 서로다른 함수와 블럭{}내에서는 같은 변수명 사용가능 
+
+   - 지역변수내에서 선언된 let 변수는 사용 유효범위가 블럭{} 내에서만 사용가능하다.   
+   
+   */
+   
+   const a=1; // 불변의 고정값을 사용 
+   
+   a=2
+   
+   console.log(a) // 결과 : 에러  ES6 버전 const 선언자로 변수로 선언하면 변수의 값도 변경할 수 없다.     
+     
+  
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

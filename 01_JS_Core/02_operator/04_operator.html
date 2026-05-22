@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title> 변수와 +문자연산자 </title>
+  <script>
+  
+  // + 문자연자를 사용하면 변수와 문자열을 이어줄수 있다. 
+  
+  let text="홍길동 님 환영합니다."
+
+  console.log(text)
+  
+  
+  let name="홍길동";
+
+
+  text=name + " 님 환영합니다."
+
+  console.log(text)  
+
+  
+  text="당신의 점수는 85 점 입니다."
+
+  console.log(text)
+
+  let score=95;  // 점수를 바꿔가면서 사용 
+
+  text="당신의 점수는 " + score + " 점 입니다."
+
+  console.log(text)
+
+  text=`당신의 점수는 ${score} 점 입니다.`   // ES6 버전 : 보간식 ${변수 또는 연산식 } + 연산자를 생략 
+
+  console.log(text)
+
+
+  name=prompt("이름을 입력하세요")  // name 값을 prompt() 값으로 입력
+
+  score=prompt("점수를 입력하세요") // 주의) prompt() 입력값은 숫자를 입력해도 정확한 데이터 타입은 문자
+
+  score=parseInt(score) // 점수를 숫자 정수로만 출력 (데이터 타입을 명확히 하는것이 중요)
+
+
+  text=name + "님의 점수는 "+ score + " 점 입니다."
+
+  //document.write(text)
+
+  text=`${name}  님의 점수는 ${score} 점 입니다.`  // ES6 버전 : 보간식으로 변경 ${변수 또는 연산식 } + 연산자를 생략 
+
+
+  document.write(text) 
+
+
+  
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

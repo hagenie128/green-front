@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge"> 
+
+  <style> 
+
+    body,html{
+      height:100%;
+    }
+
+    body,ul,li,p{
+      margin:0px; padding:0px; list-style:none;
+    }
+
+    header{
+      width:100%; height:120px; float:left; position:fixed; left:0px; top:0px;  z-index:1000; 
+      background:#FFFFFF; box-shadow:2px 2px 2px gray; 
+    }
+   
+    nav#menu{
+      width:500px; height:65px; position:absolute; right:200px; top:65px; 
+    }
+    ul#menu_list li{
+      width:120px; height:50px; float:left; margin-right:30px; 
+      -webkit-transition:0.3s ease; border-bottom:solid 5px white; 
+    }
+    ul#menu_list li a{
+      display:block; width:100%; height:50px; 
+      font:bold 18px Arial; color:#333333; text-align:center; text-decoration:none;
+     
+    }   
+    ul#menu_list li.selected{
+      border-bottom:solid 5px green; 
+    }
+
+    ul#menu_list li.selected a{
+      color:green;
+    }
+
+    div#contents_wrap{
+      width:100%; height:900px; position:absolute; top:0px; left:0px; 
+    }
+    
+    .contents {  
+      
+      width: 100%; height:100%; float:left;    
+      position: relative; left:0px; top:0px;       
+      background-repeat: repeat; 
+      color:#FFF; 
+      
+    }
+
+    #par1 {
+      background:url("images/bg1.jpg");
+    } 
+    
+    #par3 { 
+      background:url("images/bg3.jpg");
+    }
+
+
+    .contents article { 
+      width: 70%; height:50%;
+      text-align: center; 
+      margin:200px auto;       
+      padding:20px 40px 40px;
+      background: rgba(1, 54, 54, 0.8);
+      border-radius:20px;
+    }   
+
+    article h1 {
+      font-size:40px;
+    } 
+    article p {
+      line-height:24px; 
+      font-size:18px; 
+      margin-top:15px;
+      text-align:left;
+    } 
+    article p a {
+      color:#FFF; 
+      text-decoration:none; 
+      font-size:10px;
+    }
+
+   
+  </style>
+
+  <title> scrollSlide_wheel </title>  
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/3.4.0/gsap.min.js'></script>
+  <!--GSAP CDN 코드 -->
+  
+  <script> 
+
+    window.addEventListener('load',()=>{
+
+
+        const menu=document.querySelectorAll('#menu_list>li') // 모든메뉴 찾음 
+        const contents=document.querySelectorAll('.contents') // 모든컨텐츠 찾음 
+
+        let menuLength=menu.length; // 메뉴 총갯수 
+        let windowHeight=window.innerHeight; // 윈도우의 높이구함 
+        let selectedMenu; // 선택된 메뉴를 대입할 변수 
+        // 주의) 초기값 menu[0] 지정되면 안됨 - 초기설정함수 menuActivate(0) 실행시 선택되었던 메뉴순번과 활성화할 메뉴순번이 같아서 처음에 실행안됨 
+        let menuClickNum=0 // 메뉴클릭한 순번을 대입할 변수 
+        let scrollHeight=0; // 윈도우 스크롤높이를 대입할 변수 
+        let endY; // 각 컨텐츠별 스크롤 끝나는 위치를 대입할 변수 
+        
+        let isWheel=false; // 휠 상태변수 지정 (초기값 false 지정)
+
+
+        init(); // 초기설정 함수실행 
+        menuActivate(0) // 첫번째 메뉴 활성화 하고 시작 
+        initEvent(); // 이벤트 함수실행 
+
+        function init(){ // 모든 컨텐츠의 높이를 windowHeight으로 맞춤     
+            gsap.set(contents, {height:windowHeight})
+        }
+
+        function initEvent(){ // 모든 메뉴에 이벤트 적용 
+            for(const item of menu){
+                item.addEventListener('click',menuClick);
+            }
+
+            window.addEventListener('mousewheel',windowWheel) // 윈도우 스크롤 할때 windowScroll() 함수실행 
+
+        }
+
+        function menuClick(){ // 메뉴 클릭했을때 실행할 함수      
+
+            menuClickNum=getIndex(this) // 클락한 메뉴 순번구함              
+            
+            scrollSlide(menuClickNum) // 스크롤 하는 에니메이셔 함수실행 (매개변수활용)     
+            menuActivate(menuClickNum) // windowScroll() 함수에서 scrollHeight 값에 따라 활성화를 해주기 때문에 생략해도됨 
+        
+        }
+
+        function getIndex(checkMenu){ // 순번 구하는 함수 (매개변수활용)
+            let selectIndex=0;
+            while((checkMenu=checkMenu.previousElementSibling)!=null){
+                selectIndex++
+            }
+            return selectIndex
+        }
+
+        function scrollSlide(num){ // 스크롤 하는 에니메이션 함수 (매개변수활용)
+            
+            if(selectedMenu!=menu[num]){ // 기존에 선택되었던 메뉴와 새로선택한 메뉴가 서로 같지않을때만 실행 
+
+               
+                endY=windowHeight*num; // 클릭한 메뉴순번에 따른 스크롤 도착위치를 지정    
+
+                // scrollTop속성을 활용하여 endY 좌표까지 'body,html' 요소 스크롤에니메이션 적용                  
+
+                    gsap.to("body,html", {duration: 0.5, scrollTop: endY, onComplete:()=>{
+                    isWheel=false
+                }});
+                // 중요) web animation API animate() 에서는 scrollTop 속성이 적용안됨   
+                    
+           }
+        
+        }
+
+        function menuActivate(num){ // 메뉴활성화 함수 (매개변수활용)
+
+            if(selectedMenu!=null && selectedMenu!=menu[num]){ // 기존에 선택되었는 메뉴 비활성화       
+                selectedMenu.classList.remove('selected')
+            }
+
+            if(selectedMenu!=menu[num]){ // 새로선택된 메뉴 활성화      
+                selectedMenu=menu[num];                
+                selectedMenu.classList.add('selected')
+            }
+
+        }
+
+        function windowWheel(e){           
+
+            if(e.wheelDelta<=-120 && menuClickNum<menuLength-1 && isWheel==false){ // 마우스휠을 아래로 내릴때 
+                // 주의) menuClickNum < menuLength-1 조건을 작동하기전에 적용한다. ( 연산한 다음 조건을 지정하면 wheel 동작과 충돌 )
+
+                isWheel=true; // 휠작동 상태를 true 로지정 
+                
+                menuClickNum++; // 메뉴 클릭번호를 하나씩 증가 
+               
+
+                scrollSlide(menuClickNum) // 적용된 클릭번호를 매개변수로 활용하여 스크롤 슬라이드 적용 (매개변수활용)
+                menuActivate(menuClickNum) // 적용된 클릭번호를 매개변수로 활용하여 해당메뉴를 활성화 (매견수활용)
+
+               
+                
+            }else if(e.wheelDelta>-120 && menuClickNum>0 && isWheel==false){ // 마우스휠을 위로 올릴때 
+                // 주의) menuClickNum > 0 조건을 작동하기전에 적용한다. ( 연산한 다음 조건을 지정하면 wheel 동작과 충돌 )
+                
+                isWheel=true; // 휠작동 상태를 true 로지정                           
+
+                menuClickNum-- // 메뉴 클릭번호를 하나씩 감소               
+
+                scrollSlide(menuClickNum) // 적용된 클릭번호를 매개변수로 활용하여 스크롤 슬라이드 적용 (매개변수활용)
+                menuActivate(menuClickNum) // 적용된 클릭번호를 매개변수로 활용하여 해당메뉴를 활성화 (매개변수활용)
+                                       
+            }
+           
+        }   
+
+    }) 
+        
+        
+    
+  </script>
+
+
+</head>
+<body> 
+
+  <header>   
+    
+    <nav id="menu">
+        <ul id="menu_list">
+            <li><a href="#;">contents1</a></li>
+            <li><a href="#;">contents2</a></li>
+            <li><a href="#;">contents3</a></li>
+          </ul>  	
+    </nav>     
+  
+</header>
+
+<div id="contents_wrap">
+  <div id="par1" class="contents"> 
+    <article> 
+      <h1>contents1</h1> 
+      <p>Parallax scrolling is a concept that when the user scrolls or moves about the page, the background object seems to move with them. This can be done by repositioning the background through javascript. Objects that seem to be further away are actually only moving slower or in an opposite direction than the objects in front of them.</p> 
+    </article> 
+  </div> 
+  <div id="par2" class="contents"> 
+    <article> 
+      <h1>contents2</h1> 
+      <p>Scrolling is actually disabled on this page, however it uses scrolling events in order for it to decide whether the page is to go up or down. Reducing the height of the browser will cause problems with visibility of elements on the page - and will overlap the info. - TOFIX</p> 
+    </article> 
+  </div> 
+  <div id="par3" class="contents"> 
+    <article> 
+      <h1>contents3</h1> 
+      <p>You know this next slide has class, it has style and it doesn't judge the person reading it. Did you ever think that a page could be judgemental? Well I think you may have some trouble with self esteem in that case. If not: you should protrude any thought that the author of this article is making no sense, and that you should disregard any prior information read.</p> 
+    </article> 
+  </div> 
+</div>
+  
+  
+  
+</body>
+</html>

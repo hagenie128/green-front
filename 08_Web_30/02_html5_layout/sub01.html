@@ -1,0 +1,112 @@
+﻿<!DOCTYPE html>
+<html lang="ko"> 
+<head>
+  <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>div레이아웃연습2</title>
+	<style>
+
+	body,div,p,h1,ul,li{
+		margin:0px; padding:0px; 
+	}
+	ul,li{
+		list-style:none;
+	}
+	.hidden{
+      width:1px; height:1px; font-size:0px; line-height:0px; position:absolute; 
+  }
+  a{
+    color:black; text-decoration:none;
+  }
+
+	div#header_wrap{
+		width:100%; height:150px; background:#eeeeee; margin-bottom:10px; 
+	}
+	header#header_inner{
+		width:1200px; height:150px; margin:0px auto; background:#cccccc; position:relative;left:0px; top:0px; 
+	}
+	h1#logo{
+    width:150px; height:80px; position:absolute; left:10px; top:35px; background:#eeeeee;
+    text-align:center; font:normal 30px/80px "verdana"; 
+  }
+
+  nav#mainmenu{
+    width:1020px; height:80px; background:#eeeeee; position:absolute; left:170px; top:35px; 
+  }
+
+	ul#mainmenu_list{
+		width:1020px; height:80px; 
+	}
+
+	ul#mainmenu_list li{
+		width:255px; height:80px; float:left; text-align:center; font:normal 16px/80px "verdanan"; 
+	}
+
+	ul#mainmenu_list li a{
+		width:255px; height:80px; display:block; color:black; text-decoration:none;
+	}
+
+	div#visual_wrap{
+		width:100%; height:300px; background:#eeeeee; margin-bottom:10px; 
+	}
+	section#visual_inner{
+		width:1200px; height:300px; margin:0px auto; background:#cccccc; position:relative;
+		left:0px; top:0px; 
+	}
+	div#contents_wrap{
+		width:100%; min-height:800px; background:#eeeeee; margin-bottom:10px; /* contents 의 높이는 페이지마다 유동적으로 min-height 로 적용  */
+	}
+	section#contents_inner{
+		width:1200px; min-height:800px; margin:0px auto; position:relative; left:0px; top:0px;  background:#cccccc;
+	}
+
+	div#footer_wrap{
+		width:100%; height:150px; background:#eeeeee;
+	}
+	footer#footer_inner{
+		width:1200px; height:150px; margin:0px auto; position:relative; left:0px; top:0px; 
+		background:#cccccc;
+	}
+
+</style>
+
+</head>
+<body>
+	<div id="header_wrap">
+    	<header id="header_inner">
+				<h1 id="logo"><a href="./03_layout.html" title="메인페이지바로가기">logo</a></h1>
+           <nav id="mainmenu">
+						 <h2 class="hidden">메인메뉴</h2>
+						 <ul id="mainmenu_list">
+							 <li><a href="#">menu1</a></li>
+							 <li><a href="#">menu2</a></li>
+							 <li><a href="#">menu3</a></li>
+							 <li><a href="#">menu4</a></li>
+						 </ul>
+					 </nav>        
+			</header>    
+  </div>
+	<div id="visual_wrap">
+		<section id="visual_inner">
+			<h2 class="hidden">비쥬얼영역</h2>
+			sub01
+		</section>    
+	</div>
+	<div id="contents_wrap">
+		<section id="contents_inner">
+			<h2 class="hidden">컨텐츠영역</h2>
+			
+		</section>    
+	</div>
+	<div id="footer_wrap">
+		<footer id="footer_inner">
+			<h2 class="hidden">하단정보영역</h2>
+			
+		</footer>
+	
+	
+	</div>
+
+
+</body>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge"> 
+
+  <style> 
+
+    body,html{
+      height:100%;
+    }
+
+    body,ul,li,p{
+      margin:0px; padding:0px; list-style:none;
+    }
+
+    header{
+      width:100%; height:120px; float:left; position:fixed; left:0px; top:0px;  z-index:1000; 
+      background:#FFFFFF; box-shadow:2px 2px 2px gray; 
+    }
+   
+    nav#menu{
+      width:500px; height:65px; position:absolute; right:200px; top:65px; 
+    }
+    ul#menu_list li{
+      width:120px; height:50px; float:left; margin-right:30px; 
+      -webkit-transition:0.3s ease; border-bottom:solid 5px white; 
+    }
+    ul#menu_list li a{
+      display:block; width:100%; height:50px; 
+      font:bold 18px Arial; color:#333333; text-align:center; text-decoration:none;
+     
+    }   
+    ul#menu_list li.selected{
+      border-bottom:solid 5px green; 
+    }
+
+    ul#menu_list li.selected a{
+      color:green;
+    }
+
+    div#contents_wrap{
+      width:100%; height:900px; position:absolute; top:0px; left:0px; 
+    }
+    
+    .contents {  
+      
+      width: 100%; height:100%; float:left;    
+      position: relative; left:0px; top:0px;       
+      background-repeat: repeat; 
+      color:#FFF; 
+      
+    }
+
+    #par1 {
+      background:url("images/bg1.jpg");
+    } 
+    
+    #par3 { 
+      background:url("images/bg3.jpg");
+    }
+
+
+    .contents article { 
+      width: 70%; height:50%;
+      text-align: center; 
+      margin:200px auto;       
+      padding:20px 40px 40px;
+      background: rgba(1, 54, 54, 0.8);
+      border-radius:20px;
+    }   
+
+    article h1 {
+      font-size:40px;
+    } 
+    article p {
+      line-height:24px; 
+      font-size:18px; 
+      margin-top:15px;
+      text-align:left;
+    } 
+    article p a {
+      color:#FFF; 
+      text-decoration:none; 
+      font-size:10px;
+    }
+
+   
+  </style>
+
+  <title> scrollSlide </title>  
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/3.4.0/gsap.min.js'></script>
+  <!--GSAP CDN 코드 -->
+  
+  <script> 
+
+  
+
+
+
+
+
+
+
+
+        
+    
+  </script>
+
+
+</head>
+<body> 
+
+  <header>   
+    
+    <nav id="menu">
+        <ul id="menu_list">
+            <li><a href="#;">contents1</a></li>
+            <li><a href="#;">contents2</a></li>
+            <li><a href="#;">contents3</a></li>
+          </ul>  	
+    </nav>     
+  
+</header>
+
+<div id="contents_wrap">
+  <div id="par1" class="contents"> 
+    <article> 
+      <h1>contents1</h1> 
+      <p>Parallax scrolling is a concept that when the user scrolls or moves about the page, the background object seems to move with them. This can be done by repositioning the background through javascript. Objects that seem to be further away are actually only moving slower or in an opposite direction than the objects in front of them.</p> 
+    </article> 
+  </div> 
+  <div id="par2" class="contents"> 
+    <article> 
+      <h1>contents2</h1> 
+      <p>Scrolling is actually disabled on this page, however it uses scrolling events in order for it to decide whether the page is to go up or down. Reducing the height of the browser will cause problems with visibility of elements on the page - and will overlap the info. - TOFIX</p> 
+    </article> 
+  </div> 
+  <div id="par3" class="contents"> 
+    <article> 
+      <h1>contents3</h1> 
+      <p>You know this next slide has class, it has style and it doesn't judge the person reading it. Did you ever think that a page could be judgemental? Well I think you may have some trouble with self esteem in that case. If not: you should protrude any thought that the author of this article is making no sense, and that you should disregard any prior information read.</p> 
+    </article> 
+  </div> 
+</div>
+  
+  
+  
+</body>
+</html>

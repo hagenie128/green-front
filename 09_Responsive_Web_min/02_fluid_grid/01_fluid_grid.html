@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8"> 
+ 		<meta name="viewport" content="width=device-width, initial-scale=1.0">   
+		<title>fluid_grid</title>
+		<style>
+			body,p{
+				margin:0px; padding:0px; 
+			}
+			html,body{
+				height:100%; 
+			}
+			div#wrap{
+				width:100%; height:40%; background:#CCC;
+			}
+			div#wrap_center{
+				width:70%; height:100%; margin:0px auto; background:#999;
+			}
+			section#section2{
+				width:70%; height:100%; float:left; background:#F30; border-right:solid 1px #FFFFFF; box-sizing:border-box;
+				font:bold 1em Verdana, Geneva, sans-serif; text-align:center; color:#FFF; padding-top:30px; 
+			}
+			section#section1{
+				width:30%; height:100%; float:left; background:#F90; 
+				font:bold 1em Verdana, Geneva, sans-serif; text-align:center; color:#FFF; padding-top:30px;  box-sizing:border-box;
+			}
+
+			/*
+			em, rem, vw, vh 단위 개념 
+
+			em: 상위 부모요소의 상대적 크기단위
+			- 단위환산 : 해당요소크기/부모요소크기 ( 단위환산 지원 사이트 pxtoem.com  )
+			- 단점 : 반응형 작업시 해당요소의 부모요소크기를 조절, 부모요소의 크기에 따라 크기 결과가 각각 서로 다름  
+			rem ( root em ) : 최상위 ( body,html ) 요소를 기준으로 상대적 크기 
+			- 장점:  해당요소의 각각 부모요소의 상대크기가 아니라 최상위 요소 (body) 기준으로 지정돼서 비율의 일관성
+			- 단점: 반응형 작업시 해상도에 따라 최상위 요소의 크기를 조절 해야됨 ( 해상도에 따라 크기가 자동조절이 안됨 ) 
+			vw (viewport width) : 사용자 디바이스 가로 크기에 따른 상대적 크기 
+			vh (viewport height) : 사용자 디바이스 세로 크기에 따른 상대적 크기 
+			- 단위환산 : 사용자 디바이스 가로크기의 1/100 단위 ( 예: 디바이스 가로크기가 1200px 일때 1vw - 실제 12px ) 
+			- 장점 : 사용자 디바이스 해상도에 따라 크기가 자동 조절 됨 
+			*/
+
+
+
+		</style>
+	</head>
+<body>
+	<div id="wrap">    	
+       
+        <div id="wrap_center">
+       		<section id="section2">
+        		section1       
+        	</section> 
+        
+        	<section id="section1">
+        		section2        
+        	</section>        
+        </div> 
+         
+    </div>
+</body>
+</html>

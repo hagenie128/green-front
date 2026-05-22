@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">  
+
+  <style> 
+
+  body{
+    background:url("images/index_back.gif")
+  }    
+
+  #float_window{
+    
+    position:absolute;
+    width:500px;
+    height:400px;
+    top:100px;
+    left:100px;
+    opacity:1;
+    background:white;
+    border:solid 1px black; box-shadow:2px 2px 2px black; box-sizing:border-box; 
+  }
+  #float_window a.close_btn{
+    position:absolute;
+    right:20px;
+    top:10px;
+  }
+
+  #float_window dl{
+    width:100%;
+    height:100%;    
+    margin:0;
+  }
+  #float_window dl dt{
+    height:40px;
+    line-height:40px;
+    text-indent:20px;
+    color:white;
+    font-weight:bold;
+    cursor:move; background:black; 
+  }
+  #float_window dl dd{
+    margin:0;
+    padding:20px;
+    line-height:20px; 
+
+  }  
+ 
+  </style>
+
+  <title> dragPopUp </title> 
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.4.2/gsap.min.js "></script>
+  <!--GSAP CDN 코드 -->
+
+  <script> 
+
+    document.addEventListener('DOMContentLoaded',()=>{
+      const popup=document.querySelector('#float_window')
+      const dragBar=document.querySelector('#float_window dt')
+      const closebtn=document.querySelector('.close_btn')
+
+      let downX=null
+      let downY=null
+
+      dragBar.addEventListener('mousedown',dragDown)//드래그/ 클릭은 누르고 뗄 때 적용
+      dragBar.addEventListener('mouseup',dragStop)
+      closebtn.addEventListener('click', hidePopup)
+      function dragDown(e){
+        downX=e.offsetX
+        downY=e.offsetY
+        document.addEventListener('mousemove',dragMove)//움직임이 빠를 경우 잡아내야해서 문서를 읽음
+      }
+      function dragMove(e){
+        gsap.set(popup,{left:e.clientX-downX,top:e.clientY-downY})//왼쪽 상단 기준에서 마우스 위치를 빼줌
+      }
+      function dragStop(){
+        document.removeEventListener('mousemove',dragMove)//이벤트 해제
+      }
+      function hidePopup(){
+        gsap.set(popup,{display:'none'})
+      }
+    })
+      
+    
+  </script>
+
+
+</head>
+<body> 
+    
+		<div id="float_window">
+			<a href="#" class="close_btn"><img src="images/close.png" alt="닫힘" /></a>
+			<dl>
+				<dt>     </dt>
+				<dd>이번에는 자바스크립트를 이용하여 플로우팅 윈도우..(중략)...윈도우를 표시할 수 있습니다.</dd>
+			</dl>
+		</div>
+  
+  
+</body>
+</html>

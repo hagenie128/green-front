@@ -1,0 +1,17 @@
+section.contents{
+    width: 100vw;
+    height: 100vw;
+    padding: 120px 16px;
+    box-sizing: border-box;
+}
+h2.contents_title{
+    font:normal 6.66vw 'verdana';
+    text-align: center;
+    color:#2b3467;
+    margin-bottom: 0.75em;
+}
+p.contents_text{
+    font:normal 3.88vw 'verdana';
+    text-align: center;
+    color:#2b3467;
+}

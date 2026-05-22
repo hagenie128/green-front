@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sticky01</title>
+    <style>
+
+        /* position:sticky 속성 
+
+        -  부모요소를 스크롤 할때 해당요소의 위치가 윈도우를 기준으로 top값에 적용된 위치에 스크롤되는 시점에 해당요소를 고정(fixed) 시키는 속성 
+
+        주의)
+        - position:sticky 적용시 top 값은 해당요소의 좌표가 아니라 스크롤시 윈도위에 고정되는 좌표 (right좌표는 적용되지 않으며 left좌표만 적용)
+        - 초기 부모요소에대한 해당요소의 위치는 margin 속성으로 적용           
+        - 해당요소가 고정되어 머무르는 시간은 부모요소의 높이에 따라 부모요소가 스크롤이 끝나는 시점
+        */
+
+        *{
+            margin:0px; 
+            padding:0px; 
+        }
+        body,html{
+            height:100%;
+        }
+        div#contents_1{
+            width:100%;
+            height:100%;             
+            position:relative;
+            left:0px;
+            top:0px;
+            color:white;  
+        }
+        div#contents_2{
+            width:100%;
+            height:200%; 
+            /* sticky 속성이 적용된 요소의 부모의 높이값이 sticky 요소가 고정되는 시간 ( 높이값이 클수록 오래고정 - 부모가 스크롤이 끝나면 sticky 요소 고정값이 해제*/
+            background:#ECECEB;
+            position:relative;
+            left:0px;
+            top:0px;              
+            box-sizing:border-box;
+            color:white;
+        }
+        div#sticky{
+
+            width:300px; 
+            height:300px;            
+            background:#FF9900;              
+            border:2px solid white;
+            padding:20px;
+            font-size:normal 14px/20px 'verdana';
+            color:white;                    
+            text-align:justify;
+
+            position:sticky; /* absolute 지정하면 그냥 같이 스크롤 */
+            left:60%; /* sticky 에서는 right 좌표는 적용안됨 */
+            top:0px; /* window 기준 고정되는 상단위치 */
+            margin-top:200px; /* 초기 부보요소부터의 좌표는 mqrgin 속성으로 적용 */                     
+
+        }
+        
+        p#sticky_title{
+            font-size:30px; 
+            margin-bottom:30px; 
+        }
+        div#contents_3{
+            width:100%;
+            height:100%;           
+            position:relative;
+            left:0px;
+            top:0px; 
+            color:white;
+        }
+        
+    </style>
+</head>
+<body>
+    <div id="contents_1">
+        contents_1       
+    </div>
+
+    <div id="contents_2">
+        contents_2
+        <div id="sticky">
+
+            <p id="sticky_title">STICKY!</p>
+            Maecenas sed diam eget risus varius blandit sit amet non magna. Maecenas faucibus mollis interdum. Maecenas sed diam eget risus varius blandit sit amet non magna justo sit amet risus.
+
+
+        </div>
+    </div>
+
+    <div id="contents_3">
+        contents_3
+    </div>
+    
+</body>
+</html>

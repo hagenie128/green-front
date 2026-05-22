@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title> if구문_01 </title>
+  <script>
+  
+ // 조건문 ( 조건에 따라 실행할 명령을 구분하여 실행 )
+
+  /*
+  
+  if(조건1){
+
+     조건1에 해당될때 실행할 명령   ( 실행할 명령이 1줄일때는 {} 생략가능 )
+
+  }else if(조건2){
+
+     조건2에 해당될때 실행할 명령 
+
+  }else{
+
+     아무조건에 해당되지 않을때 실행할 명령 
+
+  }
+
+  */  
+
+ let result=confirm("식사는 하셨나요?") // 확인 취소 선택 가능 
+
+ document.write(result) // confirm 에서 확인 일때 결과값이 true , 취소일때  false  
+  
+ 
+ result=confirm("스크립트 많이 어려우신가요 ?")
+
+ 
+ if(result==true){ // == 두개 주의  ( confirm 메세지에서 확인을 눌른경우 )
+
+  document.write("천천히 원리를 잘 공부하면 이해되실거예요..")
+
+ }else if(result==false){ //  ( confirm 메세지에서 취소를 눌른경우 )  
+
+  document.write("다음 예제를 또 열심히 해 봅시다.. ")
+
+ }  
+
+  
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

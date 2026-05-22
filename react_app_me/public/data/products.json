@@ -1,0 +1,24 @@
+[
+    {
+      "id":"001",
+      "image":"../images/m3_multiple.png",
+      "name":"M3어쩌구",
+      "text":"설명칸",
+      "price":"59,000",
+      "isNew":true
+    },
+    {"id":"002",
+      "image":"../images/spaceon.png",
+      "name":"루메나 SPACE ON 테이블램프",
+      "text":"놓는 순간 갤러리가 되는 아트오브제",
+      "price":"99,000",
+      "isNew":false
+    },
+    {"id":"003",
+      "image":"../images/package.png",
+      "name":"M3 테이블 램프 패키지",
+      "text":"다양하게 즐기는 테이블 램프 레이아웃",
+      "price":"99,000",
+      "isNew":false
+    }
+  ]

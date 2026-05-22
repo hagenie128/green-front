@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">  
+
+  <style>    
+    
+    ul,li{
+      margin:0px; padding:0px; list-style:none; 
+    }     
+    body{
+      background:black;
+    }
+    #container{
+      width:1000px; margin:100px auto;
+    }
+    #navi{
+      width:300px; height:500px; position:relative; left:0px; top:0px; 
+      float:left; overflow:hidden; margin-right:50px;
+    }
+    ul#img_list{
+      height:420px;
+    }
+    ul#img_list li{   
+      width:140px; height:95px; float:left; border:solid 3px white; opacity:0.5;
+      margin:2px; -webkit-transition:0.3s ease; 
+    }  
+
+    ul#img_list li.selected{
+      opacity:1; border:solid 3px yellow;
+    }
+    
+    div#page{
+      width:300px; float:left;
+    }
+    
+    #main{
+      width:650px; float:left;
+    }
+    #main img{
+      position:absolute; border:3px solid white;
+    }    
+  
+  </style>
+
+  <title> imgGallery </title>  
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.4.2/gsap.min.js "></script>
+  <!--GSAP CDN 코드 -->
+
+  <script>
+  
+    
+
+
+
+
+
+
+
+
+
+
+    
+  </script>
+</head>
+<body>
+
+    <div id="container">
+      
+        <div id="navi">        
+            <div  id="page">
+              <ul id="img_list">                
+                <li><a href="#"><img src="images/photo1_thum.jpg" alt="" /></a></li>
+                <li><a href="#"><img src="images/photo2_thum.jpg" alt="" /></a></li>
+                <li><a href="#"><img src="images/photo3_thum.jpg" alt="" /></a></li>
+                <li><a href="#"><img src="images/photo4_thum.jpg" alt="" /></a></li>
+                <li><a href="#"><img src="images/photo5_thum.jpg" alt="" /></a></li>
+                <li><a href="#"><img src="images/photo6_thum.jpg" alt="" /></a></li>
+                <li><a href="#"><img src="images/photo7_thum.jpg" alt="" /></a></li>
+                <li><a href="#"><img src="images/photo8_thum.jpg" alt="" /></a></li>
+              </ul>             
+            </div>           
+        </div>
+
+        <div id="main">                
+          <img src="images/photo1.jpg" alt="" />
+        </div>
+
+      </div>  
+  
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title> if구문_03 </title>
+  <script>
+  
+  /*
+    영어점수와 국어점수 모두 90점 이상이면 A학점 
+    영어점수와 국어점수의 합이 170점 이상이면 B학점 
+    영어점수 또는 국어점수가 90점 이상이면 C학점
+    나머지 모두는 D학점     
+  */
+
+  let eng=prompt("영어점수를 입력하세요");
+  let kor=prompt("국어점수를 입력하세요");  
+
+  eng=parseInt(eng); // 숫자(정수)로 항변환 ( 주의: 숫자로 항변환 하지 않으면 숫자와 문자를 동시에 입력했을 경우 ( 예 95점 ) 연산을 못하여 무조건 D학점 출력 )
+  kor=parseInt(kor);
+  
+ // 달라지는 값을 변수로 처리 
+
+  if(eng>=90 && kor>=90){ // && 논리연산자 ( 둘다 참값이어야 참인값 )
+
+    document.write("A학점")
+
+  }else if(eng+kor>=170){
+
+    document.write("B학점")
+
+  }else if(eng>=90 || kor>=90){ // || 연산자 ( 둘중에 한값이 참이면 참인값 )
+
+    document.write("C학점")
+
+  }else{
+
+    document.write("D학점")
+
+  }  
+
+
+  
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

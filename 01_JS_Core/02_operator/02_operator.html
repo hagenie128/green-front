@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title> 데이터타입과 형변환 </title>
+  <script>
+
+  /*
+
+  숫자와 숫자형태의 문자 또는 true, false 값을 연산
+
+  - 자동 (묵시적) 형변환 ( 숫자와 숫자형태의 문자 또는 true, flase 값을 +연산자를 제외한  -, *, /, %  연산하게 되면 숫자형태 문자를 숫자로 자동으로 형변환 하여 연산 )
+
+  */
+
+
+    let a="1", b=2;
+
+    let result=a-b;
+
+    console.log(result) // 결과 -1 (숫자형태의 문자 1을 숫자 1로 자동 형변환 )
+
+
+    a="2020";
+    b=10; 
+
+    result=a*b;
+
+    console.log(result) // 결과 20200 (숫자형태의 문자 2020을 숫자 2020으로 자동 형변환 )
+
+
+    a=true;
+    b=1; 
+
+    result=a-b;
+
+    console.log(result) // 결과 0 (true 값을 숫자 1로 묵시적 형변환 - false 는 0으로 자동 형변환 )
+    
+
+
+    
+    // 강제 (명시적) 형변환 ( Number(), String(), parseInt()  함수등을 써서 강제적으로 형변환 )
+
+
+    /* 중요
+      자바스크립트에서는 기본적으로 자동으로 형변환을 해주지만 데이터 형식을 강제적 형변환을 통해 
+      정확히 해주는 것이 좋다. ( 충돌방지 ) 
+      참고)  타입스크립트 (TypeScript) - 자바스크립트에서 데이터형식을 보완한 스크립트 언어  
+    */ 
+
+
+    a="1"; 
+    b=2
+
+    a=Number(a) // a값 문자 1 을 숫자 1 로 명시적 형변환    
+    
+    // a=String(a)  // a값 숫자 1 을 다시 문자 1로 명시적 형변환 
+
+    result=a-b
+
+    console.log(result)
+
+
+    a="2020";
+    b=10;
+
+    a=Number(a) // a값 문자 2020 을 숫자 2020 으로 명시적 형변환 
+
+    result=a*b
+
+    console.log(result) // 결과 20200
+
+
+    a=true;
+    b=1;
+
+    a=Number(true); // true 값을 숫자 1로 명시적 형변환 
+
+    result=a-b 
+
+    console.log(result) // 결과 0
+    
+    
+    
+    
+    
+
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

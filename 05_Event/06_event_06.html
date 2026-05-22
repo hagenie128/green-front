@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title> 이벤트 대상 찾기 this, e.currentTarget, e.target </title>
+  
+  <style>
+  
+  div#red{
+    width:300px; height:300px; position:absolute; left:200px; top:200px; background:red; 
+  }
+
+  div#yellow{
+    width:150px; height:150px; position:absolute; left:75px; top:75px; background:yellow; 
+  }  
+  
+  </style>    
+
+  <script>  
+    
+   /* 이벤트 대상 찾기 
+
+    this : this가 포함된 함수를 실행시키기 위해서 이벤트를 발생시킨 대상 
+    
+    e.currentTarget : 매개변수로 받은 이벤트를 발생 시킨대상 ( 자식요소 무시 )
+
+    e.target : 매개변수로 받은 이벤트를 발생 시킨대상 ( 자식요소 포함 )
+
+  */    
+
+  document.addEventListener('DOMContentLoaded',()=>{
+
+    const red=document.querySelector('#red');    
+
+    red.addEventListener('click',redClick); 
+
+    function redClick(e){ // e.currentTarget, e.target을 사용하려면 사용된 이벤트를 매개변수로 받아야함 e (event 의 약자 )
+      this.style.backgroundColor='green' // 이벤트를 발생시킨 대상 red 가 녹색으로 바뀜 ( 자식요소 무시 )      
+      //e.currentTarget.style.backgroundColor='green' // 이벤트를 발생시킨 대상 red 가 녹색으로 바뀜 ( 자식요소 무시 )
+      //e.target.style.backgroundColor='green' // 이벤트를 발생시킨 대상 red, yellow 가 녹색으로 바뀜 ( 자식요소 포함 )
+    }   
+
+  })	
+  
+  </script>
+
+</head>
+<body>  
+
+  <div id="red">
+    parent 
+
+    <div id="yellow">
+      child
+    </div>
+
+  </div>
+
+</body>
+</html>

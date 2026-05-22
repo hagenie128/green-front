@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <style>
+  
+    div#red{
+      width:400px; height:400px; position:absolute; left:200px; top:200px; background:red;     
+    }
+  
+    div#yellow{
+      width:200px; height:200px; position:absolute; left:100px; top:100px; background:yellow;
+      border:solid 10px black; box-sizing:border-box;  
+      
+    }  
+    
+  </style>
+
+  <title> 해당요소 일반좌표와 크기구하기  </title>  
+
+
+  <script> 
+
+
+  document.addEventListener('DOMContentLoaded',()=>{
+   
+    const yellow=document.querySelector('#yellow');  // 자식요소 yellow 찾음 
+
+    console.log('yellow.offsetLeft='+yellow.offsetLeft); // 부모요소를 기준으로 해당요소 외각선바깥 좌표구하기 
+    console.log('yellow.offsetTop='+yellow.offsetTop);
+
+    console.log('yellow.clientLeft='+yellow.clientLeft); // 해당요소의 외각선바깥을 기준으로 외각선안쪽 좌표구하기 ( border 두께와 같다 - padding 무시 )
+    console.log('yellow.clientTop='+yellow.clientTop);
+
+    console.log('yellow.offsetWidth='+yellow.offsetWidth); // 해당요소의 외각선 바깥 크기 구하기 ( border 두께 포함 )
+    console.log('yellow.offsetHeight='+yellow.offsetHeight);    
+
+    console.log('yellow.clientWidth='+yellow.clientWidth); // 해당요소의 외각선 안쪽 크기 구하기 ( border 두께 제외 - padding 무시 )
+    console.log('yellow.clientHeight='+yellow.clientHeight);  
+
+    // 주의) 해당요소를 box-sizing:border-box로 지정하면  크기가 달라짐  
+
+
+  })  
+  
+  </script>
+
+
+</head>
+
+<body>
+  
+  <div id="red">
+
+    parent
+
+    <div id="yellow">
+      child
+    </div>
+
+  </div>
+
+</body>
+
+</html>

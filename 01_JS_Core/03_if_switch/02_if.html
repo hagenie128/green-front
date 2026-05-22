@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title> if구문_02 </title>
+  <script>
+  
+  
+  let value=prompt("연봉금액을 입력하세요")
+
+  value=parseInt(value); // parseInt() 사용 - 입력값에서 정수만 출력 ( 정수만 출력하지 않으면 000만원 이라고 입력하면 조건식 연산이 안됨 )
+
+  if(value>=5000){
+
+    document.write("충성! 합격만 시켜주세요!!")
+
+  }else if(value>=3000 && value<5000){ 
+    // else if 뚯이 앞의 조건 ( value>=5000 )이 아닌 조건이므로  무조건 value 값이 5000보다 작다. 따라서  && value<5000 생략가능 
+    document.write("회사분위기만 좋으면 괜찮은데...")
+
+  }else if(value>=2000 && value<3000){
+
+    document.write("1년만 다녀보고 더 좋은 회사로 옮기지뭐....")
+
+  }else if(value<2000){
+
+    document.write("치킨집이나 차릴까....")
+
+  }else{
+
+    document.write("잘못입력하셨습니다.")
+
+  }  
+
+
+  
+  
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

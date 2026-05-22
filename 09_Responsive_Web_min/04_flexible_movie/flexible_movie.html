@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <title>flexible_movie</title>   
+    
+    <!-- <script src="http://code.jquery.com/jquery-1.12.4.js"></script> -->
+    <style>
+
+      html,body{
+        height:100%; 
+      }
+      
+      body{
+        margin:0px; padding:0px; 
+      }      
+      
+      div#total_wrap{
+        width:100%; height:100%; overflow:hidden; /* 전체화면에서 무비파일 비율때문에 벗어난부분을 안보이게처리 */       
+      }
+      
+      div#movie_wrap{       
+        width:100%; padding-bottom:56.25%; position:relative; left:0px; top:0px; 
+      }
+      
+       /* 작업주의 사항 
+
+        - 부모요소 width:100% ; height:100% 지정하고  영상무비 width:100%; height:100% 지정해도 지정안됨 
+          ( 실제영상 가운데가 되고 빈공간 블랙화면 ) 
+        - 부모요소의 높이값을 없애고 , padding-bottom 값을 가로세로 비율 %로 지정해주면 세로 높이가 최적화 
+          ( 부모요소의 높이값이 없기 때문에 영상이 가운데로 작게 지정 ) 
+        - 부모요소의 position:relative 지정하고 영상을 position:absolute; left:0px; top:0px; 지정 
+          ( 왼쪽부터 좌표가 지정되서 가로크기만큼 높이값이 반응형으로 잘 지정된다. ) 
+        - 최상위 요소의 크기를 width:100%; height:100% 지정하고 overflow:hidden 지정
+          ( 전체영역에서 벗어난 영상을 안보이게 해준다. ) 
+       */    
+      
+      embed#movie{               
+        width:100%; height:100%; position:absolute; left:0px; top:0px; 
+      }
+      
+      /* 무비파일요소의 크기를 부모요소의 100% 로 설정하고 위치를 position:absolute 로 지정한다. */
+      
+    </style>
+  
+    <!-- 
+      높이값이 정확히 지정되지 않으면 스크립트로 지정 
+      
+      <script>
+          
+      $(document).ready(function(){
+        
+        $("#totalWrap").css("height",$(window).innerHeight())
+        
+        
+      })
+      
+      
+      </script> 
+    -->
+    
+    
+  </head>
+
+  <body>
+    
+   <div id="total_wrap">
+    <div id="movie_wrap">      
+      <embed id="movie" width="1600" height="900" src="https://www.youtube.com/embed/vecSVX1QYbQ?autoplay=1&mute=1&start=100&rel=0&playlist=vecSVX1QYbQ&loop=1&showinfo=0&controls=0&autohide=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></embed>
+    </div>
+   </div>
+   
+   <!--
+       
+      유투브 무비파일 파라미터 옵션    ( &로 계속 이어서 지정 ) 
+    
+      자동재생 :  ?autoplay=1&mute=1 (웹접근성)      
+      영상시작시점 설정 : &start=100 (초)
+      관련동영상 안보이게 설정 : &rel=0
+      다른영상재생 : &playlist=영상아이디       
+      반복재생 : &loop=1 (한개 영상으로 계속반복할려면 &playlist 항목에 같은 영상 아이를 지정한다.) 
+      상단정보 안보이게 설정  : &showinfo=0  ( 2018.9 지원종료 )
+      하단 컨트롤바 안보이게 설정 : &controls=0 
+      마우스오버시 컨트롤바 보이게 설정 : &autohide=1      
+      
+   -->    
+    
+  </body>
+</html>

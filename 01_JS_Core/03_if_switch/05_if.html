@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title> if구문_05 </title>
+  <script>
+  
+
+  // if구문 함축표현
+
+  let a=1;
+  let b=2;
+
+  if(a<b) document.write("참")  // 조건에 따른 결과값이 하나일때는 {} 생략가능 
+
+  
+   a=0;
+
+   b=1;
+
+
+  if (a && b) console.log('명령실행');   // a , b 모두 값이 truthy 값일때 명령실행     
+  
+
+  if (a || b) console.log('명령실행'); // a , b 둘중의 하나의 값이 truthy 값일때 명령실행
+
+
+  a<b && document.write('명령실행')  // && 연산자를 사용하여 앞조건이 성립되면 뒤에 명령을 실행 (if조건과 같음)
+    
+  
+
+
+  // React  if 구문 사용하기 ( React JSX 문법내에서는 if 구문을 직접사용 할 수 없다.)
+
+  
+  if(a<b) document.write("참")  // 사용안됨 
+
+  a<b ? document.write("참") : document.write("거짓") // 사용가능 
+
+  a<b && document.write("참")  // 사용가능 
+
+
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

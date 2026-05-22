@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  
+
+  <style>
+  
+    ul,li{
+      margin:0px; padding:0px; border:none; list-style:none;
+    }
+    body{
+      background:#000;
+    }
+    div#wrap{
+      width:1000px; height:200px; position:absolute; left:50%; margin-left:-500px; top:300px; 
+    }
+    ul#img_list li{
+      width:200px; float:left; margin-left:40px; 
+    }	
+  
+  
+  </style>
+
+  <title> fade_menu </title>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.4.2/gsap.min.js "></script>    
+  <!--GSAP CDN 코드 -->
+
+  <script>
+
+    document.addEventListener('DOMContentLoaded',()=>{
+
+      const imgMenu=document.querySelectorAll('#img_list>li'); // 모든 이미지 메뉴 찾음 
+      
+
+      // for(const item of imgMenu){ // 모든 이미지 메뉴 opacity 0.3 으로 어둡게 초기설정 
+      //   item.style.opacity=0.3; 
+      // }
+      gsap.set(imgMenu,{opacity:0.3}) // for구문 생략가능 
+      
+      for(const item of imgMenu){
+        item.addEventListener('mouseenter',imgMenuFadeInAni); // 모든 이미지 메뉴에 이벤트 설정 
+        item.addEventListener('mouseleave',imgMenuFadeOutAni);
+      }     
+
+
+      function imgMenuFadeInAni(){ // 이미지 메뉴를 fadeInt 해주는 함수    
+        
+        gsap.to(this, {opacity:1, duration:.3, ease:'power1.out'}) // 마우스를 올린 이미지 (this) fadeIn 효과         
+       
+      }
+      
+      function imgMenuFadeOutAni(){ // 이미지 메뉴를 fadeOut 해주는 함수   
+
+        gsap.to(this, {opacity:0.3, duration:.3, ease:'power1.out'}) //마우스를 뺀 이미지 (this) fadeOut 효과 
+     
+      }
+
+    })   
+  
+  </script>
+
+
+</head>
+<body>
+
+    <div id="wrap"> 
+        <ul id="img_list">
+            <li> <a href="#"><img src="images/img3.jpg" alt="" /></a></li>
+            <li> <a href="#"><img src="images/img4.jpg" alt="" /></a></li>
+            <li> <a href="#"><img src="images/img5.jpg" alt="" /></a></li>
+            <li> <a href="#"><img src="images/img6.jpg" alt="" /></a></li>      
+          
+          </ul>		
+    </div>     
+  
+  
+</body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge"> 
+
+  <style>    
+    
+    ul,li{
+      margin:0px; padding:0px; list-style:none;
+    }
+		
+    body{
+	    background:url("images/index_back.gif");
+    }
+
+    .accordion_menu{
+      position:absolute;
+      left:500px;
+      top:200px;	
+      width:300px;
+      padding:20px 0;
+      
+      border-radius:10px;
+      box-shadow:2px 2px 2px #333;	
+      background-color:#eeeeee;
+    }
+
+    .menu_item{
+      position:relative;
+      height:30px;	
+      overflow:hidden;
+      cursor:pointer;
+    }
+
+    .menu_item_content{
+      position:absolute;
+    }
+  
+  </style>
+
+  <title> accordion_menu_1 Tab키적용(웹접근성) </title>  
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.4.2/gsap.min.js "></script>
+  <!--GSAP CDN 코드 -->
+
+  <script>
+  
+    document.addEventListener('DOMContentLoaded',()=>{
+
+      const menu=document.querySelectorAll('.menu_item_content>a'); // 모든 메뉴 찾음 ( 'a요소' - 웹접근성 )
+
+      let openHeight=114; // 메뉴가 열렸을때 높이값 설정 ( 모든메뉴가 동일 )
+      let closeHeight=30; // 메뉴가 닫혔을때 높이값 설정 ( 모든 메뉴가 동일 )
+
+      for(const item of menu){ // 모든 메뉴에 이벤트 적용 
+        item.addEventListener('mouseenter',menuOver); // 메뉴마우스오버 하면 열리는 함수 menuOver 함수 실행 
+        item.addEventListener('focus',menuOver)  // 중요) focus 이벤트 추가 적용 (웹접근성 - Tab키 사용 ) 
+        item.addEventListener('mouseleave',menuOut); // 메뉴 마우스아웃 하면 닫히는 함수 menuOut 함수 실행 
+        item.addEventListener('focusout',menuOut); //중요) focusout 이벤트 추가 적용 (웹접근성 - Tab키 사용 )
+      }
+
+      function menuOver(){ // 메뉴 열리게 하는 함수 
+
+        // 선택된 메뉴의 부모의 부모요소 (각 큰메뉴 .menu_item )의 높이값을 늘림 (열리게 설정)
+        gsap.to(this.parentElement.parentElement, {height:openHeight, duration:.3, ease:'power1.out'})
+
+        // 선택된 메뉴의 부모요소 ( 각 작은메뉴 .menu_item_content )를 올려서 타이틀이 안보이게 설정 
+        gsap.to(this.parentElement, {top:-closeHeight, duration:.3, ease:'power1.out'})
+       
+      }
+
+      function menuOut(){ // 메뉴 닫히게 하는 함수 
+
+        // 선택된 메뉴의 부모의 부모요소 (각 큰메뉴 .menu_item )의 높이값을 줄임 (닫히게 설정)
+         gsap.to(this.parentElement.parentElement, {height:closeHeight, duration:.3, ease:'power1.out'})
+
+        // 선택된 메뉴의 부모요소 ( 각 작은메뉴 .menu_item_content )를 다시 내려서 타이틀이 보이게 설정  
+         gsap.to(this.parentElement, {top:0, duration:.3, ease:'power1.out'})
+
+      }
+
+    })    
+    
+  </script>
+
+</head>
+<body>
+    <div class="accordion_menu">
+        <div class="menu_item">
+          <div class="menu_item_content">
+            <a href="#">
+              <img src="images/a_menu_1.png">
+              <img src="images/a_menu_1_over.png" >
+            </a>
+          </div>
+        </div>
+        
+        <div class="menu_item">
+          <div class="menu_item_content">	
+              <a href="#">
+                <img src="images/a_menu_2.png">
+                <img src="images/a_menu_2_over.png" >
+              </a>
+          </div>
+        </div>
+        
+        <div class="menu_item">
+          <div class="menu_item_content">
+            <a href="#">
+              <img src="images/a_menu_3.png">
+              <img src="images/a_menu_3_over.png" >
+           </a>
+          </div>
+        </div>
+        
+        <div class="menu_item">
+          <div class="menu_item_content">
+            <a href="#">
+              <img src="images/a_menu_4.png">
+              <img src="images/a_menu_4_over.png" >
+            </a>
+          </div>
+        </div>
+        <div class="menu_item">
+          <div class="menu_item_content">
+            <a href="#">
+              <img src="images/a_menu_5.png">
+              <img src="images/a_menu_5_over.png" >
+            </a>
+          </div>
+        </div>
+        
+      </div>   
+  
+</body>
+</html>

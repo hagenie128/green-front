@@ -1,0 +1,25 @@
+div#panel{
+    width: 800px;
+    height: 400px;
+    border: solid 1px gray;
+    position: absolute;
+    left: 100px;
+    top: 100px;
+}
+div#ball{
+    width: 50px;
+    height: 50px;
+    background: red;
+    border-radius: 25px;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    margin-top: -25px;
+}
+button#start_btn{
+    width: 80px;
+    height: 30px;
+    position: absolute;
+    left: 200px;
+    top: 550px;
+}

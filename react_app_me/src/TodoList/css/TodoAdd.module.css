@@ -1,0 +1,39 @@
+section#addtodo{
+    width:100%;
+    height:54px; 
+    background: #CCCCCC;          
+    /* dark-mode : background:#212A3E; */
+    
+    position:fixed;
+    left:0px;
+    bottom:0px; 
+    padding:0px 16px; 
+    box-sizing:border-box;
+}
+
+form#add_form{
+    width:100%;
+    height:100%;
+    display:flex;
+    flex-wrap:wrap;
+    flex-direction:row;
+    justify-content:space-around;
+    align-content: center;
+}
+
+input.add_input{
+    width:70%;
+    height:20px;  
+}
+button.add_btn{
+    width:80px;
+    background: #575757;
+    color: rgb(255, 255, 255);
+    border: solid 1px rgb(94, 94, 94);
+    border-radius: 12px;
+}       
+button.add_btn.selected{
+    background: #ffffff;
+    color: rgb(0, 0, 0);
+    border-color: #CCCCCC;
+}

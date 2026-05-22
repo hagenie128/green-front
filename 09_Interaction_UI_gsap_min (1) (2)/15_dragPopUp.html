@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">  
+
+  <style> 
+
+  body{
+    background:url("images/index_back.gif")
+  }    
+
+  #float_window{
+    
+    position:absolute;
+    width:500px;
+    height:400px;
+    top:100px;
+    left:100px;
+    opacity:1;
+    background:white;
+    border:solid 1px black; box-shadow:2px 2px 2px black; box-sizing:border-box; 
+  }
+  #float_window a.close_btn{
+    position:absolute;
+    right:20px;
+    top:10px;
+  }
+
+  #float_window dl{
+    width:100%;
+    height:100%;    
+    margin:0;
+  }
+  #float_window dl dt{
+    height:40px;
+    line-height:40px;
+    text-indent:20px;
+    color:white;
+    font-weight:bold;
+    cursor:move; background:black; 
+  }
+  #float_window dl dd{
+    margin:0;
+    padding:20px;
+    line-height:20px; 
+
+  }  
+ 
+  </style>
+
+  <title> dragPopUp </title> 
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.4.2/gsap.min.js "></script>
+  <!--GSAP CDN 코드 -->
+
+  <script> 
+
+    document.addEventListener('DOMContentLoaded',()=>{
+
+      const popup=document.querySelector('#float_window'); // #float_window (팝업) 요소 찾음 
+      const dragbar=document.querySelector('#float_window dt'); // 드래그할 영역 #float_window dt 요소 찾음 
+
+      let downX; // 드래그를 하기위해 마우스를 처음 누른 X좌표 (popup 요소를 기준) 
+      let downY; // 드래그를 하기위해 마우스를 처음 누른 Y좌표 (popup 요소를 기준)  
+
+      dragbar.addEventListener('mousedown',dragDown); // dragbar 요소에 마우스를 눌렀을때 함수 실행 ;
+      dragbar.addEventListener('mouseup',dragStop);
+      document.querySelector('.close_btn').addEventListener('click',popupHide) // popup 사라지는 명령실행 
+
+      function dragDown(e){
+        downX=e.offsetX; // 마우스를 처음 누른 X좌표구함 (popup 요소를 기준) 
+        downY=e.offsetY; // 마우스를 처음 누른 Y좌표구함 (popup 요소를 기준) 
+        document.addEventListener('mousemove',dragMove) // 마우스를 움직일때 popup요소가 따라다니게 하는 함수실행 
+        // 중요) dragbar가 아닌 document에 이벤트설정 ( 마우스를 움직일때 dragbar에서 벗어날수 있으므로 )
+      }
+
+      function dragMove(e){ // // 마우스를 움직일때 popup요소가 따라다니게 하는 함수       
+        // popup요소의 좌표를 마우스의 좌표를 따라다니게 설정 (popup요소와 마우스의 공통기준 e.pageX, e.pageY로 구함 )
+        gsap.set(popup, {left:e.pageX-downX, top:e.pageY-downY})
+        // 중요) popup요소를 기준으로한 donwX,downY 좌표를 빼서 누른 지점을 기준으로 popup 드래그 ( 그렇지 않으면 왼쪽 상단을 기준으로 드래그 )	
+      }
+
+      function dragStop(){ // 드래그 멈추게하는 함수 
+        document.removeEventListener('mousemove',dragMove) // 드래그 명령이벤트 해제 (드래그멈춤)
+      }
+
+      function popupHide(){ // popup 사라자게 하는 함수         
+        gsap.set(popup, {display:'none'})
+      }
+
+    })			   
+    
+  </script>
+
+
+</head>
+<body> 
+    
+		<div id="float_window">
+			<a href="#" class="close_btn"><img src="images/close.png" alt="닫힘" /></a>
+			<dl>
+				<dt>     </dt>
+				<dd>이번에는 자바스크립트를 이용하여 플로우팅 윈도우..(중략)...윈도우를 표시할 수 있습니다.</dd>
+			</dl>
+		</div>
+  
+  
+</body>
+</html>

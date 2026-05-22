@@ -1,0 +1,16 @@
+    
+    
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"> 
+
+        <style>
+        .cls-1,.cls-2{fill:none;}.cls-2{stroke:#000;stroke-linecap:round;stroke-linejoin:round;}
+        </style>   
+
+        <g data-name="Layer 2" id="Layer_2">
+            <g id="Workspace">
+                <rect class="cls-1" height="24" width="24"/>
+                <path class="cls-2" d="M16.54,12.41l-4.95,4.95a3,3,0,0,1-4.25,0h0a3,3,0,0,1,0-4.24l6.78-6.78a2,2,0,0,1,2.83,0h0a2,2,0,0,1,0,2.83L10.17,16a1,1,0,0,1-1.41,0h0a1,1,0,0,1,0-1.41l5-4.95"/>
+            </g>
+        </g>
+        
+    </svg>

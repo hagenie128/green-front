@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>grid_contents</title>
+    <style>
+
+      /*
+      display:grid - 컨텐트 배치를 유동적인 분할배치 - 반응형 레이아웃에 적합 ( @media screen 코드를 활용하여 레이아웃 변경가능 )
+
+      
+      부모요소 속성 (dispay:grid, grid-template-columns, grid-template-rows, grid-gap, grid-auto-rows, justify-items, align-items)
+
+      display:grid - 유동적인 grid 분할정의 
+      grid-template-columns:40% 60% - 전체 가로 분할 (4:6) 정의 (여백미포함)
+      grid-gap:1rem - grid 간격 (html 폰트사이즈 유동적 단위 - px단위가능 )
+      grid-template-columns:4fr 6fr - 전체 가로 분할 (4:6) 정의 (여백포함-많이쓰임)
+      grid-template-columns:repeat(3,1fr) - 전체 가로 분할 3등분 (1fr 1fr 1fr 과 같음)
+      grid-template-columns:300px 1fr - 전체 가로 분할 (첫번째 영역 300px 고정 나머지 유동분할 )     
+      
+      grid-template-rows - 전체 세로 분할 정의  ( 값은 같음 )
+      grid-auto-rows:200px - 전체 각 세로영역을 200px 고정균등 분할 
+      grid-auto-rows:minmax(200px auto) - 전체 각 세로 영역을 최소 200px 고정지정, 최대값은 유동지정 
+
+      justify-items:start - 전체 컨텐츠 배치를 각 그리드 영역안에서 가로 왼쪽 정렬 
+      justify-items:center - 전체 컨텐츠 배치를 각 그리드 영역안에서 가로 중앙 정렬 
+      justify-items:end - 전체 컨텐츠 배치를 각 그리드 영역안에서 가로 오른쪽 정렬 
+
+      align-items:start - 전체 컨텐츠 배치를 각 그리드 영역안에서 세로 위쪽 정렬 
+      align-items:center - 전체 컨텐츠 배치를 각 그리드 영역안에서 세로 중앙 정렬 
+      align-items:end - 전체 컨텐츠 배치를 각 그리드 영역안에서 세로 아래 정렬 
+
+      
+      
+      각 자식요소(컨텐츠) 속성  (justify-self, align-self, grid-column, grid-row)
+
+      justify-self : 각 해당 컨텐츠요소 그리드 영역안에서 가로 정렬 ( 값은 부모요소 justify-items 속성값과 같음 - start, center, end )
+      algin-self : 각 해당 컨텐츠요소 그리드 영역안에서 세로 정렬 ( 값은 부모요소 align-items 속성값과 같음 - start, center, end )
+
+      - grid 속성에서는 각각의 컨텐츠 요소 배치가 따로따로 자유롭게 가능 
+
+      grid-column:2 - 각 해당 컨텐츠요소 가로 그리드 순번지정 ( 해당순번으로 바로이동 - 순서위치를 자유롭게 바꿀수 있다. )
+      grid-row:2 - 각 해당 컨텐츠요소 세로 그리드 순번지정 ( 해당순번으로 바로이동 - 순서위치를 자유롭게 바꿀수 있다. )
+
+      grid-column:2/4 - 각 해댱 컨텐츠 요소 가로 그리드 시작위치 끝위치 ( 시작위치 기준으로 가로 2번째부터 4번째 까지 영역지정 )      
+      grid-row:2/4 - 각 해댱 컨텐츠 요소 세로 그리드 시작위치 끝위치 ( 시작위치 기준으로 세로 2번째부터 4번째 까지 영역지정 )
+
+      각 컨텐츠의 시작/끝 위치 영역 조절과 가로세로 순번지정을 같이 활용하여 컨텐츠끼리 겹치게 위치지정 가능
+
+
+      ** grid 장점  **      
+      
+      사용자 해상도에 조절에 따라 원하는 단의 갯수를 일정하게 지정 가능 - 해상도에 따른 반응형 작업에 적합        
+
+      */
+
+      body,p{
+        margin:0px; padding:0px;
+      }
+      html,body{
+        height:100%; 
+      }
+
+      section#contents_wrap{
+        width:80%; height:auto; padding:50px 0px; margin:100px auto; background: #eeeeee; border:solid 1px #cccccc; 
+        display:grid; 
+        grid-template-columns:repeat(4, 1fr);
+        grid-gap:1em;
+        grid-template-rows:repeat(2, 1fr);
+        justify-items:center;
+        align-items:center; 
+        
+      }        
+
+      section.contents p{
+        text-align:center; margin-bottom:10px; 
+      }
+
+      p.contents_title{
+        font:bold 14px "돋움";
+      }
+
+      p.contents_text{
+        font:normal 12px "돋움"
+      }
+
+
+
+      @media screen and (max-width:1200px){
+        section#contents_wrap{
+          grid-template-columns:repeat(2, 1fr);
+          grid-template-rows:repeat(4, 1fr);
+          
+        }
+      }
+
+      @media screen and (max-width:768px){
+        section#contents_wrap{
+          grid-template-columns:1fr;
+         
+        }
+      } 
+
+
+    </style>
+  </head>
+  <body>
+    <section id="contents_wrap">
+      <section class="contents">
+        <p class="contents_img"><img src="images/img01.jpg" alt="이미지설명"></p>
+        <p class="contents_title">01프런트LED</p>
+        <p class="contents_text">XE의 J 블레이드 LED로 둘러싸인 헤드램프</p>
+      </section>
+      <section class="contents">
+        <p class="contents_img"><img src="images/img02.jpg" alt="이미지설명"></p>
+        <p class="contents_title">02에어로다이나믹스</p>
+        <p class="contents_text">XE의 형태는 공기역학적 효율 및 안정성</p>
+      </section>
+      <section class="contents">
+        <p class="contents_img"><img src="images/img03.jpg" alt="이미지설명"></p>
+        <p class="contents_title">03럭셔리패시아</p>
+        <p class="contents_text">운전자의 몸을 감싸는 XE 럭셔리 시트</p>
+      </section>
+      <section class="contents">
+        <p class="contents_img"><img src="images/img04.jpg" alt="이미지설명"></p>
+        <p class="contents_title">04디자인디테일</p>
+        <p class="contents_text">나만의 유니크한 스타일과 감각의 XE의 실내</p>
+      </section>
+      <section class="contents">
+        <p class="contents_img"><img src="images/img01.jpg" alt="이미지설명"></p>
+        <p class="contents_title">05프런트LED</p>
+        <p class="contents_text">XE의 J 블레이드 LED로 둘러싸인 헤드램프</p>
+      </section>
+      <section class="contents">
+        <p class="contents_img"><img src="images/img02.jpg" alt="이미지설명"></p>
+        <p class="contents_title">06에어로다이나믹스</p>
+        <p class="contents_text">XE의 형태는 공기역학적 효율 및 안정성</p>
+      </section>
+      <section class="contents">
+        <p class="contents_img"><img src="images/img03.jpg" alt="이미지설명"></p>
+        <p class="contents_title">07럭셔리패시아</p>
+        <p class="contents_text">운전자의 몸을 감싸는 XE 럭셔리 시트</p>
+      </section>
+      <section class="contents">
+        <p class="contents_img"><img src="images/img04.jpg" alt="이미지설명"></p>
+        <p class="contents_title">08디자인디테일</p>
+        <p class="contents_text">나만의 유니크한 스타일과 감각의 XE의 실내</p>
+      </section>
+      
+    </section>
+  </body>
+</html>

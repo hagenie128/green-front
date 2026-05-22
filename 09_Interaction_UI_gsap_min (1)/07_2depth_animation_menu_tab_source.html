@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  
+
+  <style>    
+    
+    body,ul,li{
+      margin:0px; padding:0px; list-style:none;
+    }
+
+    body{
+	    background:url("images/index_back.gif");
+    }
+
+
+    div#header_wrap{
+      width:100%; height:122px; background:url("images/header_bg.gif") repeat-x;
+    }
+
+    div#header_inner{
+      width:980px; height:122px; margin:0px auto; position:relative; left:0px; top:0px;
+      /* 반응형일경우는 해상도가 980px 보다 작을때는 메뉴구조를 새로 바꾸는 것이 좋다 ( 예) 네비게이션 전체를 사라지게 하고 메뉴버튼으로 보이게 */
+    }
+      
+    span#logo{
+      position:absolute; left:0px; top:20px; 
+    }
+
+
+    ul#mainmenu_list>li{
+      float:left; margin-right:50px; position:relative; left:0px; top:0px; 
+    }
+
+    ul#mainmenu_list{
+      position:absolute; left:250px; top:30px; 
+    }
+
+    div.mainmenu{
+      height:20px; overflow:hidden; position:relative; left:0px; top:0px; 
+    }
+
+    div.mainmenu>a{
+      display:block; position:relative; left:0px; top:0px; /* a테그를 움직이게 하므로 반드시 position 값이 존재해야 한다. */
+    }
+
+    div.submenu{
+      width:300px; position:absolute; left:0px; top:65px; 
+    }
+
+    ul.submenu_list>li{
+      float:left; margin-right:10px; 
+    }   
+
+  
+  </style>
+
+  <title> 2depth_animation_menu </title>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.4.2/gsap.min.js "></script>
+  <!--GSAP CDN 코드 -->
+
+  <script>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    
+  </script>
+
+
+</head>
+<body>
+   
+    <div id="header_wrap">
+        <div id="header_inner">
+            <span id="logo"><a href="#"><img src="images/logo.png" alt="" /></a></span>
+            <ul id="mainmenu_list">
+                <li>
+                      <div class="mainmenu">
+                        <a href="#"><img src="images/menu0.png" alt="" /> </a>                   
+                      </div>
+                      <div class="submenu">
+                        <ul class="submenu_list">
+                              <li><a href="#"><img src="images/love_01_off.png" alt="" /></a></li>
+                              <li><a href="#"><img src="images/love_02_off.png" alt="" /></a></li>
+                              <li><a href="#"><img src="images/love_03_off.png" alt="" /></a></li>                    
+                        </ul>                 
+                      </div>        
+                  </li>
+                  
+                  <li>
+                      <div class="mainmenu">
+                        <a href="#"><img src="images/menu1.png" alt="" /> </a>                   
+                      </div>
+                      <div class="submenu">
+                        <ul class="submenu_list">
+                            <li><a href="#"><img src="images/love_01_off.png" alt="" /></a></li>
+                              <li><a href="#"><img src="images/love_02_off.png" alt="" /></a></li>
+                              <li><a href="#"><img src="images/love_03_off.png" alt="" /></a></li>                    
+                          </ul>                 
+                      </div>        
+                  </li>
+                  
+                  <li>
+                      <div class="mainmenu">
+                        <a href="#"><img src="images/menu2.png" alt="" /> </a>                   
+                      </div>
+                      <div class="submenu">
+                        <ul class="submenu_list">
+                            <li><a href="#"><img src="images/love_01_off.png" alt="" /></a></li>
+                              <li><a href="#"><img src="images/love_02_off.png" alt="" /></a></li>
+                              <li><a href="#"><img src="images/love_03_off.png" alt="" /></a></li>                    
+                          </ul>                 
+                      </div>        
+                  </li>
+                  
+                  <li>
+                      <div class="mainmenu">
+                        <a href="#"><img src="images/menu3.png" alt="" /> </a>                   
+                      </div>
+                      <div class="submenu">
+                        <ul class="submenu_list">
+                            <li><a href="#"><img src="images/love_01_off.png" alt="" /></a></li>
+                              <li><a href="#"><img src="images/love_02_off.png" alt="" /></a></li>
+                              <li><a href="#"><img src="images/love_03_off.png" alt="" /></a></li>                    
+                          </ul>                 
+                      </div>        
+                  </li>
+                  
+                  <li>
+                    <div class="mainmenu">
+                        <a href="#"><img src="images/menu4.png" alt="" /> </a>                   
+                      </div>
+                      <div class="submenu">
+                        <ul class="submenu_list">
+                            <li><a href="#"><img src="images/love_01_off.png" alt="" /></a></li>
+                            <li><a href="#"><img src="images/love_02_off.png" alt="" /></a></li>
+                            <li><a href="#"><img src="images/love_03_off.png" alt="" /></a></li>                    
+                        </ul>                 
+                      </div>        
+                  </li>               
+              
+              </ul>        
+          
+          </div>    
+      </div>
+
+
+
+
+
+  
+</body>
+</html>

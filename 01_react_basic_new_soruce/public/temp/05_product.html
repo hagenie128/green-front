@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="kp">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Props</title>
+
+    <style>
+
+        *{
+            margin:0px; 
+            padding:0px; 
+        }
+        
+        body{
+            padding-top:30px; 
+        }
+
+        div.product{
+            width:360px; 
+            height:120px;
+            padding:16px; 
+            box-sizing:border-box;
+            border-radius:10px;  
+            box-shadow:3px 3px 16px rgb(204, 204, 204);
+            margin:0px auto;           
+            margin-bottom:16px;
+            position:relative; 
+            left:0px;
+            top:0px;              
+        }
+
+        p.product_img{
+            width:88px; 
+            height:88px; 
+            float:left;
+            margin-right:16px;
+            border:solid 1px #eeeeee; 
+        }
+
+        p.product_img img{
+            width:100%;
+        }
+
+        p.product_name{
+            font:bold 14px '맑은고딕';
+            margin-bottom:6px; 
+        }
+
+        p.product_text{
+            font:normal 12px "맑은고딕";
+            margin-bottom:24px; 
+        }
+
+        p.product_price{
+            font:bold 14px "맑은고딕";
+            color:rgb(83, 0, 161);
+        }
+
+        span.new{
+            display:block;
+            width:40px; 
+            height:16px; 
+            background:orange;
+            font:normal 12px/14px "맑은고딕";
+            color:white;
+            text-align:center; 
+            border-radius:4px;
+            position:absolute;
+            left:10px; 
+            top:10px; 
+
+        }
+
+    </style>
+
+
+
+</head>
+<body>
+
+    <div class="product">
+        <p class="product_img">
+            <img src="./images/m3_multiple.png" alt="">
+        </p>
+        <p class="product_name">
+            루메나 M3 멀티플 LED
+        </p>
+        <p class="product_text">
+            세상에 없던 랜턴 
+        </p>
+        <p class="product_price">
+            59,000<span>원</span>
+        </p>
+        <span class="new">
+            new
+        </span>
+    </div>
+    <div class="product">
+        <p class="product_img">
+            <img src="./images/spaceon.png" alt="">
+        </p>
+        <p class="product_name">
+            루메나 SPACE ON 테이블램프
+        </p>
+        <p class="product_text">
+            놓는 순간 갤러리가 되는 아트 오브제
+        </p>
+        <p class="product_price">
+            99,000<span>원</span>
+        </p>
+        
+    </div>
+    <div class="product">
+        <p class="product_img">
+            <img src="./images/package.png" alt="">
+        </p>
+        <p class="product_name">
+            M3 테이블 램프 패키지
+        </p>
+        <p class="product_text">
+            다양하게 즐기는 테이블 램프 레이아웃
+        </p>
+        <p class="product_price">
+            99,000<span>원</span>
+        </p>   
+
+    </div>
+
+</body>
+</html>

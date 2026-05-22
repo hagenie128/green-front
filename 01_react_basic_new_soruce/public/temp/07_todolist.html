@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css'/>
+    <style>
+
+        *{
+            margin:0px;
+            padding:0px; 
+        }
+
+        ul,li{
+            list-style:none;
+        }
+
+        /* Title 상단영역 */
+
+        header{
+            width:100%;
+            height:54px; 
+            background: #5956af;
+            background: -moz-linear-gradient(left,  #5956af 0%, #9a76ed 100%);
+            background: -webkit-linear-gradient(left,  #5956af 0%,#9a76ed 100%);
+            background: linear-gradient(to right,  #5956af 0%,#9a76ed 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5956af', endColorstr='#9a76ed',GradientType=1 );
+
+            /* dark-mode:  background:#212A3E;  */
+
+            
+        }
+
+        h1.title{
+            width:100%;
+            height:100%; 
+            display:flex;
+            flex-wrap:wrap;
+            justify-content: center;
+            align-content: center;
+            font:normal 20px 'verdana'; 
+            color:white; 
+        }
+
+        
+        /* TodoState 상태관리 영역 */
+
+        section#todostatus{
+            width:100%;
+            height:54px; 
+            background:#eeeeee; 
+            /* dark-mode:  background:#2d3a55; */
+        }
+
+        ul#todostatus_list{
+            width:100%;
+            height:100%;
+            display:flex;
+            flex-wrap:wrap;
+            flex-direction:row;
+            justify-content: space-around;
+            align-content:center; 
+        }
+
+        button.status_btn{
+            border:none;
+            font:normal 14px 'verdana'; 
+            color:rgb(163, 163, 163); 
+            background:none;
+            cursor: pointer;
+            transition:0.2s ease-out; 
+        }
+
+        button.status_btn:hover{
+            color:rgb(235, 5, 5);
+        }
+
+        button.status_btn.selected{
+            color:rgb(235, 5, 5);
+            position:relative;
+            left:0px;
+            top:0px;           
+
+        }
+
+        button.status_btn.selected::after{
+            content:'';
+            display:block;
+            width:60px;
+            height:3px;
+            background:rgb(235, 5, 5);
+            position:absolute;
+            left:50%;
+            margin-left:-30px; 
+            top:31px; 
+
+        }
+
+
+
+        /* TodoList 영역 */
+
+        section#todolist{
+            width:100%;
+            min-height:800px; 
+            padding:32px 16px; 
+            box-sizing:border-box;
+            background:rgb(250, 250, 250);
+            /* dark-mode: background:rgb(172, 172, 172); */
+            
+            
+        }
+
+        ul#todolist_list{
+            width:100%;
+            height:100%;
+        }
+
+
+        /* Todo 할일목록 영역 */        
+
+        li.todoli{
+            width:100%;
+            height:50px;            
+            display:flex;
+            flex-wrap:wrap;
+            flex-direction:row;
+            justify-content: space-between;
+            text-align:left;
+            border-bottom:dotted 1px rgb(204, 204, 204);
+           
+        }
+
+       p.todo_text{
+            width:70%;
+            height:auto;
+            font:normal 14px/50px 'verdana' ;
+            color:rgb(100, 100, 100);
+            /* dark-mode : color:white; */
+            
+                     
+        }
+
+        button.trash_btn{
+            border:none;
+            background:none;
+        }
+
+
+
+        /* AddTodo 추가기능 영역 */
+
+
+        section#addtodo{
+            width:100%;
+            height:54px; 
+            background: #5956af;
+            background: -moz-linear-gradient(left,  #5956af 0%, #9a76ed 100%);
+            background: -webkit-linear-gradient(left,  #5956af 0%,#9a76ed 100%);
+            background: linear-gradient(to right,  #5956af 0%,#9a76ed 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5956af', endColorstr='#9a76ed',GradientType=1 );                 
+            /* dark-mode : background:#212A3E; */
+            
+            position:fixed;
+            left:0px;
+            bottom:0px; 
+            padding:0px 16px; 
+            box-sizing:border-box;
+        }
+
+        form#add_form{
+            width:100%;
+            height:100%;
+            display:flex;
+            flex-wrap:wrap;
+            flex-direction:row;
+            justify-content:space-around;
+            align-content: center;
+        }
+
+        input.add_input{
+            width:70%;
+            height:20px;  
+        }
+        button.add_btn{
+            width:80px; 
+                 
+        }       
+
+        
+
+
+    </style>
+</head>
+<body>
+
+    <!-- Title 상단영역 -->
+
+    <header>
+        <h1 class="title">TodoList</h1>
+    </header>
+
+
+
+   <!--TodoState 상태관리 영역-->
+
+    <section id="todostatus">
+        <ul id="todostatus_list">
+            <li><button class="status_btn selected">all</button></li>
+            <li><button class="status_btn">active</button></li>
+            <li><button class="status_btn">complete</button></li>
+        </ul>
+    </section>
+
+
+    <!--TodoList 영역 -->
+
+    <section id="todolist">
+        <ul id="todolist_list">
+
+            <!--Todo 할일목록영역 -->
+            
+            <li class="todoli"><input type="checkbox"><p class="todo_text">자바스크립트 공부하기</p><button class="trash_btn"><i class="fa-regular fa-trash-can"></i></button></li>
+            <li class="todoli"><input type="checkbox"><p class="todo_text">리액트 공부하기</p><button class="trash_btn"><i class="fa-regular fa-trash-can"></i></button></li>
+
+        </ul>
+    </section>
+
+
+   <!--AddTodo 추가기능 영역 -->
+    <section id="addtodo">
+
+        <form id="add_form">
+            <input type="text" class="add_input"> <button class="add_btn">Add</button>
+        </form>
+
+    </section>
+    
+</body>
+</html>

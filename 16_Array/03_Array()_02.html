@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  
+  <title> Array()클래스 </title>
+  <script>
+  
+    /*
+    ES6 버전의 배열관련 함수 
+
+    ...arry - 스프레드 연산자 ( 기존의 오브젝트 또는 배열을 대입해서 사용 )
+    
+    map() - 배열에서 특정한 속성값으로 새로운 배열을 생성
+    
+    filter() - 배열에서 특정 조건에 해당되는 속성 값을 가진 요소만 검색하여 새로운 배열을 생성 
+    
+    reduce() - 배열에서 특정 속성에 대한 값을 연산
+
+    */
+
+    let userInfo=[
+
+        {'name':'권영찬', 'gender':'남', 'age':32, 'address':'서울시 마포구'},
+        {'name':'김영희', 'gender':'여', 'age':22, 'address':'경기도 김포시'},
+        {'name':'박철수', 'gender':'남', 'age':54, 'address':'경기도 성남시'},
+        {'name':'이수진', 'gender':'여', 'age':36, 'address':'서울시 구로구'},
+    ]
+    
+
+    let addUser={'name':'김남길', 'gender':'남', 'age':58, 'address':'서울시 구로구'} // 사용자 정보 추가 
+
+
+    let userInfo2=[...userInfo, addUser ] // ... 스프레드 연산자를 사용하여 기존에 사용자 정보에 사용자 정보 추가 
+
+    console.log(userInfo2)
+
+
+    let userName=userInfo2.map((item)=>{ // item: 각 배열요소 
+       //console.log(item.name)
+        return item.name // 각 요소의 이름값을 반환 하여 새로운 배열을 생성 
+    })
+
+    console.log(userName) // 결과 ['권영찬', '김영희', '박철수', '이수진', '김남길']
+
+
+    let age30=userInfo2.filter((item)=>{ // item : 각 배열요소 
+
+        if(item.age>=30 && item.age<40){ // 각 요소의 나이값이 30대인 요소만 검색하여 새로운 배열을 생성 
+            return item
+        }
+    })
+
+    console.log(age30) // 결과  [ {'name':'권영찬', 'gender':'남', 'age':32, 'address':'서울시 마포구'}, {'name':'이수진', 'gender':'여', 'age':36, 'address':'서울시 구로구'} ]
+
+ 
+    let ageSum=userInfo2.reduce((sum,value)=>{  // sum 연산된 값, value: 연산할 값
+
+        return sum+value.age // 각 배열 요소의 나이값을 합한 결과를 반환 
+
+    },0) // 주의) 연산할 값의 초기값을 반드시 설정해야지만 연산가능 ( 0으로 설정 )
+
+    console.log(ageSum) // 결과   202
+
+      
+  
+  </script>
+</head>
+<body>
+  
+
+
+
+</body>
+</html>
+

@@ -1,0 +1,59 @@
+body{
+    padding-top:30px; 
+}
+
+div.product{
+    width:360px; 
+    height:120px;
+    padding:16px; 
+    box-sizing:border-box;
+    border-radius:10px;  
+    box-shadow:3px 3px 16px rgb(204, 204, 204);
+    margin:0px auto;           
+    margin-bottom:16px;
+    position:relative; 
+    left:0px;
+    top:0px;              
+}
+
+p.product_img{
+    width:88px; 
+    height:88px; 
+    float:left;
+    margin-right:16px;
+    border:solid 1px #eeeeee; 
+}
+
+p.product_img img{
+    width:100%;
+}
+
+p.product_name{
+    font:bold 14px '맑은고딕';
+    margin-bottom:6px; 
+}
+
+p.product_text{
+    font:normal 12px "맑은고딕";
+    margin-bottom:24px; 
+}
+
+p.product_price{
+    font:bold 14px "맑은고딕";
+    color:rgb(83, 0, 161);
+}
+
+span.new{
+    display:block;
+    width:40px; 
+    height:16px; 
+    background:orange;
+    font:normal 12px/14px "맑은고딕";
+    color:white;
+    text-align:center; 
+    border-radius:4px;
+    position:absolute;
+    left:10px; 
+    top:10px; 
+
+}

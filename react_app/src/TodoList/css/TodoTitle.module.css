@@ -1,0 +1,20 @@
+header{
+    width:100%;
+    height:54px; 
+    background: #CCCCCC;
+
+    /* dark-mode:  background:#212A3E;  */
+
+    
+}
+
+h1.title{
+    width:100%;
+    height:100%; 
+    display:flex;
+    flex-wrap:wrap;
+    justify-content: center;
+    align-content: center;
+    font:normal 20px 'verdana'; 
+    color:white; 
+}

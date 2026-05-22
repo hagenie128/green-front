@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title> 템플릿리터럴 </title>
+  <script>  
+  
+  // 정규식 표현 : 임의의 문자열에 개행 이나 기호 사용 ( 이스케이프 스퀀스 \ (역슬래시) ) 
+ 
+ let a="임의의\n문자열"     //   ( 문자열개행 )
+
+ a="임의의 \"문자열\" "     //   ( ""기호사용 )
+
+ a="임의의\'문자열\' "       //   ( ''기호사용 )
+
+ a="임의의\\문자열"         //   (\ 기호사용 )  
+ 
+// ES6 버전  템플릿 리터럴 (Template Literal) : ` ` ( 역따옴표 ) 사용하여  \ 없이 문자열 개행이나 여러가지 기호를 사용할 수 있다.
+    
+a=`임의의 
+문자열`
+
+console.log(a)
+    
+a= `임의의 "문자열" ` 
+
+console.log(a)
+
+// 기본적인 문자열은 "" 큰따옴표로 처리하고 기호가 들어가거나 복잡한 문자열 (보간식 ${} +연산자 생략 ) 만  `` 역따옴표로 처리하는것이 좋다.   
+  
+  
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

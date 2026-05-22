@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">  
+
+  <style>    
+    
+    body,p,ul,li{
+      margin:0px; padding:0px; list-style:none;
+    }
+
+    body{
+      background:url("images/index_back.gif")
+    }
+
+    nav#mainmenu{
+      width:300px; position:absolute; left:300px; top:200px; background:#eeeeee; border-radius:10px; overflow:hidden;
+      box-shadow:3px 3px 3px black; 
+    }
+    ul#mainmenu_list{
+      width:300px; 
+    }
+    ul#mainmenu_list>li{
+      width:300px; height:45px; border-bottom:solid 1px rgb(204, 204, 204); position:relative; left:0px; top:0px; 
+      overflow:hidden; box-sizing:border-box;
+    }
+
+    ul#mainmenu_list>li>a{
+      display:block; width:300px; height:45px; font:bold 16px/45px "Arial"; color:#5a5a5a; text-indent:20px; text-decoration:none; 
+      background:#eeeeee; -webkit-transition:0.2s ease; 
+    }
+
+    ul#mainmenu_list>li>a>span{
+      display:block; width:45px; height:45px; background:url("images/arrow.png") no-repeat; 
+      position:absolute; right:0px; top:0px; -webkit-transition:0.2s ease; 
+    }
+
+    ul#mainmenu_list>li>a>span.selected{
+      -webkit-transform:rotate(90deg)
+    }
+
+    ul#mainmenu_list>li>a.selected{
+      background-color:orange; color:black; background-position:right -40px; 
+    }
+
+
+    ul.sumenu_list{
+      margin-top:40px;
+    }
+
+    ul.submenu_list li{
+      width:300px; height:45px; text-indent:30px; line-height:45px; background:#eeeeee; border-bottom:dotted 1px rgb(204, 204, 204);     
+      box-sizing:border-box; 
+    }
+
+    ul.submenu_list li:first-child{
+      border-top:solid 1px rgb(204, 204, 204)
+    }
+
+    ul.submenu_list li a{
+      font:normal 14px "Arial"; text-decoration:none; color:black; 
+    }
+
+  </style>
+
+  <title> accordion_menu_2 </title>  
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.4.2/gsap.min.js "></script>
+  <!--GSAP CDN 코드 -->
+
+  <script> 
+  
+    
+
+
+
+
+
+
+
+
+
+
+   
+    
+  </script>
+
+
+</head>
+<body>
+  
+  <nav id="mainmenu">
+    <ul id="mainmenu_list">
+      <li><a href="#">Menu1<span></span></a>
+        <ul class="submenu_list">
+          <li><a href="#">submenu1</a></li>
+          <li><a href="#">submenu2</a></li>
+          <li><a href="#">submenu3</a></li>
+          <li><a href="#">submenu4</a></li>
+        </ul>     
+      </li>
+      <li><a href="#">Menu2<span></span></a>
+        <ul class="submenu_list">
+          <li><a href="#">submenu1</a></li>
+          <li><a href="#">submenu2</a></li>          
+        </ul>     
+      </li>
+      <li><a href="#">Menu3<span></span></a>
+        <ul class="submenu_list">
+          <li><a href="#">submenu1</a></li>
+          <li><a href="#">submenu2</a></li>
+          <li><a href="#">submenu3</a></li>
+          <li><a href="#">submenu4</a></li>
+        </ul>     
+      </li>
+      <li><a href="#">Menu4<span></span></a>
+        <ul class="submenu_list">
+          <li><a href="#">submenu1</a></li>
+          <li><a href="#">submenu2</a></li>
+          <li><a href="#">submenu3</a></li>         
+        </ul>     
+      </li>
+      <li><a href="#">Menu5<span></span></a>
+        <ul class="submenu_list">
+          <li><a href="#">submenu1</a></li>
+          <li><a href="#">submenu2</a></li>
+          <li><a href="#">submenu3</a></li>
+          <li><a href="#">submenu4</a></li>
+        </ul>     
+      </li>
+
+    </ul>
+
+  </nav>
+
+
+
+
+
+  
+</body>
+</html>

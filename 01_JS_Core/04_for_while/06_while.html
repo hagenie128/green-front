@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title> 무한 반복구문 </title>
+  <script>
+    /* while() 구문 기본형식 
+
+    while(조건){      
+      반복할 명령  ( 조건에 맞으면 계속 실행 )
+    }
+    */
+    // 비밀번호가 맞을때까지 비밀번호 입력 무한반복 하기   
+  
+  /* for구문을 사용하면 반복횟수를 지정할수 밖에 없다.
+
+  for(let i=0; i<10000; i++){
+
+    let userPW=prompt("패스워드를 입력하세요");
+    
+    if(userPW=="1234"){
+
+      document.write("환영합니다.");
+      break; // for 구문을 바로 빠져나옴 
+
+    }else{
+      alert("잘못 입력하셨습니다. 다시입력해주세요 ") - confirm() 차이 : 확인,취소가 없음
+    }
+  }
+  */
+  // while() 구문을 사용해서 비밀번호가 맞을때까지 무한반복 실행 
+
+  while(true){ 
+    // 조건식에 true 값을 반드시 지정 ,넣지 않으면 조건이 없어 조건이 맞지않으므로 실행되지 않음 
+    // 프로그래밍에서 특별한 조건을 주지않으면 기본값이 true 이므로 계속반복실행 
+    let userPW=prompt("비밀번호를 입력해주세요");
+
+    if(userPW=="1234"){
+
+      document.write("환영합니다.");
+      break; // while 구문을 바로 빠져나옴 
+
+    }else{
+
+      alert("잘못 입력하셨습니다. 다시 입력해주세요 ")
+      
+    }
+
+  }
+  // while(true) 구문을 사용하면 반복횟수를 정하지 않고 무한 반복할수있다.   
+
+  </script>
+</head>
+<body>  
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE HTML>
+<html lang="ko">
+	<head>
+		<meta charset="UTF-8"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 	
+
+		<style>
+			div.button{
+				width:200px;
+				height:50px;
+				position:absolute; left:50%; margin-left:-100px; top:300px;
+				border-radius:25px;					
+				background: -webkit-linear-gradient(top, #e2e2e2 0%,#b7b7b7 100%);
+				text-align:center; line-height:50px; color:white; 
+				-webkit-transition:0.3s ease;
+				cursor:pointer;
+			}
+			.selected{
+				background: -webkit-linear-gradient(top, #e570e7 0%,#c85ec7 47%,#a849a3 100%) !important;
+				border:solid 1px #eeeeee; 
+				box-shadow:2px 2px 10px #b6b5b5;
+				text-shadow:1px 1px 1px gray; 
+			}		
+			
+		</style>
+
+		<title> classList 활성화/비활성화 </title>
+		
+		<script>
+
+			/* 
+      classList() 메서드 
+
+      해당요소.classList.add('클래스명1 클래스명2'); // 해당요소에 클래스 추가 ( 클래스 두개이상 추가 가능 ) 
+
+      주의) className 속성값과 차이 
+      
+      해당요소.className='클래스명'   : 기존의 클래스는 삭제됨 
+      해당요소.classList.add('클래스명')  : 기존의 클래스에 추가됨           
+      
+      해당요소.classList.remove('클래스명1 클래스명2'); // 해당요소에 클래스 삭제 ( 두개이상 삭제가능 ) /  classList.remove() - 클래스명이 없으면 모든 클래스 삭제     
+      해당요소.classList.contains('클래스명'); // 해당요소에 클래스 존재여부확인 ( 결과값 : true, false )      
+      해당요소.classList.toggle('클래스명'); // 해당요소에 클래스가 없으면 클래스추가, 클래스가 존재하면 클래스 삭제 
+          
+    */  
+
+			/* click 했을때 classList.add() 매서드를 활영하여 활성화 속성을 유지 시켜줌 ( :hover 효과와 차이 ) */
+
+			document.addEventListener('DOMContentLoaded',()=>{
+
+				const button=document.querySelector('.button') // 버튼요소 찾음 
+				let isActive=false; // 활성화 상태변수 설정 ( 초기값 false )
+
+				button.addEventListener('click',buttonActivate) // 버튼 이벤트 설정 
+
+				function buttonActivate(){ // 버튼 활성화 함수 
+
+					if(isActive==false){ // 버튼이 활성화 되지 않았을때 활성화하기 
+						button.classList.add('selected'); // selected 클래스를 추가하여 활성화 속성적용 ( transition 속성이 적용되어 에니메이션 효과 )
+						isActive=true // 활성화 상태변수 true 설정 
+					}else{ // 버튼이 활성화 되었을때는 다시 비활성화하기 
+						button.classList.remove('selected') // selected 클래스를 삭제하여 비활화 적용 
+						isActive=false // 활성화 상태변수 false 설정 
+					}
+
+				}
+
+			})
+
+		</script>
+
+		
+	</head>
+	<body>
+
+		<div class="button">		
+				 BUTTON			
+		</div>
+
+	</body>
+</html>

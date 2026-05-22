@@ -1,0 +1,23 @@
+header{
+    width:100%;
+    height:54px; 
+    background: #5956af;
+    background: -moz-linear-gradient(left,  #5956af 0%, #9a76ed 100%);
+    background: -webkit-linear-gradient(left,  #5956af 0%,#9a76ed 100%);
+    background: linear-gradient(to right,  #5956af 0%,#9a76ed 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5956af', endColorstr='#9a76ed',GradientType=1 );
+
+    /* dark-mode:  background:#212A3E;  */
+    
+}
+
+h1.title{
+    width:100%;
+    height:100%; 
+    display:flex;
+    flex-wrap:wrap;
+    justify-content: center;
+    align-content: center;
+    font:normal 20px 'verdana'; 
+    color:white; 
+}

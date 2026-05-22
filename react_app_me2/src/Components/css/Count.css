@@ -1,0 +1,52 @@
+div.count_wrap{
+    width: 420px;
+    height: 48px;
+    margin: 48px auto;
+    border: solid 1px #aaa;
+    border-radius: 12px;
+    box-shadow:2px 2px 2px #eee;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+div.remove{
+    width: 20%;
+    height: 100%;
+    border-right:solid 1px #eee;
+    box-sizing: border-box;
+}
+button.remove_btn{
+    width:100%;
+    height:100%;
+    background: none;
+    border:none;
+    font: normal 42px/16px '맑은고딕';
+    position: relative;
+    left: 0;
+    top:-6px;
+    cursor: pointer;
+}
+div.count{
+    width: 60%;
+    height: 100%;
+    font: normal 28px/48px '맑은고딕';
+    text-align: center;
+}
+div.add{
+    width: 20%;
+    height:100%;
+    border-left: solid 1px #aaa;
+    box-sizing: border-box;
+}
+button.add_btn{
+    width: 100%;
+    height:100%;
+    border:none;
+    background:none;
+    font:normal 32px/32px '맑은고딕';
+    position:relative;
+    left: 0;
+    top: -2px;
+    cursor:pointer;
+}

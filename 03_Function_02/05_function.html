@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title> 클로저 </title>
+  <script>
+   
+   /* 클로저현상 (Closure) : 
+   
+   외부함수와 내부함수에 같은 변수를 사용할때 외부 함수를 실행시킨후 함수내에 지역변수임에도 불구하고 사라지지 않고 (초기화) 
+   계속 그값이 유지되는 현상 - 계속 바꿔가면서 사용할수 있는 데이터 저장소로 사용가능 
+   
+   function 외부함수(){
+
+    let count=0
+
+    function 내부함수(){
+
+      count++  // 외부함수가 계속실행되도 count 지역변수가 사라져 다시 0으로 초기화 되지않고 계속 그 변수값을 증가하면서 유지 
+
+    }
+    
+   }
+
+   */
+
+   // 일반함수 
+   
+  /*
+    function addCount(){   
+
+        let count=0;
+
+        count++;
+
+        return count; 
+
+    } 
+
+    //addCount 함수실행 결과값은 count 값 - 바로 실행결과 확인         
+
+    console.log(addCount());  // 결과 1
+    console.log(addCount());  // 결과 1
+    console.log(addCount());  // 결과 1
+   
+  */
+
+   //함수를 호출할때 마다 지역변수인 count가 다시 0 으로 초기화 되기때문에 결과는 1 모두같다. 
+  
+
+
+   // 클로저 함수 
+
+   function createCount(){
+
+    let count=0; // 클로저 현상으로 지역변수 count 가 다시 0 으로 초기화 되지않고 addCount함수가 실행되어  1씩 증가하면서 저장 
+
+    function addCount(){ // 반복실행되는 내부함수 
+
+      count++; 
+      return count; // count값을 1씩 더해서 출력         
+
+    }    
+    return addCount;  // 내부함수 addCount()를 호출한곳으로 빼냄 ( 값이아닌 함수자체 )
+   }
+
+   // createCount() 함수실행 결과값은 count 값이 아닌 addCount 함수자체 ( 다시 result 변수에 대입하여 반복실행후 결과확인 )
+   let result=createCount(); 
+
+   
+   console.log(result()); // 결과  1
+   console.log(result()); // 결과  2
+   console.log(result()); // 결과  3
+
+  // addCount 함수결과값이 저장된 result를 3번 실행해도 지역변수 count 가 다시 0으로 초기화 되지않고 1씩 증가하면서 저장   
+  // 반복실행되는 내부함수를 나중에 setInterval() 함수를 사용해서 처리하면 쉬움 
+
+  
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

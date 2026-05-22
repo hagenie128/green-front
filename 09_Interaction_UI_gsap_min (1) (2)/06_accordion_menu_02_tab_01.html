@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">  
+
+  <style>    
+    
+    body,p,ul,li{
+      margin:0px; padding:0px; list-style:none;
+    }
+
+    body{
+      background:url("images/index_back.gif")
+    }
+
+    nav#mainmenu{
+      width:300px; position:absolute; left:300px; top:200px; background:#eeeeee; border-radius:10px; overflow:hidden;
+      box-shadow:3px 3px 3px black; 
+    }
+    ul#mainmenu_list{
+      width:300px; 
+    }
+    ul#mainmenu_list>li{
+      width:300px; height:45px; border-bottom:solid 1px rgb(204, 204, 204); position:relative; left:0px; top:0px; 
+      overflow:hidden; box-sizing:border-box;
+    }
+
+    ul#mainmenu_list>li>a{
+      display:block; width:300px; height:45px; font:bold 16px/45px "Arial"; color:#5a5a5a; text-indent:20px; text-decoration:none; 
+      background:#eeeeee; -webkit-transition:0.2s ease; 
+    }
+
+    ul#mainmenu_list>li>a>span{
+      display:block; width:45px; height:45px; background:url("images/arrow.png") no-repeat; 
+      position:absolute; right:0px; top:0px; -webkit-transition:0.2s ease; 
+    }
+
+    ul#mainmenu_list>li>a>span.selected{
+      -webkit-transform:rotate(90deg)
+    }
+
+    ul#mainmenu_list>li>a.selected{
+      background-color:orange; color:black; background-position:right -40px; 
+    }
+
+
+    ul.sumenu_list{
+      margin-top:40px;
+    }
+
+    ul.submenu_list li{
+      width:300px; height:45px; text-indent:30px; line-height:45px; background:#eeeeee; border-bottom:dotted 1px rgb(204, 204, 204);     
+      box-sizing:border-box; 
+    }
+
+    ul.submenu_list li:first-child{
+      border-top:solid 1px rgb(204, 204, 204)
+    }
+
+    ul.submenu_list li a{
+      font:normal 14px "Arial"; text-decoration:none; color:black; 
+    }
+
+  </style>
+
+  <title> accordion_menu_2 일반함수 </title>  
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.4.2/gsap.min.js "></script>
+  <!--GSAP CDN 코드 -->
+
+  <script> 
+  
+    document.addEventListener('DOMContentLoaded',()=>{
+
+      const mainMenu=document.querySelectorAll('#mainmenu_list>li>a'); // 모든 메인메뉴 찾음 ('a요소' - 웹접근성 )
+
+      let openHeight; // 메뉴가 열렸을때 높이 ( 선택된 메뉴에 따라 달라짐 )
+      let closeHeight=document.querySelector('#mainmenu_list>li').offsetHeight; // 메뉴가 닫혔을때 높이구함 ( 모든 메뉴 동일 )      
+      let selectedMenu; // 선택된 메뉴 저장할 변수 
+
+      for(const item of mainMenu){ // 모든 메인메뉴에 이벤트 적용 
+        item.addEventListener('click',mainMenuClick);
+        item.addEventListener('focus',mainMenuClick);
+      }
+
+      function mainMenuClick(){ // 아코디언 메뉴 작동 함수     
+
+          // 기존에 선택 되었던 메뉴 비활성화 작업 
+
+          if (selectedMenu != null && selectedMenu!=this) { 
+            // 기존에 선택된 메뉴가 있고 기존에 선택된 메뉴와 새로 선택된 메뉴가 서로 같지 않을때만 비활성화 실행 ( 열려있는 메뉴를 다시 클릭했을때는 실행되지 않도록 설정 - 그렇지 않으면 약간 닫혔다가 다시 열림 )
+            
+            // 기존에 선택된 메뉴의 높이를 현제높이에서 closeHeight 으로 줄여 닫히게 하는 에니메이션 
+            gsap.to(selectedMenu.parentElement, {height:closeHeight, duration:.3, ease:'power1.out'})           
+
+            selectedMenu.classList.remove('selected'); // 기존에 선택 되어있는 메뉴 비활성화 ( 백그라운드 컬러 제거 )
+            selectedMenu.children[0].classList.remove('selected') // 기존에 선택 되어있는 메뉴의 화살표 비활성화 모습으로 회전 
+          }
+
+          // 새로 선택된 메뉴 활성화 작업 
+
+         if(selectedMenu!=this){ 
+           // 기존에 선택된 메뉴와 새로 선택된 메뉴가 서로 같지 않을때만 비활성화 실행 ( 열려있는 메뉴를 다시 클릭했을때는 실행되지 않도록 설정 -그렇지 않으면 약간 닫혔다가 다시 열림 )
+          selectedMenu = this; // 새로 선택된 메뉴를 selectedMenu로 저장  
+          openHeight = closeHeight + (closeHeight * selectedMenu.nextElementSibling.children.length)
+          // 중요) 선택된 메인메뉴의 서브메뉴 갯수에 따라 열리는 높이를 구함 
+          //alert(openHeight)
+
+          // 새로 선택된 메인메뉴의 높이를 현제높이에서 openHeight으로 늘려서 열리게 하는 에니메이션 
+          gsap.to(selectedMenu.parentElement, {height:openHeight, duration:.3, ease:'power1.out'})
+         
+          selectedMenu.classList.add('selected') // 새로 선택된 메뉴 활성화 ( 백그라운드 컬러 적용 )
+          selectedMenu.children[0].classList.add('selected') // 새로 선택된 메뉴의 화살표 활성화 모습으로 회전     
+
+         }   
+
+      }        
+
+    })    
+     
+    
+  </script>
+
+
+</head>
+<body>
+  
+  <nav id="mainmenu">
+    <ul id="mainmenu_list">
+      <li><a href="#">Menu1<span></span></a>
+        <ul class="submenu_list">
+          <li><a href="#">submenu1</a></li>
+          <li><a href="#">submenu2</a></li>
+          <li><a href="#">submenu3</a></li>
+          <li><a href="#">submenu4</a></li>
+        </ul>     
+      </li>
+      <li><a href="#">Menu2<span></span></a>
+        <ul class="submenu_list">
+          <li><a href="#">submenu1</a></li>
+          <li><a href="#">submenu2</a></li>          
+        </ul>     
+      </li>
+      <li><a href="#">Menu3<span></span></a>
+        <ul class="submenu_list">
+          <li><a href="#">submenu1</a></li>
+          <li><a href="#">submenu2</a></li>
+          <li><a href="#">submenu3</a></li>
+          <li><a href="#">submenu4</a></li>
+        </ul>     
+      </li>
+      <li><a href="#">Menu4<span></span></a>
+        <ul class="submenu_list">
+          <li><a href="#">submenu1</a></li>
+          <li><a href="#">submenu2</a></li>
+          <li><a href="#">submenu3</a></li>         
+        </ul>     
+      </li>
+      <li><a href="#">Menu5<span></span></a>
+        <ul class="submenu_list">
+          <li><a href="#">submenu1</a></li>
+          <li><a href="#">submenu2</a></li>
+          <li><a href="#">submenu3</a></li>
+          <li><a href="#">submenu4</a></li>
+        </ul>     
+      </li>
+
+    </ul>
+
+  </nav>
+
+
+
+
+
+  
+</body>
+</html>

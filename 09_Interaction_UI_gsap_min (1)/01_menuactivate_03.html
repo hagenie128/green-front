@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">  
+
+  <style>
+  
+    ul,li{
+      margin:0px; padding:0px; list-style:none;
+    }
+
+    ul#menu_list{
+      width:200px; position:absolute; left:500px; top:200px; 
+    }
+
+    ul#menu_list li{
+      width:200px; height:40px; margin-bottom:20px; line-height:40px; background:#eeeeee;  text-align:center;
+      -webkit-transition:0.2s ease; 
+      cursor:pointer;
+    }
+
+    ul#menu_list li.selected{
+      background:orange; color:white; 
+    }    
+  
+  </style>
+    
+
+  <title> menuactivate_03 - selectedIndex 순번활용 </title>
+
+  <script>    
+   
+
+    // 상단 CSS 스타일의 메뉴요소에 'selected' 클래스로 적용한 메뉴 활성화 스타일 속성 과 transition 속성확인 
+
+    document.addEventListener('DOMContentLoaded',()=>{
+
+      const menu=document.querySelectorAll('#menu_list>li'); // 모든메뉴 찾음 
+
+      let selectedMenu=null;// 선택된 메뉴를 대입할 변수      
+
+      for(const item of menu){ // 모든메뉴 이벤트 적용 
+        item.addEventListener('click',menuActivate)         
+        // 모든메뉴 클릭하면 메뉴활성화 함수 실행 
+      }        
+
+      function menuActivate(){
+
+        let checkMenu=this; // 선택된 메뉴를 순번을 체크해보는 checkMenu로 지정 
+        let selectedIndex=0; // 클릭한 메뉴의 순번을 나타내는 변수 ( 초기값 0 )
+
+        while((checkMenu=checkMenu.previousElementSibling)!=null){ // 선택된 메뉴의 이전요소가 있는지 반복문으로 확인 ( 가로주의 )
+          selectedIndex++ // 선택된 메뉴의 이전요소가 있으면 클릭한 순번을 1씩 증가 
+        }
+        //alert(selectedIndex);
+
+        // 기존에 선택되었던 메뉴 비활성화 작업 
+
+       if(selectedMenu!=null && selectedMenu!=menu[selectedIndex]){ 
+        // selectedMenu에 기존의 선택되었던 메뉴가 존재하고 기존에 선택되었던 메뉴와 현제 선택된 메뉴가 다를때만 실행          
+        /*
+       중요) selectedMenu에 기존에 선택된 메뉴가 저장되어있지 않을때는 classList() 명령이 실행되지 않음 (에러); 
+            기존에 선택되었던 메뉴와 현제 선택된 메뉴가 같을때는 실행할 필요없음 (퍼포먼스 줄임)       
+       */       
+        selectedMenu.classList.remove('selected'); // 기존의 선택된 메뉴에 기존 CSS 스타일 'selected' 클래스 속성 제거하여 비활성화 
+        // 중요) for구문을 사용하여 모든 메뉴를 비활성화하는 것보다 퍼포먼스가 효율적 
+       }
+
+       // 새로 선택된 메뉴 활성화 작업        
+        
+       if(selectedMenu!=menu[selectedIndex]){ // 기존에 선택되었던 메뉴와 현제 선택된 메뉴가 다를때만 실행 (같을때는 실행할 필요없음)
+
+        selectedMenu=menu[selectedIndex]; // 클릭한 순번에 해당하는 메뉴를 selectedMenu 에 저장 
+        selectedMenu.classList.add('selected') // 현제 선택된 메뉴에 기존 CSS스타일 'selected' 클래스 속성 추가하여 활성화 
+
+       }
+       
+   
+      }      
+
+    })    
+    
+  </script>
+
+
+</head>
+<body>
+
+    <ul id="menu_list">
+      <li>첫번째메뉴</li>
+      <li>두번째메뉴</li>
+      <li>세번째메뉴</li>
+      <li>네번째메뉴</li>
+    </ul>
+  
+</body>
+</html>

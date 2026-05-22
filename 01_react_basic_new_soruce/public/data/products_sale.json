@@ -1,0 +1,11 @@
+[
+    { 
+      "id":"002",       
+      "image":"./images/spaceon.png",
+      "name":"루메나 SPACE ON 테이블램프",
+      "text":"놓는 순간 갤러리가 되는 아트 오브제",
+      "price":"99,000",
+      "isNew":false     
+    }
+    
+]

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title> 비교연산자_논리연산자_조건연산자 </title>
+  <script>
+  
+  // 비교연산자  ( >  <  >=  <=  ==  !=   !   === )
+
+  let a=1, b=1   
+
+  console.log(a==b)  // 결과 ture     == 같다      주의 ) = 대입연산자 
+  console.log(a!=b)  // 결과 false   != 같지 않다    
+  console.log(a===b)  // 결과 true   === 값과 데이터타입 모두 같다 
+  
+  a="1" // a값을 문자로 바꿈 
+
+  console.log(a===b) // 결과 false  값은 같지만 데이터타입이 같지 않다. 
+  
+  a=true;
+
+  console.log(!a)  // 결과 false  ! 반대값 
+
+  b=false;
+
+  console.log(!b)  // 결과 true 
+
+
+  /*
+  !! 두개는 데이터값이 Falshy값 인지 Trushy 값인지 알수있는 연산자 (Boolean 값으로 변환 )
+
+
+     Falshy 거짓인 값 :  0, -0, '', null, undefined, NaN
+
+
+     Truthy 참인 값 : 1, -1, 'text', {}, Infinity  그 외 Falshy 한값이 아닌 값 
+
+  */
+
+  a=0
+
+  b=-1
+
+  console.log(!!a)  // 결과 false
+
+  console.log(!!b) // 결과 true 
+
+
+  
+  // 논리연산자   ( &&  || ) 
+
+  a=10;
+  b=20;
+
+  console.log(a>=5 && b>=10) // 결과 true   && 둘다 참일때만 참  ( and 조건 )
+  console.log(a>=5 && b<10) // 결과 false 
+  console.log(a<10 || b>10)  // 결과 true   || 둘 중에 한개 값이 참일 때 참  (or 조건 )
+
+
+
+  a=0;
+  b=1;
+
+  console.log(a && b )  // 결과 0  (a 값이 falshy 값이면 그냥 a 값을 할당 , a값이 trushy 값이면 b값이 할당 )
+  console.log(a || b)  // 결과 1 (a값이 falshy 값이면 b값이 할당, a값이 trushy값이면 a값이 할당)
+
+
+
+  // 조건 연산자 (3항연산자)   조건 ? 참일때값  :  거짓일때 값 
+ 
+  console.log( a>=b ? "맞아요" : "틀려요" )  // 결과  "틀려요 "
+  console.log( a<=b ? "맞아요" : "틀려요" )  //  결과  "맞아요"
+
+
+  let value=prompt("숫자를 입력하세요");
+
+  value=parseInt(value);  // prompt() 구문으로 반든 데이터는 문자 - 숫자로 바꿔서 연산 
+  
+ /*주의
+    parseInt() 를 사용하지 않을 경우 
+    - 숫자만 입력했을경우 숫자로 묵시적 형변환 하여 연산가능, 숫자와 문자와 같이 입력했을 경우 문자로 인식하여 연산 불가능 
+ */
+  
+  value%2==0 ? document.write("짝수입니다.") : document.write("홀수입니다.")    
+
+
+
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title> slideMenu </title>
+
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/style.css">  
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.4.2/gsap.min.js "></script>    
+  <!--GSAP CDN 코드 -->
+  
+  <script> 
+  
+    document.addEventListener('DOMContentLoaded',()=>{
+
+      const mainMenu=document.querySelectorAll('#mainmenu_list>li'); // 모든 메인메뉴 찾음 
+      const subMenuList=document.querySelectorAll('.submenu_list'); // 모든 서브메뉴리스트 찾음
+      const subMenuBg=document.querySelector('#sub_bg'); // 서브메뉴배경 찾음      
+     
+      let subBgHeight=subMenuBg.offsetHeight; // 서브메뉴배경 높이 구함;      
+      //alert(subBgHeight)
+
+      let isSubMenuOpen=false; // 서브메뉴 오픈상태를 나타내는 변수       
+
+      // for(const item of subMenuList){ // 모든 서브메뉴 리스트 안보이게 설정 
+      //   item.style.display='none';
+      // }
+      gsap.set(subMenuList, {display:'none'}) // for구문 생략 가능   
+
+      // subMenuBg.style.height=0; // 서브메뉴배경 높이값 0 에서 시작설정 
+      // subMenuBg.style.display='none'; // 서브메뉴배경 안보이게 설정       
+      gsap.set(subMenuBg, {height:0, display:'none'}) // 하나의 요소에 여러가지 속성 동시적용 가능      
+
+      for(const item of mainMenu){ // 모든 메인메뉴에 마우스 올리면 서브메뉴가 활성화되는 함수 실행  
+        item.addEventListener('mouseenter',subMenuActive);
+      }      
+      document.querySelector('#header_wrap').addEventListener('mouseleave',subMenuInActive); 
+      // #header_wrap 에서 마우스를 빼면 서브메뉴가 비활성화되는 함수실행  주의) mainMenu에 설정하면 서브메뉴에서도 이벤트가 동작됨 ) 
+
+      function subMenuActive(){ // 서브메뉴를 활성화 해주는 함수 
+
+        if(isSubMenuOpen==false){  // 현제 서브메뉴가 비활성화 상태일때만 실행 
+        // 주의) 다른 메인메뉴에 오버했을때 다시 slideDown 하는동작을 방지 - 이벤트를 각 메인메뉴가 아닌 #header_wrap에 지정하면 if구문을 사용안해도 됨 
+
+          gsap.set(subMenuBg,{display:'block'}); // 서브메뉴배경 보이게 설정 
+
+          // 서브메뉴배경 슬라이드다운 효과 에니메이션 
+          gsap.to(subMenuBg,{height:subBgHeight, duration:.3, ease:'power1.out', onComplete:()=>{
+            // for (const item of subMenuList) {
+            //   item.style.display = 'block';
+            // }
+            gsap.set(subMenuList,{display:'block'})  // 서브메뉴배경 에니메이션이 끝나면 모든 서브메뉴리스트가 보이게 설정 
+            // 중요) gsap.set() 사용하면 for구문 생략가능
+            isSubMenuOpen=true; // 서브메뉴 활성화가 완료되면 상태변수를 활성화로 변경   주의) 에니메이션이 끝난다음 상태변수를 변경 ( 그렇지 않으면 다음 이벤트와 충돌 )   
+            
+          }})     
+       
+        }
+      }
+      
+
+      function subMenuInActive(){ // 서브메뉴를 비활성화 해주는 함수 
+       
+        if(isSubMenuOpen==true){ // 현제 서브메뉴가 활성화 상태일때만 실행 
+          //   for(const item of subMenuList){ 
+          //     item.style.display='none';
+          //   }           
+          gsap.set(subMenuList,{display:'none'}); // 모든 서브메뉴리스트가 안보이게 설정  
+          //중요) gsap.set() 사용하면 for구문 생략가능
+
+          gsap.to(subMenuBg,{height:0, duration:.3, ease:'power1.out', onComplete:()=>{
+            gsap.set(subMenuBg,{display:'none'}); // 에니메니션 끝나면 서브메뉴배경 안보이게 설정 
+            isSubMenuOpen=false; // 서브메뉴 비활성화가 완료되면 상태변수를 비활성화로 변경   주의) 에니메이션이 끝난다음 상태변수를 변경 ( 그렇지 않으면 다음 이벤트와 충돌 )   
+          }})               
+       
+        } 
+      } 
+
+
+    })   
+    
+  </script>
+
+
+</head>
+<body>
+
+    <div id="header_wrap">
+        <div id="header_inner">
+          <h1 id="logo">
+            <a href="index.php"><img src="images/logo.gif" alt="글렘쉘"></a>
+          </h1>
+          
+          <h2 class="hidden">메인메뉴</h2>
+          <ul id="mainmenu_list">
+            <li><a href="brand.php"><img src="images/mainmenu_01.gif" alt="브랜드소개"></a>
+              <ul class="submenu_list">
+                <li><a href="#">BRAND</a></li>
+                <li><a href="#">DESIGN</a></li>
+                <li><a href="#">BI</a></li>
+              </ul>
+            
+            </li>
+            <li><a href="#"><img src="images/mainmenu_02.gif" alt="컬렉션"></a>
+              <ul class="submenu_list">
+                <li><a href="#">CRYSTAL</a></li>
+                <li><a href="#">NANO</a></li>
+                <li><a href="#">MAGIC</a></li>
+                <li><a href="#">PUZZLE</a></li>
+              </ul>        
+            </li>
+            <li><a href="#"><img src="images/mainmenu_03.gif" alt="매장안내"></a>
+              <ul class="submenu_list">
+                <li><a href="#">ON-LINE</a></li>
+                <li><a href="#">OFF-LINE</a></li>
+                <li><a href="#">B2B</a></li>            
+              </ul>   
+            
+            </li>
+            <li><a href="#"><img src="images/mainmenu_04.gif" alt="리뷰"></a>
+              <ul class="submenu_list">
+                <li><a href="#">EVENT</a></li>
+                <li><a href="#">NOTICE</a></li>
+                <li><a href="#">NEWS</a></li>
+                <li><a href="#">INTERVIEW</a></li>             
+              </ul>       
+            </li>
+            <li><a href="#"><img src="images/mainmenu_05.gif" alt="고객센터"></a>
+              <ul class="submenu_list">
+                <li><a href="#">INSTALL</a></li>
+                <li><a href="#">POWER REVIEW</a></li>
+                <li><a href="#">Q&A</a></li>
+                <li><a href="#">FAQ</a></li>             
+              </ul>       
+            </li>
+          </ul>
+          <h2 id="bestmenu"><a href="#"><img src="images/best_btn.gif" alt="주간베스트상품"></a></h2>
+        </div> 
+    
+       <div id="sub_bg"></div> <!--서브메뉴배경-->
+    
+      </div>
+  
+</body>
+</html>

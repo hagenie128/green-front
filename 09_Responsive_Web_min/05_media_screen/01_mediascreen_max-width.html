@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">   
+		<title>Media screen_max-width</title>
+		
+		<style>	
+			div#wrap{
+				width:90%; margin:50px auto; 
+			}	
+			section.contents_box{
+				width:20%; height:200px; float:left; background:#CCC; margin-right:6.66%; margin-bottom:50px; 
+			}
+			section.contents_box:last-child{
+				margin-right:0px; 
+			}
+
+			@media screen and (max-width:980px ){
+				
+				section.contents_box{
+					width:45%; margin-right:10%; 
+				}
+
+				section.contents_box:nth-child(2n){
+					margin-right:0px; 
+				}
+
+			}	
+			@media screen and (max-width:768px){
+			
+				section.contents_box{
+					width:100%; margin-right:0px; 
+				}
+			}
+		</style>
+
+	</head>
+
+<body>
+	
+    <div id="wrap">    	
+        <section class="contents_box">                
+       		contents1            
+        </section>
+        
+        <section class="contents_box">               
+         	contents2            
+        </section>
+        
+        <section class="contents_box">        
+         	 contents3          
+        </section>
+        
+        <section class="contents_box">        
+        	contents4        
+        </section>     
+    
+    </div>
+
+</body>
+</html>

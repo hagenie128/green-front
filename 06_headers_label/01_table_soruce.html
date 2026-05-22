@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>테이블웹접근성</title>
+
+  <style>
+
+    *{
+      margin:0px;
+      padding:0px; 
+    }
+
+    table{
+      border-spacing:0px;
+      border-collapse: collapse;
+    }
+
+    table.headers{
+      width:600px; margin:60px auto; border-top:solid 3px #999999; border-bottom:solid 3px #999999; 
+      /*전체 테이블 위 아래만 보더 두껍게 적용 */
+    }
+
+    table.headers th{ /* th 전체에 대한 공통 스타일속성 지정 */
+      height:24px; border-bottom:solid 1px #666; 
+      font:bold 12px "돋움"; 
+      background:#CCCCCC;
+    }
+
+    table.headers th.room{
+      background:rgb(248, 248, 248);      
+      border-bottom:dotted 1px #666;
+      border-right:dotted 1px #666;
+      font-weight:500;
+    }
+
+
+
+    table.headers td{ /* td 전체에 대한 공통 스타일속성 지정 */
+      height:20px; border-bottom:dotted 1px #666; 
+      font:normal 12px "돋움";       
+      text-align:center;
+    }
+
+  </style>
+
+
+</head>
+<body>
+
+ <!--
+
+  테이블 웹접근성 
+
+  id, scope ( 방향 ),  headers ( 구분 ) 속성을 사용하여 순차적인 행( 줄) , 열 ( 칸 ) 접근을 통한 데이터 내용의 정확한 의미구분 ( 음성 ) 
+  - 각 제목셀 id 지정 > 각 제목셀 scope ( 유효범위 - 방향 col, row ) 적용 > 각 셀 의미 구분  headers 적용
+  
+ -->
+  
+
+  <table class="headers">   
+    
+      <tr>
+        <th>강의실</th><th>교육과정</th><th>교육과목</th><th>강사</th> 
+      </tr>
+      <tr>
+        <th class="room">601</th><td>편집디자인</td><td>포토샵</td><td>홍길동</td>
+      </tr>
+      <tr>
+        <th class="room">602</th><td>UIUX디자인</td><td>피그마</td><td>강감찬</td>
+      </tr>
+      <tr>
+        <th class="room">603</th><td>웹퍼블리셔</td><td>Html5</td><td>이순신</td>
+      </tr>
+      <tr>
+        <th class="room">604</th><td>프런트엔드</td><td>Reactjs</td><td>유관순</td>
+      </tr>     
+  </table>
+  
+</body>
+</html>

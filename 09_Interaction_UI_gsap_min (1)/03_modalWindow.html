@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">  
+
+  <style>    
+    
+    
+    ul,li{
+      margin:0px; padding:0px; list-style:none;
+    }
+
+    ul#img_list{
+      width:700px;
+    }
+    ul#img_list li{
+      float:left; margin:10px;       
+    }
+    
+    div#grayLayer{          
+      height:100%; width:100%; position:absolute; left:0; top:0;      
+      background:black; opacity:0;
+    }   
+
+    div#overLayer{      
+      width:650px; height:443px; position:absolute; top:50%; left:50%;  margin-top:-221px; margin-left:-325px; 
+      display:none; 
+    }
+    
+  
+  </style>
+
+  <title> modalWindow - 매개변수 활용 </title>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.4.2/gsap.min.js "></script>
+  <!--GSAP CDN 코드 -->
+  <script>
+
+    document.addEventListener('DOMContentLoaded',()=>{
+
+      const grayLayer=document.createElement('div'); // 어둡게 가려줄 div요소 생성
+      grayLayer.id='grayLayer'; // 아이디 속성값을 'grayLayer' 로 지정해서 기존 CSS스타일 속성지정 
+      const overLayer=document.createElement('div'); // 선택한 이미지가 보여줄 div 요소생성 
+      overLayer.id='overLayer'; // 아이디 속성값을 'overLayer'로 지정해서 기존 CSS스타일 속성지정 
+
+      const imgMenu=document.querySelectorAll('#img_list>li'); // 모든 이미지 메뉴를 찾음       
+
+      
+      initEvent(); // 이벤트 함수 실행 
+
+      
+      function initEvent(){ // 이벤트 함수 
+        for (const item of imgMenu) { // 모든 이미지 메뉴에 이벤트 적용 
+          item.addEventListener('click', imgMenuClick) // 이미지 메뉴 클릭하면 imgMenuClick 함수 실행 
+        }
+
+        grayLayer.addEventListener('click', grayLayerClick) // grayLayer 클릭하면 grayLayerClick 함수 실행 
+      }
+
+
+      function imgMenuClick(){ // 이미지 메뉴 클릭 실행함수 
+
+        let clickNum=getIndex(this); // getIndex(checkMenu) 함수를 활용하여 클릭한 순번구함 ( 매개변수 활용 )
+
+        showGrayLayer(); // graylayer 보여지는 함수 실행 
+        showImg(clickNum) // 클릭한 순번을 이용하여 해당 이미지 보여주는 함수 실행 
+
+      }
+
+      function grayLayerClick(){ // graylayer 클릭 실행함수 
+
+        hideImg(); // 이미지 사라지게 해주는 함수 실행 
+        hideGrayLayer(); // grayLayer 사라지게 해주는 함수 실행 
+
+      }
+
+
+      function showGrayLayer(){ // grayLayer 보여지게 하는 함수 
+
+        document.querySelector('body').append(grayLayer); // body 요소에 grayLayer 추가         
+        gsap.set(grayLayer, {display:'block'}) // grayLayer를 보여지게 함        
+        gsap.to(grayLayer,{opacity:0.9, duration:.3, ease:'porwer1.out'}) // 어둡게 되는 에니메이션 실행         
+
+      }
+
+
+      function getIndex(checkMenu){ // 순번 구하는 함수 ( 매개변수 활용 )
+        
+        let selectedIndex=0; // 클릭한 이미지 순번을 대입할 변수 
+
+        while((checkMenu=checkMenu.previousElementSibling)!=null){ // 클릭한 이미지 메뉴의 순번구함 
+          selectedIndex++;
+        }
+
+        return selectedIndex; // 중요) 최종 구한 순번값을 return 구문으로 돌려줌 
+
+      }
+
+
+      function showImg(num){
+
+        document.querySelector('body').append(overLayer); // body 요소에 overLayer 추가  
+        // 주의) document.getElementsByTagName('body')를 이용해서 요소를 찾으면 바로 붙여서 append 메서드 실행안됨 
+        
+        gsap.set(overLayer,{display:'block'}) // overLayer를 보여지게 함       
+ 
+        overLayer.innerHTML='<img src=images/photo'+(num+1)+'.jpg>' 
+        // 클릭한 이미지 메뉴 순번과 같은 이미지 번호의 큰이미지 생성하여 overLayer에 바로 넣어줌 
+        // 중요) innerHTML 속성값으로 바로 넣어준다. (안에 있는 요소는 모두 지우고 새로운 요소를 넣어줌)        
+
+      }
+
+      function hideGrayLayer(){
+
+        // grayLayer를 다시 투명하게 에니메이션 
+        gsap.to(grayLayer,{opacity:0, duration:.3, ease:'power1.out', onComplete:()=>{
+          gsap.set(grayLayer,{display:'none'}) // 중요) 에니메이션이 끝나면 grayLayer를 안보이게함 ( 그렇지 않으면 다시 이미지메뉴가 클릭안됨 )     
+        }})
+
+        
+
+      }      
+
+      function hideImg(){ // 이미지 사라지게 하는 함수 
+        gsap.set(overLayer,{display:'none'}) // 보여준 이미지가 들어있는 overLayer를 안보이게함       
+      }
+
+    })  
+
+    
+  
+  </script>
+
+
+</head>
+<body>
+
+  <ul id="img_list">
+    <li><a href="#"><img src="images/photo1_thum.jpg" alt=""  /></a></li>
+    <li><a href="#"><img src="images/photo2_thum.jpg" alt="" /></a></li>
+    <li><a href="#"><img src="images/photo3_thum.jpg" alt="" /></a></li>
+    <li><a href="#"><img src="images/photo4_thum.jpg" alt="" /></a></li>
+    <li><a href="#"><img src="images/photo5_thum.jpg" alt="" /></a></li>
+    <li><a href="#"><img src="images/photo6_thum.jpg" alt="" /></a></li>
+    <li><a href="#"><img src="images/photo7_thum.jpg" alt="" /></a></li>
+    <li><a href="#"><img src="images/photo8_thum.jpg" alt="" /></a></li>
+  </ul>
+  
+  
+</body>
+</html>

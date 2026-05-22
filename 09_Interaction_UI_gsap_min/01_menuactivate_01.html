@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">  
+
+  <style>
+  
+    ul,li{
+      margin:0px; padding:0px; list-style:none;
+    }
+
+    ul#menu_list{
+      width:200px; position:absolute; left:500px; top:200px; 
+    }
+
+    ul#menu_list li{
+      width:200px; height:40px; margin-bottom:20px; line-height:40px; background:#eeeeee;  text-align:center;
+      -webkit-transition:0.2s ease; 
+      cursor:pointer;
+    }
+
+    ul#menu_list li.selected{
+      background:orange; color:white; 
+    }    
+  
+  </style>
+    
+
+  <title> menuActivate_01 - for문 활용 </title>
+
+  <script>    
+
+    // 상단 CSS 스타일의 메뉴요소에 'selected' 클래스로 적용한 메뉴 활성화 스타일 속성 과 transition 속성확인   
+
+    document.addEventListener('DOMContentLoaded',()=>{
+
+      const menu=document.querySelectorAll('#menu_list>li'); // 모든메뉴 찾음 
+
+      for(const item of menu){ // 모든메뉴 이벤트 적용 
+        item.addEventListener('click',menuActivate) // 모든메뉴 클릭하면 메뉴활성화 함수 실행 
+      }
+
+      function menuActivate(){ // 메뉴활성화 함수 
+
+
+        // 기존 모든 메뉴 비활성화 작업 
+
+        for(const item of menu){ // 모든 메뉴에 기존 CSS 스타일 'selected' 클래스 속성 제거하여 모두 비활성화 
+        //( 단점 : for구문을 사용하여 모든 메뉴를 비활성화 하기때문에 퍼포먼스가 비효율적 )
+          item.classList.remove('selected')
+        }
+
+        // 새로선택된 메뉴 활성화 작업 
+
+        this.classList.add('selected') // 클릭한 메뉴에 기존 CSS스타일의 'selected' 클래스 속성 적용하여 클릭한 메뉴만 활성화 
+      }      
+
+    })    
+    
+  </script>
+
+
+</head>
+<body>
+
+    <ul id="menu_list">
+      <li>첫번째메뉴</li>
+      <li>두번째메뉴</li>
+      <li>세번째메뉴</li>
+      <li>네번째메뉴</li>
+    </ul>
+  
+</body>
+</html>

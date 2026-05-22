@@ -1,0 +1,16 @@
+footer{
+    width: 100vw;
+    height: 54px;
+    background: #2b3467;
+    padding: 0 20px;
+    box-sizing: border-box;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+p.footer_text{
+    font: normal 3.33vw/54px '맑은고딕';
+    color: white;
+    text-align: center;
+
+}

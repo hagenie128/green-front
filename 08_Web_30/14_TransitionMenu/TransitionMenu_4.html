@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>01_svg에니메이션</title>
+
+    <style>
+
+        *{
+            margin:0px; 
+            padding:0px; 
+        }
+
+        div#icon_wrap{
+            width:300px;
+            height:300px; 
+            position:absolute;
+            left:50%;
+            margin-left:-150px; 
+            top:50%;
+            margin-top:-150px;             
+        }  
+        
+        /*
+         svg 파일 CSS 스타일 속성 
+
+         fill: 면색상 
+         stroke: 선색상 
+         stroke-width: 선두께 
+         stroke-dasharray : 점선 길이 및 간격 
+         stroke-dashoffset : 점선의 시작 좌표 ( 왼쪽으로 양수 )
+
+        */
+
+        
+        /* stroke-dasharray , stroke-dashoffset 속성을 활용한 CSS 에니메이션 적용
+           
+           기본단위 px ( svg파일 제작시 수치값 - 문서에 적용시 부모요소에따라 상대적 크기로 달라져 보임 )
+               
+        */
+
+
+        .cls-2{
+            stroke-dasharray:60;
+            /* stroke-dashoffset:60;*/
+        }
+
+        @keyframes clip_ani{
+            
+            0%{
+                stroke-dashoffset:60;                            
+            }
+            100%{
+                stroke-dashoffset:0;                            
+            }
+        }
+
+        div#icon_wrap:hover .cls-2{
+            animation:clip_ani 1s ease-out forwards; 
+        }
+
+
+    </style>
+
+
+</head>
+<body>
+    
+    <div id="icon_wrap">
+        
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"> 
+            <style>
+                .cls-1,.cls-2{fill:none;}.cls-2{stroke:#000;stroke-linecap:round;stroke-linejoin:round;}
+            </style>         
+            <g data-name="Layer 2" id="Layer_2">
+                <g id="Workspace">
+                    <rect class="cls-1" height="24" width="24"/>
+                    <path class="cls-2" d="M16.54,12.41l-4.95,4.95a3,3,0,0,1-4.25,0h0a3,3,0,0,1,0-4.24l6.78-6.78a2,2,0,0,1,2.83,0h0a2,2,0,0,1,0,2.83L10.17,16a1,1,0,0,1-1.41,0h0a1,1,0,0,1,0-1.41l5-4.95"/>
+                </g>
+            </g>
+        </svg>
+
+    </div>
+       
+    
+    
+</body>
+</html>

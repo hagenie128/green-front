@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>scrollTrigger()_5_실무예제1 (부모요소스크롤고정및각객체에니메이션)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js'></script> 
+    <!-- gsap scrollTrigger 라이브러리 적용 (cdn.js 검색시 gsap 항목으로 들어가서 검색)-->   
+
+    <style>
+        *{
+            margin:0px;
+            padding:0px; 
+        }
+
+        body,html{
+            height:100%; 
+        }
+
+        ul,li{
+          
+          list-style:none;
+          
+      }  
+
+        /*스크롤바 숨기기 - 스크롤은 작동 */
+
+        
+        body{
+            -ms-overflow-style: none;  
+        }        
+
+        body::-webkit-scrollbar {  
+            display: none; 
+        }
+       
+
+
+        div.contents{
+            width:100%;
+            height:100%;            
+            position:relative;
+            left:0px; 
+            top:0px; 
+            background:black;          
+        }
+
+        
+
+        div#contents_2{
+            height:200%;
+        }
+
+
+
+
+        
+        div.contents_inner{
+            width:1400px; 
+            height:100%;
+            margin:0px auto;           
+            position:relative;
+            left:0px; 
+            top:0px;           
+        }
+
+        p#title_img{
+            width:600px; 
+            height:600px; 
+            position:absolute;
+            left:50%;
+            margin-left:-300px; 
+            top:50%; 
+            margin-top:-300px; 
+            border-radius:300px;
+            overflow:hidden;
+        }
+        p#title_img img{
+            width:100%; 
+        }
+
+        p#title_1{
+            width:800px; 
+            height:120px; 
+            text-align:center;
+            font:bold 100px/120px 'Noto Sans';
+            color:white;           
+            position:absolute;
+            left:50%;
+            margin-left:-400px; 
+            top:400px; 
+            
+
+        }
+        p#title_2{
+            width:1000px; 
+            height:120px; 
+            text-align:center;
+            font:bold 100px/120px 'Noto Sans';
+            color:rgb(218, 3, 110);            
+            position:absolute;
+            left:50%;
+            margin-left:-500px; 
+            top:500px; 
+        }
+
+        ul#photogallery_list{
+            width:100%;
+            height:100%;
+        }
+        ul#photogallery_list>li{
+            width:100%;
+            height:400px;
+            margin-bottom:200px; 
+            position:relative;
+            left:0px; 
+            top:0px; 
+        }
+        div.music_photo{
+            width:0px;
+            height:400px;
+            position:absolute;
+            left:0px; 
+            top:0px;             
+            overflow:hidden;
+        }
+        div.music_text{
+            width:40%;
+            height:100%;
+            position:absolute;
+            left:800px;
+            top:0px;           
+        }
+
+        p.photo_title{
+            font:normal 42px 'Noto Sans KR';
+            margin-bottom:50px; 
+            color:white;
+            position:relative;
+            left:0px; 
+            top:0px; 
+        }
+
+        p.photo_title::before{
+            content:"";
+            display:block;
+            width:0%;
+            height:3px; 
+            background:rgb(218, 3, 110);
+            position:absolute;
+            left:0px; 
+            bottom:-10px; 
+            transition:1s; 
+        }
+
+        p.photo_title.selected::before{
+            width:100%; /* 라인이 길어지는 활성화 clss 적용 */
+        }
+
+      
+        
+        
+        p.photo_text{
+            font:normal 18px/27px 'Noto Sans KR';
+            font-weight: 300;
+            color:white;
+            opacity:0.5;
+
+        }    
+
+
+    </style>
+
+<script> 
+
+    /* 
+    작업개요 
+
+    -부모요소 (#contents_1)를 별도로 ScrollTrigger.create() 적용하여, 
+        pin:true 값으로 스크롤 고정시킨뒤 그 안에 자식객체들을 각각 에니메이션 수행하는 방식 ( 동기화가 안됨 )
+    */
+    document.addEventListener('DOMContentLoaded',()=>{
+        const musicPhoto=document.querySelectorAll('.music_photo')
+        const photoTitle=document.querySelectorAll('.photo_title')//비포애프터는 가성요소라서 선택자로 찾을 수 없음
+        
+        gsap.to('#title_img',{scale:0, opacity:0, scrollTrigger:{
+            trigger:'#contents_1',
+            start:'top 0%',
+            end: `bottom 0%`,
+            scrub:true,
+            markers:true
+        }})
+        gsap.to('#title_1',{x:-500, opacity:0, scrollTrigger:{
+            trigger:'#contents_1',
+            start:'top 0%',
+            end:`bottom 0%`,
+            scrub:1,
+        }})
+        gsap.to('#title_2',{x:500, opacity:0, scrollTrigger:{
+            trigger:'#contents_1',
+            start:'top 0%',
+            end:`bottom 0%`,
+            scrub:2,
+            pin:true
+        }})
+        // gsap.to(musicPhoto[0],{width:600, duration:2, ease:'power1.out',scrollTrigger:{
+        //     trigger:musicPhoto[0],
+        //     start:'top 50%',
+        //     end:`bottom 50%`,
+        //     toggleActions:'play reverse play reverse',
+        //     markers:true
+        // }})
+        for(const item of musicPhoto){//번호 하나씩말고 for문으로
+            gsap.to(item,{width:600, duration:2,ease:'power1.out',scrollTrigger:{
+                trigger:item,
+                start:`top 50%`,
+                end:`bottom 50%`,
+                toggleActions:'play reverse play reverse',
+                markers:true
+            }})
+        }
+        // ScrollTrigger.create({
+        //     trigger:photoTitle[0],
+        //     start:`top 50%`,
+        //     end:`500% 50%`,
+        //     toggleClass:'selected',
+        // })
+        for(const item of photoTitle){
+            ScrollTrigger.create({
+                trigger:item,
+                start:`top 50%`,
+                end:'500% 50%',
+                toggleClass:'selected'
+            })
+        }
+    })
+
+
+
+
+
+
+
+    
+
+    
+
+</script>
+
+
+</head>
+<body>
+   
+
+        <div class="contents" id="contents_1">
+
+           
+            <div class="contents_inner">
+
+                <p id="title_img">
+                    <img src="./images/mainvisual.jpg" alt="">
+                </p>
+
+                <p id="title_1">
+                    KOREA MUSIC
+                </p>
+                <p id="title_2">
+                    FESTIVAL2020
+                </p>
+            </div>
+
+
+        </div>
+
+        <div class="contents" id="contents_2">
+
+            <div class="contents_inner">
+
+                <ul id="photogallery_list">
+                    <li>
+                        <div class="music_photo">
+
+                            <img src="./images/musicphoto1.jpg" alt="">
+
+                        </div>
+
+                        <div class="music_text">
+                            <p class="photo_title">
+                                <span>01 시민청 추석 놀이마당</span>
+                            </p>
+                            <p class="photo_text">
+                                추석맞이 특별행사 시민청 한마당 민족 명절 추석에 
+                                "활력콘서트"공연과 "민속놀이 한마당"이 펼쳐질 시민
+                                청에서 함께해요
+                            </p>
+                            
+                        </div>
+                    </li>
+                    <li>
+                        <div class="music_photo">
+
+                            <img src="./images/musicphoto2.jpg" alt="">
+
+                        </div>
+
+                        <div class="music_text">
+
+                            <p class="photo_title">
+                                <span>02 렛츠 댄스 페스티벌</span>
+                            </p>
+                            <p class="photo_text">
+                                세계의 여러 장르의 춤과 문화를 함께 즐기는 세계문화
+                                댄스축제 '렛츠댄스페스티벌'.시민청에서 즐기는 세계
+                                의 춤과 문화! 
+                            </p>
+
+
+                        </div>
+                    </li>
+                    <li>
+                        <div class="music_photo">
+
+                            <img src="./images/musicphoto5.jpg" alt="">
+                        </div>
+
+                        <div class="music_text">
+
+                            <p class="photo_title">
+                                <span>03 예술로 상상극장</span>
+                            </p>
+                            <p class="photo_text">
+                                모두 다함께 예술로 상상극장은 예술가와 함께 어린이
+                                극을 개발.제작하여 만들어진 어린이 특화 참여형 공연
+                                입니다. 
+                            </p>
+                        </div>
+                    </li>
+                </ul>
+
+
+
+
+
+            </div>       
+
+        </div>
+
+
+        <div class="contents" id="contents_3">
+
+
+
+
+
+        </div>
+
+
+
+
+
+
+        
+
+    
+
+    
+    
+</body>
+</html>

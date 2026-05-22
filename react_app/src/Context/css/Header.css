@@ -1,0 +1,10 @@
+header{
+    width: 100%;
+    height: 48px;
+    background: #CCC;
+    padding: 16px;
+    box-sizing: border-box;
+    position: fixed;
+    left: 0;
+    top: 0;
+}

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title> switch구문_01 </title>
+  <script>
+
+  /* switch case 구문 
+
+    switch(변수 또는 값){
+
+      case 값1 :  
+      
+       실행할 명령 1;
+       break; 주의) break;구문 ( switch 구문에서 빠져나옴 )을 넣지 않으면 계속 다음조건에 모두해당 되어 모두 실행 
+
+      case 값2  : 
+
+       실행할 명령 2;
+       break;
+      
+      ...
+
+      default  : 
+
+       아무값에 해당되지 않을때 실행명령 
+       (마지막 break; 생략해도됨 )
+
+    }
+
+  */
+  
+  let luckyNum=prompt("행운의 번호를 고르세요 !!!! ")
+
+  luckyNum=parseInt(luckyNum)
+  
+
+  /*
+
+  if(luckyNum==3){
+
+    document.write("당첨! 냉장고");
+
+  }else if(luckyNum==8){
+
+    document.write("당첨! TV")
+
+  }else if(luckyNum==12){
+
+    document.write("당첨! 노트북")
+
+  }else{
+
+    document.write("꽝! 다시한번 도전")
+
+  }
+  
+  */
+
+  // if 구문을 간단한 switch case 구문으로 변경 
+
+
+  switch(luckyNum){
+
+    case 3 : 
+      document.write("당첨! 냉장고");
+      break; 
+      /* 
+      
+      주의) 
+      
+      break : 다음 명령을 실행하지 않고 switch 구문을 종료             
+      각 명령뒤에 break문을 넣지 않으면 조건에 맞아도 다음 조건에 모두 해당되어 모두 실행 
+
+      응용예) 
+
+      case 3 :  
+      명령을 생략하고 break문을 생략하면 
+
+      case 8 : 명령이 실행되고 break 구문으로 종료 
+
+      즉 번호가 3 이거나 8일때 같은 명령을 실행 ( or 조건이 성립 )
+
+      */      
+    
+    case 8 :
+      document.write("당첨! TV");
+      break;
+
+    case 12 :
+      document.write("당첨! 노트북")
+      break;
+
+    default : // 아무조건에도 맞지 않을때 
+      document.write("꽝! 다시한번 도전")
+      // 마지막엔 break문 생략 
+  }
+
+ // switch case 구문은 한가지 조건만 만족하고 값이 정확히 정해져 있을때만 사용 ( > < >=  <= 이런 조건에서는 사용못함 )
+  
+  
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

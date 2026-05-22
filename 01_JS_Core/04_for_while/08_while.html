@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title> do_while 구문 </title>
+  <script>
+  
+  /* do while() 구문 
+  
+    do{
+
+      실행명령 
+      
+    }while(조건)   
+  
+  while() 구문과  do while() 구문 차이 
+  
+    whhile(): 조건을 먼저 체크하고 실행        
+    do while() 구문 : 명령을 먼저 실행후 조건확인 
+
+  
+  */   
+  let i=11; 
+
+  /* while(i<=10){  // 초기값이 조건에 맞지않으면 실행안됨 
+
+    document.write(i+"<br>");
+    i++
+
+  } */
+
+  do{ // 초기값이 조건에 맞지않아도 한번은 먼저 실행됨 ( 많이 사용되지는 않음 )
+
+    document.write(i+"<br>");
+    i++
+  
+  }while(i<=10) 
+  
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

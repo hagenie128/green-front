@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">  
+
+  <style>    
+    
+    ul,li{
+      margin:0px; padding:0px; list-style:none; 
+    }     
+    body{
+      background:black;
+    }
+    #container{
+      width:1000px; margin:100px auto;
+    }
+    #navi{
+      width:300px; height:500px; position:relative; left:0px; top:0px; 
+      float:left; overflow:hidden; margin-right:50px;
+    }
+    ul#img_list{
+      height:420px;
+    }
+    ul#img_list li{   
+      width:140px; height:95px; float:left; border:solid 3px white; opacity:0.5;
+      margin:2px; -webkit-transition:0.3s ease; 
+    }  
+
+    ul#img_list li.selected{
+      opacity:1; border:solid 3px yellow;
+    }
+    
+    div#page{
+      width:300px; float:left;
+    }
+    
+    #main{
+      width:650px; float:left;
+    }
+    #main img{
+      position:absolute; border:3px solid white;
+    }    
+  
+  </style>
+
+  <title> imgGallery - 매개변수 활용 </title>  
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.4.2/gsap.min.js "></script>
+  <!--GSAP CDN 코드 -->
+
+  <script>
+  
+    document.addEventListener('DOMContentLoaded',()=>{
+
+      const imgMenu=document.querySelectorAll('#img_list>li'); // 모든 이미지메뉴 찾음
+      const mainImgWrap=document.querySelector('#main'); // 큰이미지가 들어있는 영역 찾음       
+
+      let selectedMenu=imgMenu[0]; // 첫번째 이미지메뉴를 선택된 메뉴로 지정      
+      
+      init()// 초기설정 함수 실행 
+      initEvent(); // 이벤트 함수 실행    
+      
+      function init(){ 
+        selectedMenu.classList.add('selected') // 초기 선택된 메뉴 (첫번째 메뉴) 활성화 
+      }
+           
+      function initEvent(){ // 이벤트 실행 함수 
+        for (const item of imgMenu) { // 모든 이미지 메뉴에 이벤트 적용 
+          item.addEventListener('click', imgMenuClick) // 이미지 메뉴를 클릭하면 imgMenuClick 함수실행 
+        }       
+      }
+
+      function imgMenuClick(){ // 이미지 메뉴 클릭 실행함수 
+
+        let clickNum=getIndex(this); // 클릭한 메뉴의 순번을 얻어냄 ( 매개 변수를 활용한 getIndex 함수실행 )
+        imgMenuActivate(clickNum); // 클릭한 순번의 이미지 메뉴 활성화 함수 실행 ( 매개변수 활용 )
+        showImg(clickNum); // 클릭한 순번의 해당하는 큰이미지 보여지는 함수 실행  ( 매개변수 활용 )
+
+      }
+ 
+      function getIndex(checkMenu){ // 순번 구하는 함수 ( 매개변수 활용 )
+
+        let selectedIndex = 0; // 클릭한 이미지 순번을 대입할 변수 
+
+        while ((checkMenu = checkMenu.previousElementSibling) != null) { // 클릭한 이미지 메뉴의 순번구함 
+          selectedIndex++;
+        }
+
+        return selectedIndex; // 중요) 최종 구한 순번값을 return 구문으로 돌려줌 
+        
+      }
+
+      function imgMenuActivate(num){ // 이미지 메뉴 활성화 함수 
+
+        if(selectedMenu!=null && selectedMenu!=imgMenu[num]){ // 기존 선택된 이미지메뉴 비활성화 
+          selectedMenu.classList.remove('selected')
+        }
+        
+        if(selectedMenu!=imgMenu[num]){
+          selectedMenu=imgMenu[num]; // 현제 클릭한 이미지 메뉴를 선택된 이미지 메뉴로 지정 
+          selectedMenu.classList.add('selected'); // 선택된 이미지 메뉴 활성화 
+        }
+
+      }     
+
+
+      function showImg(num){ // 큰이미지 보여지는 함수 
+
+        let newImg=document.createElement('img'); // 새로운 이미지 요소 생성
+        newImg.src='images/photo'+(num+1)+'.jpg'; // 클릭한 순번으로 큰이미지를 경로 지정 
+        mainImgWrap.prepend(newImg); // 새로운 이미지 요소를 mainImgWrap요소 안 맨앞에 넣어줌 
+        
+        // 기존에 있었던 이미지를 투명하게 사라지는 에니메이션 적용 ( 새로운 이미지가 서서히 보여주는 fadeIn 효과 )
+        //주의) mainImgWrap.lastElementChild 로 선택하면 생성될때 순간적으로 생성된 이미지가 마지막 이미지가 되어서 사라질수 있슴 
+        gsap.to(mainImgWrap.children[1], {opacity:0, duration:.3, ease:'power1.out', onComplete:()=>{
+          mainImgWrap.removeChild(mainImgWrap.children[1]) // 에니메이션이 끝난후 사라지게 해줌 ( 그렇지 않으면 계속 누적되어 순서가 엉킴)
+        }})
+
+      }
+
+    })   
+    
+  </script>
+</head>
+<body>
+
+    <div id="container">
+      
+        <div id="navi">        
+            <div  id="page">
+              <ul id="img_list">                
+                <li><a href="#"><img src="images/photo1_thum.jpg" alt="" /></a></li>
+                <li><a href="#"><img src="images/photo2_thum.jpg" alt="" /></a></li>
+                <li><a href="#"><img src="images/photo3_thum.jpg" alt="" /></a></li>
+                <li><a href="#"><img src="images/photo4_thum.jpg" alt="" /></a></li>
+                <li><a href="#"><img src="images/photo5_thum.jpg" alt="" /></a></li>
+                <li><a href="#"><img src="images/photo6_thum.jpg" alt="" /></a></li>
+                <li><a href="#"><img src="images/photo7_thum.jpg" alt="" /></a></li>
+                <li><a href="#"><img src="images/photo8_thum.jpg" alt="" /></a></li>
+              </ul>             
+            </div>           
+        </div>
+
+        <div id="main">                
+          <img src="images/photo1.jpg" alt="" />
+        </div>
+
+      </div>  
+  
+</body>
+</html>

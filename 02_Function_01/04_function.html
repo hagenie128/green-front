@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title> 지역변수_전역변수 </title>
+  <script>
+  
+   /*
+   
+    전역변수 : 함수 밖에서 선언된 변수 ( 모든 함수 안밖에서 사용이 가능 )
+    지역변수 : 함수 안에서 선언된 변수  ( 지역변수는 해당함수 밖에서 사용될수 없다. )    
+    주의) 선언자를 생략하여 선언한 변수는 전역변수로 취급 ( 변수충돌 주의 - 사용하지 않는다. )
+
+   */  
+
+     
+  // 전역변수 활용 
+
+  // let name="홍길동";
+
+  // function hello(){
+  //   document.write(name+" 님 환영합니다.")
+  // }
+
+  // hello()
+
+  // document.write(name+ " 님 환영합니다.")  중요) 전역변수 함수밖에서도 사용가능 
+
+
+  // 지역변수활용 
+
+  // function hello(){
+  //   let name="홍길동";
+  //   document.write(name+" 님 환영합니다.")
+  // }
+
+  // hello()
+
+  // document.write(name+" 님 환영합니다.")  
+  // 중요) 에러 - 함수 안에서 선언한 지역변수는 해당 함수안에서만 사용 가능 
+
+
+  
+  //매개변수활용 ( 매개 변수도 지역변수임 )
+
+   
+  function hello(name){
+    document.write(name+" 님 환영합니다.")
+  }
+
+  hello("홍길동")
+
+  
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

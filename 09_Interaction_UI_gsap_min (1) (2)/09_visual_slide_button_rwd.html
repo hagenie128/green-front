@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  
+  <style>    
+    
+    html,body{
+	    height:100%; overflow:hidden; 
+    }
+
+    body,p,ul,li{
+      margin:0px; padding:0px; list-style:none;
+    }
+
+    body{
+      background:url("images/index_back.gif");
+    }
+
+    div#visual_wrap{
+      width:100%; height:469px; float:left; margin-top:100px; overflow:hidden;
+      border-top:solid 1px white; border-bottom:solid 1px white; box-sizing:border-box;
+    }
+
+    div#visual_inner{
+      width:980px; height:100%; margin:0px auto; position:relative; left:0px; top:0px; 
+    }
+
+    ul#visual_list{
+      width:100%; height:100%;  position:absolute; left:0px; top:0px; 
+    }
+
+    ul#visual_list li{
+      width:100%; height:100%;  float:left; 
+    }
+    ul#visual_list li img{
+      display:block; width:100%;  
+    }
+
+    span#prev_btn{
+      display:block; position:absolute; left:0px; top:45%; 
+    }
+
+    
+
+    span#next_btn{
+      display:block; position:absolute; right:0px; top:45%; 
+    }
+
+   
+
+    @media screen and (max-width:980px) {
+      div#visual_inner{
+        width:100%; 
+      }
+    }
+        
+
+  
+  </style>
+
+  <title> visual_slide_button_rwd </title>  
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.4.2/gsap.min.js "></script>
+  <!--GSAP CDN 코드 -->
+
+  <script>  
+
+    window.addEventListener('load',()=>{ 
+    // 반응형 작업할때는 window.addEventListenter('load') 이벤트를 사용하여 window 크기나 이미지 리소스등을 읽은다음 최적화 해서 작업하는것이 좋음
+
+      const visualWrap=document.querySelector('#visual_wrap') // 비주얼 전체 #visual_wrap 찾음 
+      const visualInner=document.querySelector('#visual_inner'); // 중앙 #visual_inner 찾음 
+      const visualList=document.querySelector('#visual_list'); // 슬라이드할 요소 #visual_list 찾음 
+      const visualLi=document.querySelectorAll('#visual_list>li'); // 각 슬라이드 #visual_list>li 찾음  
+      const visualImg=document.querySelectorAll('#visual_list>li>img') // 각 슬라이드 #visual_list>li>img 찾음 
+      const btnImg=document.querySelectorAll('#visual_inner>span>img') // 좌우버튼 이미지 찾음       
+
+      let visualLength=visualLi.length; // 슬라이드 총갯수 구함  
+      let visualWidth; // 슬라이드 가로크기 구함 
+      let timer; // setInterval() 대입할 변수 
+      let isSlide=false; // 현제 슬라이드를 하고있는 체크하는 상태변수 ( 초기값 false )
+
+
+      init(); // 초기설정 함수실행      
+      visualReset() // 비쥬얼전체 크기를 반응형으로 최적화 해주는 함수실행 
+      initEvent(); // 이벤트 함수실행 
+      autoPlay(); // 자동슬라이드 함수실행 
+
+
+
+      function init(){ // 초기설정 함수 
+        let lastVisualLi=visualList.lastElementChild // visualList 마지막 슬라이드 찾아서 대입 
+        visualList.prepend(lastVisualLi); // visualList 마지막 자식요소를 맨앞으로 위치 ( 우측으로 슬라이드 할수있게 붙여줌 )
+      }
+
+      
+      function visualReset(){ // 비쥬얼 전체 크기를 반응형으로 최적화 해주는 함수 
+
+        visualWidth=visualInner.offsetWidth; // 슬라이드 가로크기 구함        
+
+        gsap.set(visualList, {width:visualWidth*visualLength}) // visualList 전체 가로크기 적용        
+        gsap.set(visualLi, {width:visualWidth}) // 모든 visualLi 크기를 visualWidth 크기에 맞추어 최적화 
+        gsap.set(visualImg, {width:visualWidth}) // 모든 visualImg 크기를 visualWidth 크기에 맞추어 최적화             
+        gsap.set(btnImg, {width:visualWidth/20}) // 좌우 버튼이미지의 크기를 visualWidth 크기에 맞추어 최적화 
+        gsap.set(visualWrap, {height:visualImg[0].offsetHeight}) // visualWrap 전체 높이값을 visualImg 높이값에 맞춤 ( CSS 스타일에서는 안됨 )
+        // 주의) visualImg[0] 반드시 순번을 정해서 찾아야함 
+        gsap.set(visualList, {left:-visualWidth*Math.floor((visualLength-1)/2)}) //  // 중요) window를 resize 할때 visualWidth 값이 변화므로 선택된 visualList 좌표도 다시지정    
+            /*
+            중요) 
+              visualWrap 에 overflow:hidden 처리해서 한컷씩만 보여줄때는 visualList의 좌표를 -visualWidth 한컷만큼만 땡겨서 보여주면 되지만 
+              visualList를 가운데 배치하기 위해서는 -visualWidth*(총 비쥬얼갯수에서 하나를 뺀 갯수를 2로 나눈 좌표) 로 지정 - 그림으로 이해 
+              주의) 비쥬얼 갯수가 짝수일때는 소숫점이 나오므로 Math.floor 함수를 사용하여 버림
+
+            */   
+        
+      }     
+
+      function initEvent(){ // 이벤트 함수
+
+        window.addEventListener('resize',visualReset) // window크기를 조절할때 비주얼 크기를 다시 최적화 ( 반응형 적용 )
+
+        document.querySelector('#next_btn').addEventListener('click',slideNext) // 다음보기 클릭하면 왼쪽으로 슬라이드하는 함수 실행 
+        document.querySelector('#prev_btn').addEventListener('click',slidePrev) // 이전보기 클릭하면 오른쪽으로 슬라이드 하는 함수 실행    
+
+        visualWrap.addEventListener('mouseenter',stopAutoPlay); // visualWrap 전체에 마우스를 올리면 자동슬라이드 함수 멈춤           
+        visualWrap.addEventListener('mouseleave',autoPlay); // visualWrap 전체에서 마우스를 빼면 다시 자동슬라이드 함수 실행 
+
+      }
+
+      function slideNext(){ // 다음보기 슬라이드 (왼쪽으로 슬라이드 ) 실행함수 
+        
+        if(isSlide==false){ // 현제 슬라이드 하지 않을때만 슬라이드 실행 
+          
+          isSlide=true; // 슬라이드를 진행하면 isSlide 상태변수를 true로 지정하여 슬라이드하는 동안 다음 슬라이드 명령이 중복되지 않게 설정 
+          
+          let currentPosition=visualList.offsetLeft; // 슬라이드 할 visualList 요소의 현제 좌표를 구함 
+          let firstVisualLi=visualList.firstElementChild; // *** 중요) 첫번째 슬라이드 (자식요소)를 찾아서 미리 변수로 대입함 
+          
+          // 현제 좌표에서 비주얼 가로크기 만큼 왼쪽으로 슬라이드 하는 에니메이션 
+          gsap.to(visualList, {left:currentPosition-visualWidth, duration:.5, ease:'power1.out', onComplete:()=>{
+            
+            visualList.append(firstVisualLi); // 슬라이드가 종료되면 맨 앞에 있는 자식요소를 맨뒤로 붙여서 슬라이드가 계속 반복하게 설정 
+            /*
+            **** 중요 *******          
+            visualList.append(visualList.firstElementChild) 라고 첫번째 자식요소를 바로 찾아서 append 해주면 순간적으로 마우스를 이동하거나 다른 동작을 줄때
+            visualList.firstElementChild 요소의 순번이 엉켜서 두번 append 되는 현상 > 에니메이션 시작전에 첫번째 요소를 미리 찾아서 대입해서 append 한다. 
+            */  
+            gsap.set(visualList, {left:-visualWidth*Math.floor((visualLength-1)/2)}) // 맨뒤에 슬라이드가 뒤에 추가되면 그안에 요소들이 왼쪽으로 밀려서 좌표가 바뀜 ( 그림으로 이해 ) - 기존좌표를 계속유지하도록 좌표조정       
+                    
+            isSlide=false; // 슬라이드가 종료되었을때 isSlide 상태변수를 false로 지정하여 다음 슬라이드를 적용할수 있게 설정 
+
+          }})        
+        }
+      }
+
+      function slidePrev(){ // 이전보기 슬라이드 (오른쪽으로 슬라이드 ) 실행함수 
+
+        if(isSlide==false){ // 현제 슬라이드 하지 않을때만 슬라이드 실행 
+          isSlide=true; // 슬라이드를 진행하면 isSlide 상태변수를 true로 지정하여 슬라이드하는 동안 다음 슬라이드 명령이 중복되지 않게 설정 
+          let currentPosition=visualList.offsetLeft; // 슬라이드 할 visualList 요소의 현제 좌표를 구함 
+          let lastVisualLi=visualList.lastElementChild; // *** 중요) 마지막 슬라이드 (자식요소)를 찾아서 미리 변수로 대입함 
+          
+          // 현제 좌표에서 비주얼 가로크기 만큼 오른쪽으로 슬라이드 하는 에니메이션 
+          gsap.to(visualList, {left:currentPosition+visualWidth, duration:.5, ease:'power1.out', onComplete:()=>{
+            
+            visualList.prepend(lastVisualLi); // 슬라이드가 종료되면 맨 뒤에있는 자식요소를 맨 앞으로 붙여서 슬라이드가 계속 반복하게 설정 
+            /*
+            **** 중요 *******          
+            visualList.prepend(visualList.lastElementChild) 라고 마지막 자식요소를 바로 찾아서 prepend 해주면 순간적으로 마우스를 이동하거나 다른 동작을 줄때
+            visualList.lastElementChild 요소의 순번이 엉켜서 두번 prepend 되는 현상 > 에니메이션 시작전에 마지막 요소를 미리 찾아서 대입해서 prepend 한다. 
+            */  
+            gsap.set(visualList, {left:-visualWidth*Math.floor((visualLength-1)/2)}) // 맨 앞에 슬라이드가 추가되면 그안에 요소들이 오른쪽으로 밀려서 좌표가 바뀜 ( 그림으로 이해 ) - 기존좌표를 계속유지하도록 좌표조정
+            
+            isSlide=false; // 슬라이드가 종료되었을때 isSlide 상태변수를 false로 지정하여 다음 슬라이드를 적용할수 있게 설정   
+      
+          }})  
+          
+        }
+      }
+
+      function autoPlay(){ // 2초마다 slideNext 함수실행하여 자동 슬라이드 실행 
+        timer=setInterval(slideNext,2000);
+      }
+
+      function stopAutoPlay(){ // timer에 대입되어있는 자동슬라이드 함수를 멈춤 
+        clearInterval(timer)
+      }
+
+  }) 
+
+    
+  </script>
+
+
+</head>
+<body>
+   
+  <div id="visual_wrap">
+   
+    <div id="visual_inner">
+      
+        <ul id="visual_list">
+            <li><img src="images/img1.gif" alt="" /></li>
+            <li><img src="images/img2.gif" alt="" /></li>
+            <li><img src="images/img3.gif" alt="" /></li>
+            <li><img src="images/img4.gif" alt="" /></li> 
+            <li><img src="images/img5.gif" alt="" /></li>           
+        </ul>       
+            
+        <span id="prev_btn"><img src="images/prev_btn.png" alt="" /></span>
+        <span id="next_btn"><img src="images/next_btn.png" alt="" /></span>
+        
+        
+    </div>    
+      
+</div>
+
+
+
+
+
+  
+</body>
+</html>

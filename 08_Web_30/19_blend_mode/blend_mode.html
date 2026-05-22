@@ -1,0 +1,113 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">   
+  <title>제목표시줄에출력될내용</title>
+
+  <!--구글웹폰트 글꼴 Anton 300px reguler -->
+  <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+
+  <style>
+
+   *{
+    margin:0px;
+    padding:0px; 
+   }
+
+
+   div#movie_wrap{
+
+    width:1536px;
+    height:864px;
+    position:absolute;
+    left:50%;
+    margin-left:-768px; 
+    top:50%;
+    margin-top:-432px;  
+        
+
+   }
+
+
+   /* 영상파일과 같은 크기와 위치 p 테그 스타일 속성 */
+
+   p#text{  
+    width:1536px;
+    height:864px;
+    position:absolute;
+    left:50%;
+    margin-left:-768px; 
+    top:50%;
+    margin-top:-432px;  
+    font:normal 300px/864px "Anton"; /* 구글웹폰트 글꼴 Anton 300px reguler */
+    text-align:center; 
+
+    /*
+    mix-blend-mode 적용 
+    - 흰색 배경에 텍스트컬러 블랙 적용하고 mix-blend-mode:screen 적용하면 마스크 효과 
+    */
+
+    background:white; /* background-color 바꿔가면서 overlay 적용연습 */
+    mix-blend-mode:screen; /* mix-blend-mode 합성속성 */
+    color:black; /* color 바꿔가면서 overlay 적용연습 */
+
+    /* 
+
+     mix-blend-mode 속성 : 포토샵의 블랜딩 합성속성과 같음 
+
+     mix-blend-mode:screen     
+    
+                    normal;
+                    multiply;
+                    screen;
+                    overlay;
+                    darken;
+                    lighten;
+                    color-dodge;
+                    color-burn;
+                    hard-light;
+                    soft-light;
+                    difference;
+                    exclusion;
+                    hue;
+                    saturation;
+                    color;
+                    luminosity; 
+       
+    */
+
+   
+    
+   }
+
+  
+  
+
+
+  </style>
+</head>
+<body>
+  
+   
+    
+  <div id="movie_wrap">
+
+    <embed id="movie" width="1536" height="864" src="https://www.youtube.com/embed/11cta61wi0g?autoplay=1&mute=1&controls=0&start=10" title="NewJeans (뉴진스) &#39;Hype Boy&#39; Official MV (Performance ver.1)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></embed>
+
+  </div>
+
+  <p id="text">BLENDMODE</p>
+
+ 
+    
+
+   
+
+
+
+
+
+
+</body>
+</html>

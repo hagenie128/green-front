@@ -1,0 +1,179 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">  
+		<title>fluid_grid</title>
+
+		<style>
+
+			body,p,ul,li{
+				margin:0px; padding:0px; list-style:none;
+			}
+			div#header_wrap{
+				width:100%; height:150px; margin-bottom:10px; background:#eeeeee;
+			}
+			section#header{
+				width:1200px; height:150px; margin:0px auto; background:#cccccc; position:relative; left:0px; top:0px; 
+			}
+			h1#logo{
+				width:100px; height:40px; margin:0px; padding:0px;  position:absolute; left:0px; top:50px; background:#aaaaaa; color:white; text-align:center;
+				font:normal 16px/40px "verdana";  
+			}
+			nav#menu{
+				width:80%; height:40px; position:absolute; left:50%; margin-left:-30%; background:#aaaaaa; top:50px; 
+			}
+			ul#menu_list{
+				width:100%; height:100%; 
+			}	
+			ul#menu_list li{
+				float:left; width:20%; height:100%; text-align:center; background:#aaaaaa; border-right:solid 1px #CCCCCC; box-sizing:border-box; line-height:40px; 
+				color:white;
+			}
+			ul#menu_list li:last-child{
+				border:none;
+			}
+			nav#mobile_menu{
+				width:60px; height:40px; position:absolute; left:0px; top:50px; background:#aaaaaa; color:white; line-height:40px; text-align:center;
+				display:none; 
+			}
+
+			div#visual_wrap{
+				width:100%; height:300px; background:#eeeeee; margin-bottom:10px; 
+			}
+			section#visual{
+				width:1200px; height:300px; margin:0px auto;  background:#cccccc;
+			}
+			div#contents_wrap{
+				width:100%; min-height:800px; margin-bottom:10px; background:#eeeeee;
+			}
+			section#contents{
+				width:1200px; min-height:800px; margin:0px auto; background:#cccccc; 
+			}
+
+			section#contents_1{
+				width:100%; height:auto; overflow:hidden; float:left; margin-top:30px; 
+			}
+
+			section.contents_box{
+				width:20%; height:200px; float:left; margin-right:6.66%; background:#aaaaaa; margin-bottom:30px; color:white; text-align:center; line-height:200px; 			
+			}
+
+			section.contents_box:last-child{
+				margin-right:0px; 
+			}
+
+
+			div#footer_wrap{
+				width:100%; height:80px; background:#eeeeee; 
+			}
+			section#footer{
+				width:1200px; height:80px; margin:0px auto; background:#cccccc;
+			}
+			
+			
+			@media screen and (max-width:1200px){	
+				section#header,section#visual,section#contents,section#footer{
+					width:95%;
+				}	
+			}
+			@media screen and (max-width:768px){	
+
+				nav#menu{
+					display:none;
+				}
+				nav#mobile_menu{
+					display:block;
+				}
+
+				h1#logo{
+					position:absolute; left:50%; margin-left:-50px;
+				}
+
+				section.contents_box{
+					width:45%; margin-right:10%;  
+				}
+				section.contents_box:nth-child(2n){
+					margin-right:0px; 
+				}
+				
+			}
+			@media screen and (max-width:480px){
+				
+				section#header,section#visual,section#contents,section#footer{
+					width:100%;
+				}
+				
+				section.contents_box{
+					width:100%; margin-right:0px; 
+				}
+
+				section#contents_wrap,section#contents{
+					min-height:1200px; 
+				}
+
+			}
+		</style>
+
+	</head>
+
+	<body>
+
+		<div id="header_wrap">
+				<section id="header">
+					<h1 id="logo">logo</h1>
+					<nav id="menu">
+						<ul id="menu_list">
+								<li>menu1</li>
+									<li>menu2</li>
+									<li>menu3</li>
+									<li>menu4</li>
+									<li>menu5</li>            
+							</ul>
+					</nav>
+					<nav id="mobile_menu">
+						menu
+					</nav>     
+				</section>   
+			</div>
+			
+			<div id="visual_wrap">    	
+					<section id="visual">        		
+									
+					</section>   
+			</div>    
+		
+			<div id="contents_wrap">
+					<section id="contents">
+
+						<section id="contents_1">
+					
+							<section class="contents_box">         
+									contents_1           
+							</section>
+							
+							<section class="contents_box">            
+									contents_2     
+							</section> 
+
+							<section class="contents_box">            
+								contents_3     
+							</section> 
+
+							<section class="contents_box">            
+								contents_4     
+							</section> 
+							
+						</section>
+											
+					</section>       
+			</div>  
+			
+			<div id="footer_wrap">
+				<section id="footer">
+					
+					</section>        
+			</div>   
+			
+	</body>
+</html>

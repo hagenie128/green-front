@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge"> 
+
+  <style> 
+
+      body {
+				margin:0px; padding:0px; 
+				min-width:960px;
+				min-height:10000px;
+			}
+			#start_bg {
+				width:100%;
+				height:962px;
+				background:url("images/start_bg.jpg") no-repeat;
+				background-size:cover;
+				position: fixed;
+				top:0;
+				z-index:2;
+				
+			}
+			
+			#copy_1 {
+				width:355px;
+				height:46px;
+				position:absolute; left:50%;
+				margin-left:-177px ;
+				top:60px;
+				background:url("images/copyright_01.png") no-repeat;
+			}
+			
+			#copy_2 {
+				width:566px;
+				height:66px;
+				position:absolute; left:50%;
+				margin-left:-283px ;
+				top:120px;
+				background:url("images/copyright_02.png") no-repeat;
+				
+			}			
+			#camera_bottom {
+				width:527px;
+				height:74px;
+				background:url("images/camara_bottom.png") no-repeat;
+				position:fixed; left:50%;
+				margin-left:-256px; 
+				top:686px;
+				z-index:5;
+				
+			}
+			#camera_top {
+				width:527px;
+				height:432px;
+				background:url("images/camera_top.png") no-repeat;
+				position: fixed; left:50%; margin-left:-255px;
+				top:254px;
+				z-index:7;
+				
+			}
+			
+			#main_photo {
+				width:411px;
+				height:361px;
+				background:url("images/bg_paper.png") no-repeat;
+				position: fixed; left:50%; 
+				margin-left:-200px;
+				top:430px;
+        z-index: 6;
+        -webkit-transition:0.3s ease;		
+			}
+			
+			#main_photo.rotate {					
+				-webkit-transform:rotate(20deg);
+			}
+			
+			#cover_left {
+        background: url("images/bg_pattern_copy.jpg") repeat 0 0;
+        height: 3000px; left: 0;  overflow: hidden; position: fixed;
+        width: 50%;
+        top:962px;
+        z-index: 4;
+			}
+			#cover_right {
+        background: url("images/bg_pattern_copy.jpg") repeat 0 0;
+        height: 3000px;
+        right: 0;
+        overflow: hidden;
+        position: fixed;
+        width: 50%;
+        top:962px;
+        z-index: 4;
+			}			
+			#copy_tistory {
+        width:100%;
+        background: url("images/txt_tistory.png") no-repeat 50% 0;
+        height: 149px;
+        position: fixed;
+        top: 1500px;
+        z-index: 1;
+			  
+			}   
+
+   
+  </style>
+
+  <title> scroll_Tistory </title>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.4.2/gsap.min.js "></script>
+  <!--GSAP CDN 코드 -->  
+
+  <script> 
+
+    document.addEventListener('DOMContentLoaded',()=>{
+
+      // 각 요소들 찾음 
+      const startBg=document.querySelector('#start_bg');
+      const cameraTop=document.querySelector('#camera_top');
+      const cameraBottom=document.querySelector('#camera_bottom')
+      const coverLeft=document.querySelector('#cover_left');
+      const coverRight=document.querySelector('#cover_right');
+      const mainPhoto=document.querySelector('#main_photo');
+      const copyTistory=document.querySelector('#copy_tistory');     
+
+
+      window.addEventListener('scroll',windowScroll) // window 스크롤 할때마다 windowScroll() 함수실행 
+
+
+      function windowScroll(){ // windowScroll() 함수 
+
+        let scrollHeight=window.pageYOffset; // 스크롤할때마다 window의 스크롤높이를 구함 
+        
+        gsap.set(startBg, {top:0-scrollHeight/2})
+        // startBg 를 현제위치 0 에서  스크롤 되어있는 높이의 절반값만큼 올려준다. (속도조절 )
+       
+        gsap.set(cameraTop, {top:254-scrollHeight/3})
+        gsap.set(cameraBottom, {top:686-scrollHeight/3})        
+        // cameraTop, cameraBottom 각 초기 상단좌표에서 scrollHeight/3 으로 나눈값 ( 속도조절 )만큼 빼준값으로 지정 
+        
+        gsap.set(coverLeft, {top:962-scrollHeight/1.5})
+        gsap.set(coverRight, {top:962-scrollHeight/1.5})       
+        // coverLeft, coverRight가 올라가야될 상단 좌표를 초기위치 962에서  scrollHeight/1.5 빼준값으로 지정
+
+        if(scrollHeight>=800){ // scrollHeight값 800 이상일때 mainPhoto 'rotate' 클래스를 지정하여 돌려준다.
+         mainPhoto.classList.add('rotate')
+        }else{
+         mainPhoto.classList.remove('rotate') // 'rotate' 클래스를 삭제하여 다시 원위치 
+        }
+
+        let positionWidth; // coverLeft, coverRight가 움직일 왼쪽, 오른쪽 위치를 대입할 변수 
+
+        if(scrollHeight>=2000 && scrollHeight<=3600){ 
+                      
+          positionWidth=(2000-scrollHeight)/1.5;
+          //scrollHeight 값이 2000 이상 3600 이하일때는  positionWidth 값을  2000 부터  scrollHeight 값을  뺀값을  다시 1.5 로 나눈값으로 지정   
+      
+        }else if(scrollHeight>3600){ // scrollHeight 값이 3600 이상일때는 -2000  값으로 고정 ( 너무 좌우로 빠지는것을 방지 ) 
+                  
+          positionWidth = -2000;
+                
+        }else{
+      
+          positionWidth=0; // 아니면 초기위치 0 유지 
+                  
+        }
+
+        gsap.set(coverLeft, {left:positionWidth}) // coverLeft 좌측좌표를 앞에서 구한 positionWidth 값으로 지정 
+        gsap.set(coverRight, {right:positionWidth})// coverRight 우측좌표를 앞에서 구한 positionWidth 값으로 지정 	    
+        
+        if(scrollHeight>=3000){ // scrollHeight 값이 3000 이상일때는 copyTistory 상단 150 좌표까지 위로 에니메이션             
+              
+          gsap.to(copyTistory, {top:150, duration:1, ease:'power1.out'})          
+
+        }else{ // scrollHeight 값이 3000 보다 작을때는 copyTistory 하단 1500 좌표로 내리는 에니메이션 실행      
+                 
+          gsap.to(copyTistory, {top:1500, duration:1, ease:'power1.out'}) 
+         
+        }
+
+      }
+
+    })           
+    
+  </script>
+
+
+</head>
+<body> 
+
+  <div id="start_bg">
+    <div id="copy_1"></div>
+    <div id="copy_2"></div>
+  </div>
+  
+  <div id="camera_bottom"></div>        
+  <div id="main_photo"></div>
+  <div id="camera_top"></div>
+      
+  <div id="cover_left"> </div>
+  <div id="cover_right"> </div>
+  
+  <div id="copy_tistory"></div>
+  
+  
+  
+</body>
+</html>

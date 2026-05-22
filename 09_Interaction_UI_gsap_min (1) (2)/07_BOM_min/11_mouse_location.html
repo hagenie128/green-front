@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <style>
+
+    body{
+      margin:0px; padding:0px; 
+    }
+  
+    div#wrap{
+      width:1200px; height:1600px; margin:0px auto; border:solid 10px red; box-sizing:border-box; 
+    }
+    
+  </style>
+
+  <title> 마우스 좌표 구하기  </title>  
+
+
+  <script> 
+
+  document.addEventListener('DOMContentLoaded',()=>{
+
+    const wrap=document.querySelector('#wrap'); // #wrap 찾음 
+
+    wrap.addEventListener('click',mouseLocation); // wrap 에서 마우스가 클릭 되었을때 마우스 좌표 구하는 함수 실행 
+
+    
+    function mouseLocation(e){ // 마우스 좌표 구하는 함수 (주의: 반드시 발생된 이벤트를 매개변수 e로 받음 )
+
+      console.log('e.offsetX='+e.offsetX); // 이벤트발생 대상요소를 기준으로 마우스 X 좌표 ( border 안쪽부터 적용 ) 
+      console.log('e.offsetY='+e.offsetY); // 이벤트발생 대상요소를 기준으로 마우스 Y 좌표 ( border 안쪽부터 적용 ) 
+
+      console.log('e.clientX='+e.clientX); // 윈도우 안쪽을 기준으로 마우스 X 좌표 ( 스크롤된 너비 제외 )
+      console.log('e.clientY='+e.clientY); // 윈도우 안쪽을 기준으로 마우스 Y 좌표 ( 스크롤된 높이 제외 )
+
+      console.log('e.pageX='+e.pageX); // document를 기준으로 마우스 X 좌표 ( 스크롤된 너비 포함 )
+      console.log('e.pageY='+e.pageY); // document를 기준으로 마우스 Y 좌표 ( 스크롤된 높이 포함 )     
+
+    }
+
+
+  })
+  
+  
+  </script>
+
+
+</head>
+
+<body>
+  
+  <div id="wrap">
+
+    wrap
+    
+
+  </div>
+
+</body>
+
+</html>

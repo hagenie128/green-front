@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <style>
+  
+    div#red{
+      width:400px; height:400px; position:absolute; left:200px; top:200px; background:red; 
+      overflow:scroll;     
+    }
+  
+    div#yellow{
+      width:800px; height:800px; position:absolute; left:100px; top:100px; background:yellow;
+      border:solid 10px black; box-sizing:border-box;
+      
+    }  
+    
+  </style>
+
+  <title> 해당요소 스크롤 좌표와 크기구하기  </title>  
+
+
+  <script> 
+
+
+  document.addEventListener('DOMContentLoaded',()=>{
+
+    const red=document.querySelector('#red');  // 부모요소 red 찾음      
+
+    red.scrollTo(100,100) // 부모요소 red 의 가로 스크롤, 세로 스크롤값을 0를 기준으로 절대값으로 적용  
+    red.scrollBy(100,100) // 부모요소 red 의 가로 스크롤, 세로 스크롤값을 현제 스크롤 값을 기준으로 상대값으로 추가 적용 
+
+    // 중요) 항상 스크롤 하는 기준(대상)은 부모요소 이다.  
+
+
+    console.log('red.scrollTop='+red.scrollTop); // 부모요소 red 의 scrollTop 좌표 구하기  
+    console.log('red.scrollLeft='+red.scrollLeft); // 부모요소 red 의 scrollLeft 좌표 구하기  
+
+    console.log('red.scrollHeight='+red.scrollHeight); // 부모요소 red 의 scroll 할수 있는 전체 높이 
+    console.log('red.scrollWidth='+red.scrollWidth); // 부모요소 red 의 scroll 할수 있는 전체 너비 
+
+    // 주의) 부모요소 red의 전체 스크롤할 수 있는 높이는 자식요소 yellow 의 현제 좌표값과 yellow의 전체 높이값을 더한값 만큼 스크롤할 수 있다.
+    
+
+  })  
+  
+  </script>
+
+
+</head>
+
+<body>
+  
+  <div id="red">
+
+    parent
+
+    <div id="yellow">
+      child
+    </div>
+
+  </div>
+
+</body>
+
+</html>

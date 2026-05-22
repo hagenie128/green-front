@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  
+  <title> Array()클래스 </title>
+  <script>
+  
+    /*
+    Array() 배열 클래스  : 불규칙적인 데이터값을 순번을 지정하여 데이터의 효율적인 활용와 관리목적 
+
+
+    인스턴스 생성방법
+
+    let userName = new Array("영희", "철수", "희철", "동수", "영철" ) // 클래스를 사용해서 인스턴스 생성 
+
+    let userName=["영희", "철수", "희철", "동수", "영철"]  // 객체리터럴 방식으로 인스턴스 생성 ( 많이 쓰임 )
+
+    
+    속성  userName.length  : 배열요소의 갯수 
+
+    중요) 접근  userName[순번] : 배열요소들 중에 해당하는 순번의 요소를 얻어냄 
+    
+    메서드 
+
+    join(구분기호) : 배열요소를 문자열로 반환 ( 구분기호가 없으면 "," 콤마가 기본 )
+ 
+    split(구분기호) : 문자열을 배열요소로 반환 (중요-구분기호를 기준으로 배열요소가 나눠짐 )
+
+    주의) 구분기호를 넣지 않으면 전체텍스트를 하나의 배열요소로 지정됨 (배열요소갯수가 1개) - 반드시 구분기호 지정 
+
+    push(추가요소) : 배열 마지막 위치에 요소를 추가 
+
+    unshift(추가요소) : 배열 처음 위치에 요소를 추가 
+
+    splice(시작위치,삭제할요소갯수,추가요소) : 배열 특정위치에 요소추가하기 
+
+    -시작위치: 추가할요소의 시작순번 (해당순번 앞에 추가 ) - 나모지 요소는 뒤로 밀림 
+    -삭제할요소갯수 : 시작위치를 포함한 삭제할 요소의 갯수 - 시작순번도 포함 (삭제요소없이 추가시 0 )
+    -추가요소 : 추가할 요소 (추가요소가 없으면 삭제기능만 수행 - 특정요소 삭제하기  )
+
+    shift() : 첫번째 요소 삭제하기 
+
+    pop() : 마직막 요소 삭제하기 
+
+    
+    sort(정렬순서) : 배열요소 정렬하기  (정렬순서가 없으면 오름차순기본 ) 
+
+    
+    주의) 숫자를 오름차순으로 정렬할때 자리수가 틀려지면 정렬이 틀려진다. ( 6 보다 55을 먼저 정렬한다. )
+    
+    sort(function(a,b){  // 숫자 배열요소 오름차순으로 정렬하기 
+      return a-b 
+    })    
+    
+    sort(function(a,b){  // 숫자 배열요소 내림차순으로 정렬하기 
+      return b-a 
+    })
+
+    매개변수들을 빼서 0보다 작으면 a를 앞으로 0보다 크면 a를 뒤로 나열    
+
+    */
+
+    let menu=["menu1","menu2","menu3","menu4","menu5"]
+
+    console.log(menu.length); // 결과  5
+
+    console.log(menu[0]) // 결과  menu1  (순번은 0부터 시작)
+
+    let result=menu.join("-"); // 배열요소를 문자열 요소로 반환 ( 구분기호는 문자열로 지정 - 없으면 ,콤마기본 )
+
+    console.log(result) // 결과  menu1-menu2-menu3-menu4-menu5
+
+    
+    let menuText="menu1,menu2,menu3,menu4,menu5";
+
+    let menuArray=menuText.split(",") // 문자열을 배열요소로 반환 
+
+    console.log(menuArray); // 결과 Array(5) - 배열클래스로 반환 
+
+    console.log(menuArray[0]) // 결과 menu1  - 배열요소로 접근 
+
+    menu.push("newmenu") // 배열 마지막 요소에 "newmenu" 추가 
+
+    result=menu.join("-") 
+
+    console.log(result) // // 결과  menu1-menu2-menu3-menu4-menu5-newmemnu 
+
+    menu.unshift("newmenu") // 배열 처음요소에 "newmenu" 추가 
+
+    result=menu.join("-");
+
+    console.log(result)  // 결과  newmenu-menu1-menu2-menu3-menu4-menu5-newmemnu 
+
+    menu.splice(2,0,"newmenu")  // 배열 순번두번째 요소에 "newmenu" 추가  ( 삭제할 요소는 없음 - 기본요소는 다음순번으로 밀림 )
+
+    result=menu.join("-")
+
+    console.log(result) // 결과  newmenu-menu1-newmenu-menu2-menu3-menu4-menu5-newmemnu 
+
+    menu.pop() // 배열 마지막요소 삭제하기 
+
+    result=menu.join("-");
+
+    console.log(result)  // 결과  newmenu-menu1-newmenu-menu2-menu3-menu4-menu5
+
+    menu.shift() // 배열 첫번째요소 삭제하기 
+
+    result=menu.join("-") ;
+
+    console.log(result) // 결과  menu1-newmenu-menu2-menu3-menu4-menu5
+
+    menu.splice(1,1) // 배열의 순번 첫번째 메뉴1개 삭제됨 ( 추가되는 요소는 없음 )
+
+    result=menu.join("-");
+
+    console.log(result) // 결과  menu1-menu2-menu3-menu4-menu5
+
+    
+    let userName=["영희", "철수", "희철", "동수", "영철"]    
+    
+    userName.sort() // 오름차순으로 정렬
+
+    console.log(userName.join("-")) // 동수-영철-영희-철수-희철
+
+    let userScore=[3, 1, 55, 4, 6, 2, 5]
+
+    userScore.sort();
+
+    console.log(userScore.join("-")) // 결과   1-2-3-4-5-55-6  ( 에러 : 55가 6보다 먼저정렬 )
+    
+    
+    userScore.sort(function(a,b){ // 숫자배열을 정확히 오름차순으로 정렬 
+      return a-b 
+    })
+
+    console.log(userScore.join("-"))  // 결과   1-2-3-4-5-6-55  
+
+   
+    userScore.sort(function(a,b){ // 숫자배열을 내림차순으로 정렬 
+      return b-a
+    })
+
+    console.log(userScore.join("-"))  // 결과  55-6-5-4-3-2-1         
+  
+  </script>
+</head>
+<body>
+  
+
+
+
+</body>
+</html>
+

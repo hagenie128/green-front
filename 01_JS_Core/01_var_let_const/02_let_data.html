@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title> 변수와 데이터타입 </title>
+  <script>
+  
+  // 변수에 대입할수 있는 데이터타입의 종류 : 문자열, 숫자, 논리값, undefined, null, 함수, 클래스, 인스턴스 등   
+   
+  let a="임의의문자열";  // 문자열은 큰따옴표("") 또는 작은 따옴표 (' ')를 붙임
+   
+  let b=3.14; // 소숫점을 포함한 실수  ( 3.14 와  "3.14" 다른 의미 )
+   
+  let c=true; // true, false 논리값 (Boolean) - 문자열이아님
+
+  // 여러개의 변수선언을 가로로 코딩 
+
+  //let a="임의의 문자열", b=3.14, c=true ;    // let을 한번만 사용하여 콤마로 구분 (주의: 끝에 ; 마무리 )   
+  
+  let d; // 값이 정의되어 있지 않음 
+   
+  console.log(d)  // 결과는 undefined ( 정의되어 있지 않은 값 )
+   
+  d=1;
+
+  console.log(d)
+   
+  d=null // 변수값을 초기화 할때 null 값을 사용 
+  
+  console.log(d)   
+  
+  // undefined  : 정의 자체가 되어 있지 않은것,   null : 아무것도 없는 값으로 정의 되어있는 것      
+
+
+  console.log(typeof "test")  // 결과 string  - 데이터 타입출력 
+
+  
+  
+  /*
+  
+     *****  Falshy 값 과 Trushy 값  (중요) *****
+  
+     Falshy 거짓인 값 :  0, -0, '', null, undefined, NaN
+
+     Truthy 참인 값 : 1, -1, 'text', {}, Infinity  그 외 Falshy 한값이 아닌 값  
+  
+  
+  */
+ 
+  
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

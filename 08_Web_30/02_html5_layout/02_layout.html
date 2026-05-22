@@ -1,0 +1,102 @@
+<!DOCTYPE HTML>
+<html lang="ko">
+<head>
+   <meta charset="UTF-8"> 
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+   <title>html5 레아웃연습 </title>
+   <style>
+
+      body,h1{
+         margin:0px; padding:0px; 
+      }
+
+      .hidden{
+         width:1px; height:1px; font-size:0px; line-height:0px; position:absolute; 
+      } 
+      
+      a{
+         color:black; text-decoration:none;
+      }
+
+
+
+      div#wrap{
+         width:1200px; margin:0px auto
+      }
+      header{
+         width:1200px; height:150px; float:left; background:#eeeeee; margin-bottom:10px; position:relative; left:0px; top:0px; 
+      }
+      h1#logo{
+         width:150px; height:80px; position:absolute; left:10px; top:35px; background:#cccccc;
+         text-align:center; font:normal 30px/80px "verdana"; 
+      }
+
+      nav#mainmenu{
+         width:1020px; height:80px; background:#cccccc; position:absolute; left:170px; top:35px; 
+      }
+      section#visual{
+         width:1200px; height:300px; float:left; background:#eeeeee; margin-bottom:10px;
+      }
+      section#contents_wrap{
+         width:1200px; min-height:800px; float:left; background:#eeeeee; margin-bottom:10px; 
+      }
+      section#submenu{
+         width:150px; height:780px; float:left; background:#CCCCCC; margin-left:10px; margin-right:10px; margin-top:10px; 
+      }
+      article#contents{
+         width:1020px; min-height:780px; float:left; background:#CCCCCC; margin-top:10px;  
+      }     
+      
+      footer#footer{
+         width:1200px; height:150px; float:left; background:#eeeeee; 
+      }
+
+   </style>
+
+
+
+</head>
+<body>
+
+   <div id="wrap">
+      <h1 class="hidden">html5 페이지레이아웃연습</h1>
+      <header>
+         <h1 id="logo">logo</h1>
+         <nav id="mainmenu">
+            <h3 class="hidden">네비게이션영역</h3>           
+
+         </nav>
+      </header>
+      <section id="visual">
+         <h2 class="hidden">메인비쥬얼영역</h2>
+      </section>
+
+      <section id="contents_wrap">
+         <h2 class="hidden">컨텐츠전체영역</h2>
+         <section id="submenu">
+            <h3 class="hidden">왼쪽메뉴영역</h2>     
+         </section>
+         
+         <article id="contents">
+            <h3 class="hidden">본문영역</h2>
+              
+               
+
+            
+         <article>
+
+      </section>    
+      
+      
+      <footer id="footer">
+         <h2 class="hidden">하단영역</h2>
+      </footer>
+
+
+   </div>
+
+
+
+</body>
+</html> 
+

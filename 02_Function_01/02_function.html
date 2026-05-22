@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title> 함수선언방식 </title>
+  <script>
+  
+    // 여러가지 함수선언 방식 
+
+    /* 
+    1. 일반적인 함수선언 
+
+
+    function bulgogiSet(sideMenu){ // 매개변수 인수를 sideMenu 로 지정 
+
+      document.write("불고기버거<br>");
+      document.write("콜라<br>");
+      document.write(sideMenu);
+
+    }
+
+    bulgogiSet("치즈스틱")  // 매개변수 인자를 "치즈스틱" 으로 지정 
+
+
+    ****** 주의) 일반함수 형식에서는 함수정의와 호출 순서를 바꿔도 실행가능  *****
+    
+
+    
+    2. 함수 리터럴 방식  ( 함수를 다른값에 대입하여 활용하기 좋음 - 내부함수, 콜백함수, 메서드생성시 많이 사용 )
+
+    
+    const bulgogiSet=function(sideMenu){  // 함수의 이름이 없는 익명함수  ** 함수를 대입할 변수는 const 사용이 좋음 ( 변하지 않는 값 ) **
+
+      document.write("불고기버거<br>");
+      document.write("콜라<br>");
+      document.write(sideMenu);
+    }
+
+    bulgogiSet("치즈스틱")
+
+    ****** 주의) 리터럴 방식의 함수는 반드시 함수변수 선언 후 실행해야 됨 ( 함수를 먼저 실행하면 실행안됨 ) *****
+    
+    
+    
+   
+   // 3. ES6버전  화살표 함수( arrow function)를 사용하여 정의  ( 함수단축표현 )     
+
+ 
+   const bulgogiSet=(sideMenu)=>{
+    
+    document.write("불고기버거<br>");
+    document.write("콜라<br>");
+    document.write(sideMenu);
+  
+  }
+
+  bulgogiSet("치즈스틱")  
+
+
+  /* 화살표함수 사용법   
+  
+  //일반함수 
+
+  function sum(a,b) {
+    return a+b
+  }  
+
+  // 화살표함수 
+
+  const sum = (a,b) => {
+    return a+b
+  }  
+  
+  // 화살표함수로 단축표현   
+
+  const sum = (a,b) => a+b  // 결과값만 return 할경우는 return 과 {} 같이 생략가능 
+
+  sum= a=>a+a // 매개변수(인수)가 하나일때 가로 () 생략 
+
+  sum=()=>x // 매개변수가 없을때는 가로를 생각할수없다. 
+
+
+  화살표 함수 사용주의  
+
+  - 반드시 익명함수  ( 변수에 대입해서 사용 - 함수리터럴 방식 )  
+  - this 의 사용이 일반함수와 다르다. (화살표 함수내에서의 this 객체는 함수내에서 한정되지 않고 상위객체로 전위된다. )      
+  - 클래스를 만들기 위한 생성자 함수와 메서드 생성함수로 사용할수 없다.
+  - arguments객체를 사용할수 없다.
+
+  */  
+  
+   
+  
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

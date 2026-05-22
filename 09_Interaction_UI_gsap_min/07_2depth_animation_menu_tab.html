@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  
+
+  <style>    
+    
+    body,ul,li{
+      margin:0px; padding:0px; list-style:none;
+    }
+
+    body{
+	    background:url("images/index_back.gif");
+    }
+
+
+    div#header_wrap{
+      width:100%; height:122px; background:url("images/header_bg.gif") repeat-x;
+    }
+
+    div#header_inner{
+      width:980px; height:122px; margin:0px auto; position:relative; left:0px; top:0px;
+      /* 반응형일경우는 해상도가 980px 보다 작을때는 메뉴구조를 새로 바꾸는 것이 좋다 ( 예) 네비게이션 전체를 사라지게 하고 메뉴버튼으로 보이게 */
+    }
+      
+    span#logo{
+      position:absolute; left:0px; top:20px; 
+    }
+
+
+    ul#mainmenu_list>li{
+      float:left; margin-right:50px; position:relative; left:0px; top:0px; 
+    }
+
+    ul#mainmenu_list{
+      position:absolute; left:250px; top:30px; 
+    }
+
+    div.mainmenu{
+      height:20px; overflow:hidden; position:relative; left:0px; top:0px; 
+    }
+
+    div.mainmenu>a{
+      display:block; position:relative; left:0px; top:0px; /* a테그를 움직이게 하므로 반드시 position 값이 존재해야 한다. */
+    }
+
+    div.submenu{
+      width:300px; position:absolute; left:0px; top:65px; 
+    }
+
+    ul.submenu_list>li{
+      float:left; margin-right:10px; 
+    }   
+
+  
+  </style>
+
+  <title> 2depth_animation_menu </title>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.4.2/gsap.min.js "></script>
+  <!--GSAP CDN 코드 -->
+
+  <script>
+
+    document.addEventListener('DOMContentLoaded',()=>{
+
+      const mainMenu=document.querySelectorAll('.mainmenu>a'); // 모든 메인메뉴 찾음 ('a'요소 - Tab키 적용 웹접근성 )
+      const subMenu=document.querySelectorAll('.submenu'); // 모든 서브메뉴 찾음
+
+      let selectedMenu; // 선택된 메뉴를 저장할 변수       
+
+      gsap.set(subMenu, {opacity:0, display:'none'}) // 모든 서브메뉴 opacity 0, 안보이게 초기설정 
+
+      for(const item of mainMenu){ // 모든 메인메뉴 이벤트 적용 
+        item.addEventListener('mouseenter',mainMenuOver);
+        item.addEventListener('focus',mainMenuOver);
+      }
+      const subMenu_a=document.querySelectorAll('.submenu_list>li>a'); // 모든 서브메뉴의 a 테그 찾음 
+      subMenu_a[subMenu_a.length-1].addEventListener('focusout',mainMenuOut) // 마지막 서브메뉴 a테그 이벤트 적용 
+      // 중요) 순번은 0부터 시작하므로 어떤 요소의 마지막 순번은 그 요소들의 갯수보다 1이 작다.
+      
+      document.querySelector('#header_inner').addEventListener('mouseleave',mainMenuOut);
+      // #header_inner 에서 마우스가 나가면 메뉴 작동 초기화 하는 mainMenuOut 함수실행 
+
+      function mainMenuOver(){ // 메뉴 작동함수   
+
+        menuInActivate(this) // 메뉴 비활성화 함수 실행
+        menuActivate(this); // 메뉴 활성화 함수 실행             
+
+      }
+
+      function mainMenuOut(){ // 메뉴 작동 초기화 함수 
+
+        menuInActivate() // 선택되었던 메뉴 비활성화 
+        selectedMenu=null; // 선택되었던 메뉴 비활성화 작업후 선택된 메뉴가 없다고 초기화 설정 
+        /*초기화 하지 않으면 #header_inner 에서 마우스를 나갔다가 다시 기존에 올렸던 메인메뉴에 다시 마우스를 올리면 
+        selectedMenu 변수값이 기존에 선택되었던 메뉴 값으로 유지되어 있어 새로선택된 메뉴값과 동일해서 메뉴 작동을 하지않음 */      
+
+      }
+
+
+      function menuInActivate(overMenu){
+
+        // 메인메뉴 비활성화 작업 
+
+        if(selectedMenu!=null && selectedMenu!=overMenu ){ // 기존에 선택된 메뉴가 존재하고 기존에 선택된 메뉴와 새로 선택된 메뉴가 서로 같지 않을때
+
+          gsap.to(selectedMenu, {top:0, duration:.3, ease:'power1.out'})          
+
+        // 서브메뉴 비활성화 작업 
+
+          let oldSubMenu=selectedMenu.parentElement.nextElementSibling; // 기존에 선택되어있던 서브메뉴를 oldSubMenu 라고 변수대입          
+          
+          gsap.to(oldSubMenu, {left:0, opacity:0, duration:.3, ease:'power1.out', onComplete:()=>{
+            gsap.set(oldSubMenu, {display:'none'}) // 에니메이션이 끝나고 서브메뉴를 안보이게함 
+            // 중요) oldSubMenu라고 변수대입하지 않고 selectedMenu.parentElement.nextElementSibling 라고 지정되면 새로선택된 서브메뉴 메뉴와 충돌 ( 새로선택된 서브메뉴가 사라짐 )          
+          }})
+
+        }
+
+
+      }      
+      
+
+      function menuActivate(overMenu){ // 메인 메뉴 활성화 함수 
+
+        // 메인메뉴 활성화 작업 
+        
+        if(selectedMenu!=overMenu){ // 기존에 선택되어 있던 메뉴와 새로 선택된 메뉴가 같지 않을때만 활성화 작업 
+          
+          selectedMenu = overMenu;
+
+          gsap.to(selectedMenu, {top:-25, duration:.3, ease:'power1.out'})
+          
+
+          // 서브메뉴 활성화 작업 
+
+          let newSubMenu=selectedMenu.parentElement.nextElementSibling; // 새로 선택된 서브메뉴를 newSubMenu 라고 변수대입 
+          
+          gsap.set(newSubMenu, {display:'block'})
+          gsap.to(newSubMenu, {left:-30, opacity:1, duration:.3, ease:'power1.out'})
+          
+
+        }
+        
+      }     
+      
+
+    })     
+    
+  </script>
+
+
+</head>
+<body>
+   
+    <div id="header_wrap">
+        <div id="header_inner">
+            <span id="logo"><a href="#"><img src="images/logo.png" alt="" /></a></span>
+            <ul id="mainmenu_list">
+                <li>
+                      <div class="mainmenu">
+                        <a href="#"><img src="images/menu0.png" alt="" /> </a>                   
+                      </div>
+                      <div class="submenu">
+                        <ul class="submenu_list">
+                              <li><a href="#"><img src="images/love_01_off.png" alt="" /></a></li>
+                              <li><a href="#"><img src="images/love_02_off.png" alt="" /></a></li>
+                              <li><a href="#"><img src="images/love_03_off.png" alt="" /></a></li>                    
+                        </ul>                 
+                      </div>        
+                  </li>
+                  
+                  <li>
+                      <div class="mainmenu">
+                        <a href="#"><img src="images/menu1.png" alt="" /> </a>                   
+                      </div>
+                      <div class="submenu">
+                        <ul class="submenu_list">
+                            <li><a href="#"><img src="images/love_01_off.png" alt="" /></a></li>
+                              <li><a href="#"><img src="images/love_02_off.png" alt="" /></a></li>
+                              <li><a href="#"><img src="images/love_03_off.png" alt="" /></a></li>                    
+                          </ul>                 
+                      </div>        
+                  </li>
+                  
+                  <li>
+                      <div class="mainmenu">
+                        <a href="#"><img src="images/menu2.png" alt="" /> </a>                   
+                      </div>
+                      <div class="submenu">
+                        <ul class="submenu_list">
+                            <li><a href="#"><img src="images/love_01_off.png" alt="" /></a></li>
+                              <li><a href="#"><img src="images/love_02_off.png" alt="" /></a></li>
+                              <li><a href="#"><img src="images/love_03_off.png" alt="" /></a></li>                    
+                          </ul>                 
+                      </div>        
+                  </li>
+                  
+                  <li>
+                      <div class="mainmenu">
+                        <a href="#"><img src="images/menu3.png" alt="" /> </a>                   
+                      </div>
+                      <div class="submenu">
+                        <ul class="submenu_list">
+                            <li><a href="#"><img src="images/love_01_off.png" alt="" /></a></li>
+                              <li><a href="#"><img src="images/love_02_off.png" alt="" /></a></li>
+                              <li><a href="#"><img src="images/love_03_off.png" alt="" /></a></li>                    
+                          </ul>                 
+                      </div>        
+                  </li>
+                  
+                  <li>
+                    <div class="mainmenu">
+                        <a href="#"><img src="images/menu4.png" alt="" /> </a>                   
+                      </div>
+                      <div class="submenu">
+                        <ul class="submenu_list">
+                            <li><a href="#"><img src="images/love_01_off.png" alt="" /></a></li>
+                            <li><a href="#"><img src="images/love_02_off.png" alt="" /></a></li>
+                            <li><a href="#"><img src="images/love_03_off.png" alt="" /></a></li>                    
+                        </ul>                 
+                      </div>        
+                  </li>               
+              
+              </ul>        
+          
+          </div>    
+      </div>
+
+
+
+
+
+  
+</body>
+</html>

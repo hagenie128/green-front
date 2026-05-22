@@ -1,0 +1,12 @@
+section.contents{
+    width: 100vw;
+    height: 100vw;
+    padding: 120px 16px;
+    box-sizing: border-box;
+}
+h2.contents_title{
+    font:normal 6.66vw 'verdana';
+    color: #2b3467;
+    text-align: center;
+    margin-bottom: 0.75em;
+}

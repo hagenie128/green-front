@@ -1,0 +1,15 @@
+footer{
+    width: 100vw;
+    height: 54px;
+    background: #2b3467;
+    padding: 0 20px;
+    position: absolute;
+    box-sizing: border-box;
+    left: 0;
+    bottom:0;
+}
+p.footer_text{
+    font: 3.33vw/54px 'verdana';
+    text-align: center;
+    color: white;
+}

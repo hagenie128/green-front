@@ -1,0 +1,16 @@
+section#todolist{
+    width:100%;
+    min-height:800px; 
+    padding:32px 16px; 
+    box-sizing:border-box;
+    background:rgb(250, 250, 250);
+    /* dark-mode: background:rgb(172, 172, 172); */
+    
+    
+}
+
+ul#todolist_list{
+    width:100%;
+    height:100%;
+}
+

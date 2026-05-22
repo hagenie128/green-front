@@ -1,0 +1,39 @@
+header.head{
+    width:100%;
+    height:54px; 
+    background: #CCCCCC;
+    position: relative;
+    left: 0;
+    top: 0;
+    /* dark-mode:  background:#212A3E;  */
+
+    
+}
+
+h1.title{
+    width:100%;
+    height:100%; 
+    display:flex;
+    flex-wrap:wrap;
+    justify-content: center;
+    align-content: center;
+    font:normal 20px 'verdana'; 
+    color:white; 
+}
+button.darkMode_btn{
+    width: 80px;
+    height: 28px;
+    position: absolute;
+    right: 16px;
+    top:16px;
+    border-radius: 12px;
+    box-sizing: border-box;
+    border: solid 1px #aaa;
+    background: rgb(75, 75, 75);
+    color: white;
+}
+button.darkMode_btn.selected{
+    border: solid 1px #aaa;
+    background: rgb(240, 240, 240);
+    color: rgb(75, 75, 75);
+}

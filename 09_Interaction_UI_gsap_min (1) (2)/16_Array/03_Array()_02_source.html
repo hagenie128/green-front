@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  
+  <title> Array()클래스 </title>
+  <script>
+  
+    /*
+    ES6 버전의 배열관련 함수 
+
+    리액트에서 매우 많이 씀
+    
+    map() - 배열에서 특정한 속성값으로 새로운 배열을 생성
+    
+    filter() - 배열에서 특정 조건에 해당되는 속성 값을 가진 요소만 검색하여 새로운 배열을 생성 
+    
+    reduce() - 배열에서 특정 속성에 대한 값을 연산
+
+    */
+
+    
+    let userInfo=[//여러가지 속성이 나오면 물결 괄호/ 객체라고 함
+      {"name":"권영찬","gender":"남자","age":32,"address":"서울시 마포구"},
+      {"name":"김영미","gender":"여자","age":22,"address":"경기도 김포시"},
+      {"name":"박철수","gender":"남자","age":54,"address":"경기도 성남시"},
+      {"name":"이수진","gender":"여자","age":36,"address":"서울시 구로구"}
+    ]
+    let addUser={"name":"김남길","gender":"남자","age":58,"address":"서울시 구로구"}
+    // userInfo.push({}) 이건 배열 자체가 바뀜
+    //기존 배열은 그대로 두고 추가된 배열을 만들고 싶을 때 스프레드 연산자 사용
+    let userInfo2=[...userInfo, addUser]//...으로 기존에 있는 데이터를 가져옴
+    // console.log(userInfo)
+    
+    
+    //배열을 돌면서 속성만을 가지고 배열을 만듬*****
+    let userName=userInfo2.map((item,index)=>{
+      return item.name
+    })
+    // console.log(userName)
+    let man=userInfo2.filter((item,index)=>{
+      if(item.gender=="남자"){
+        return item//해당하는 아이템만 보내라
+      }
+    })
+    // console.log(man)
+    let ageSum=userInfo2.reduce((sum,value)=>{//연산된 결과, 실제 연산될 데이터
+      return sum+value.age//원소들의 age를 더하겠다./함축식 먼저 배우지말고 기본부터
+    },0)//계산의 초기값, 0을 넣으면 숫자가 됨, 없으면 문자열로 인식
+    console.log(ageSum)
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+      
+  
+  </script>
+</head>
+<body>
+  
+
+
+
+</body>
+</html>
+

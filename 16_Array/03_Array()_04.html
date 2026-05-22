@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title> Array() 클래스-lottery </title>
+
+  <style>
+    
+    body{
+			font-size:9pt;
+		}
+
+    #wrap{
+      width:400px; height:500px; position:absolute; left:50%; margin-left:-200px; top:200px; 
+    }
+
+		#panel{
+			border:1px #000000 solid;
+			line-height:400px;
+			font-size:100px;
+			width:400px;
+			height:400px;
+			text-align:center;
+			vertical-align:middle;		
+      margin-bottom:30px; 
+		}
+
+    #nav{
+      text-align:center; 
+    }
+  
+	</style>
+	  
+
+  <script>  	
+
+		document.addEventListener('DOMContentLoaded',()=>{
+
+			let goodsArray=["tv","냉장고","노트북","핸드폰","커피","꽝"] // 상품이름을 순서대로 배열로 지정 
+
+			const panel=document.querySelector('#panel'); // 불규칙 숫자를 넣어줄 #panel 찾음 
+		
+			let isPlay=false; // 현제 진행중을 체크하는 상태변수 ( 초기값 false 지정 )
+			let timer; // setInterval()함수를 제어할 변수지정 
+
+			document.querySelector('#start_btn').addEventListener('click',startLottery); // 시작버튼 클릭하면 추첨기 시작함수 실행 
+			document.querySelector('#stop_btn').addEventListener('click',stopLottery); // 멈춤버튼 클릭하면 추첨기 시작함수 멈춤  
+
+			function startLottery(){ // 추첨기를 시작해주는 함수 
+
+				if(isPlay==false){ // 추점기가 현제 진행하고 있지 않을때만 실행 					
+					panel.style.color='black'; // 당첨된 번호의 빨강색을 검정색으로 다시 적용 						
+					timer=setInterval(lottery,20); // 추첨기 실행 함수를 0.02초 간격으로 실행 
+					isPlay=true; // 추첨기가 진행하고 있다고 isPlay 상태변수값을 true 로 변경 
+				}
+			}
+
+			function stopLottery(){ // 추첨기 함수를 멈추게 하는 함수 
+				if(isPlay==true){ // 추첨기가 진행하고 있을때만 멈추게 함 
+					clearInterval(timer); // setInterval() 함수를 멈추게 하여 추첨기 진행을 멈춤 
+					isPlay=false; // 추첨기 진행이 멈췄다고 상태변수 isPlay 값을 false로 변경 
+					panel.style.fontSize=100+'px'; // 당첨된 번호의 폰트사이즈를 최대값으로 크게 지정 
+					panel.style.color='red'; // 당첨된 번호의 폰트컬러를 빨강색으로 강조 
+				}
+			}
+
+			function lottery(){ // 추첨기 함수 
+
+				let count=parseInt(Math.random()*goodsArray.length) // 0 부터 상품배열의 갯수사이에서 불규칙적으로 count출력 
+				panel.innerHTML=goodsArray[count]	// 불규칙적인 상품배열번호의 상품명을 panel 안에 불규칙적으로 출력 
+				let randomFontSize=parseInt(Math.random()*30)+70; // 불규칙한 번호의 폰트사이즈를 100 ~ 200 사이에서 불규칙값으로 지정 
+				panel.style.fontSize=randomFontSize+'px'; // 폰트사이즈를 불규칙한 값으로 적용 
+
+			}
+
+		})
+			
+
+  
+  </script>
+
+
+</head>
+<body>
+  
+  	<div id="wrap"> 
+	
+        <div id="panel" > 
+              
+        </div>
+    
+        <div id="nav">         
+          <button id="start_btn">시작</button>
+          <button id="stop_btn">멈춤</button>
+        </div>
+       </div>
+
+
+
+</body>
+</html>

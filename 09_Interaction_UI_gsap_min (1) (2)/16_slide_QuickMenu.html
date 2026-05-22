@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge"> 
+
+  <style> 
+
+    body{
+      height:3000px; 
+    }
+
+    div#quick_menu{
+      width:75px; height:235px; position:absolute; right:100px; top:300px; 
+    }
+   
+  </style>
+
+  <title> slideQuickMenu </title>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.4.2/gsap.min.js "></script>
+  <!--GSAP CDN 코드 -->
+  
+  <script>
+
+    document.addEventListener('DOMContentLoaded',()=>{
+
+      const quickMenu=document.querySelector('#quick_menu') // #quick_menu 요소찾음 
+
+      let quickMenuTop=300; // quickMenu 상단 고정위치 ( 사용자 설정 )
+
+      window.addEventListener('scroll',windowScroll); // 윈도우 스크롤 할때마다 windowScroll 함수실행 
+
+      function windowScroll(){ // 윈도우 스크롤 함수 
+
+        let scrollHeight=window.pageYOffset; // window를 기준으로 전체문서가 scroll 되어있는 높이를 구함     
+        
+        // quickMenu의 현제좌표에서 scroll된 높이값과 quickMenu의 고정위치(사용자설정위치)를 더한 좌표만큼 에니메이션 적용 
+        gsap.to(quickMenu, {top:scrollHeight+quickMenuTop, duration:.8, ease:'power1.out'})
+
+      }
+
+    })   	    
+        
+    
+  </script>
+
+
+</head>
+<body> 
+    
+  <div id="quick_menu">
+    <img src="images/quick.gif" alt="">
+  </div>
+  
+  
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ko"> 
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form 웹접근성</title>
+
+  <style>
+
+  body,p{
+    margin:0px; padding:0px; 
+  }
+  table{
+    border-spacing:0px; border-collapse:collapse; 
+  }
+
+
+  form#user_join{
+    width:1000px; margin:200px auto; 
+  }
+
+  table.join{
+    width:1000px; margin:0px auto; border-top:solid 3px gray; border-bottom:solid 3px gray;
+  }
+
+  table.join th{
+    width:160px;  height:70px; border-bottom:dotted 1px gray; border-right:dotted 1px gray; font:bold 14px/20px "돋움"; letter-spacing:2px; 
+    background:#F9F9F9; text-align:left; text-indent:30px; 
+  }
+
+  table.join td{
+    width:340px; height:70px; border-bottom:dotted 1px gray; text-indent:30px; font:normal 14px/20px "돋움"; 
+  }
+
+  .txt_box{
+    border:solid 1px #CCCCCC; background:#FCFCFC; height:25px; text-indent:10px; 
+  }
+  .size150{
+    width:150px; 
+  }
+  .size240{
+    width:240px; 
+  }
+  .select_box{
+    width:80px; height:30px; 
+  }
+
+  </style>
+
+
+
+</head>
+
+<body>  
+
+  <!--
+
+    Form 요소 웹접근성 
+    
+    <label> 요소를 사용하여 각 폼요소의 의미를 정확히 전달  ( <label> 요소에 Tab키 ( 클릭 )  접근되면 연동된 폼 요소에 커서 자동접근 ) 
+
+       - 각 폼요소 id 지정 > 각 폼요소에 해당하는 제목 텍스트 앞에 <label> 적용 
+       - <label> 요소와 폼요소가 바로 붙어있을 경우 <label> 요소로 같이 묶음  
+
+  -->
+   
+     <form id="user_join" method="post" action="">	
+	
+            <table class="join" summary="회원가입양식">            
+              <tr>
+                <th id="user_id" scope="row"><label for="id_box">아이디</label></th> 
+                <td headers="user_id">
+                  <input type="text" id="id_box" class="txt_box size240" /> <!-- 중복클래스 적용 -->
+                </td>
+                <th id="user_pw" scope="row"><label for="pw_box">비밀번호</label></th> 
+                <td headers="user_pw">
+                  <input type="password" id="pw_box" class="txt_box size240" /> <!-- 중복클래스 적용 -->
+                </td>
+              </tr>
+              <tr>
+                <th id="user_name" scope="row"><label for="name_box">이름</label></th>
+              
+                <td headers="user_name">
+                  <input type="text" id="name_box" class="txt_box size240" />              
+                </td>
+                <th id="user_mail" scope="row"><label for="mail_box">이메일</label></th>
+              
+                <td headers="user_mail">
+                  <input type="text" id="mail_box" class="txt_box size240" />              
+                </td>
+              </tr>
+              <tr>                
+                <th id="sns" scope="row"><label for="sns_box">SNS</label></th>
+                <td headers="sns">
+                  <select class="select_box" id="sns_box">
+                    <option>Instagram</option>
+                    <option>Tweeter</option>
+                    <option>Facebook</option>
+                  </select>
+                  &nbsp;<input type="text" class="txt_box size150">
+                </td>
+                <th id="profile" scope="row"><label for="profile_img">프로필이미지</label> </th>
+                <td headers="profile">
+                  <input type="file" id="profile_img">
+                </td>
+              </tr> 
+              <tr>
+                <th id="gender" scope="row">성 &nbsp;별</th> 
+                <td headers="gender">
+                  
+                    <label>남성<input type="radio" name="gender"/></label>                   
+                    <label>여성<input type="radio" name="gender" /></label>     
+                
+               </td>
+                <th id="hobit" scope="row">관심분야</th> 
+                <td headers="hobit">
+                  
+                    <label>독서<input type="checkbox" name="hobit"/></label>
+                    <label>영화<input type="checkbox" name="hobit"/></label>
+                    <label>음악<input type="checkbox" name="hobit"/></label>
+                    <label>IT<input type="checkbox" name="hobit"/></label>               
+                
+               </td>
+              </tr>
+         </table>
+         
+     </form>    
+    
+    
+    
+    
+   
+   
+    
+
+
+
+
+
+</body>
+</html>

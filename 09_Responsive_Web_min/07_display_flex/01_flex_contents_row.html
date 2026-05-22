@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <title>flex_contents_row</title>
+    <style>
+      /*
+      display:flex 속성 - 컨텐츠 배치시 복잡한 계산없이 자동으로 유동적 배치 가능 
+      
+      부모요소속성  ( display:flex, flex-wrap, flex-direction, justify-content, align-content ) 
+
+      display:flex - 기본 flex 속성지정 
+
+      flex-wrap:nowrap (기본값 ) - 부모영역크기 조절시 컨텐츠 아래로 떨어지지 않고 고정  
+                                - 컨텐츠들의 위아래 위치 조절 ( align-content ) 안됨       
+      flex-wrap:wrap - 부모영역이 작으면 컨텐츠도 유동적으로 떨어뜨림 
+
+      flex-direction:row - 컨텐츠배치 방향 (가로)
+      flex-direction:column - 컨텐츠배치 방향 (세로)
+      flex-direction:row-reverse - 가로반대 
+      flex-direction:cloumn-reverse - 세로반대 
+
+      justify-content:flex-start - 컨텐츠 배치위치 가로정렬 왼쪽정렬 
+      justify-content:center - 컨텐츠 배치위치 가로정렬 중앙정렬 (주의 flex 붙지않음 )
+      justify-content:flex-end - 컨텐츠 배치위치 가로정렬 오른쪽정렬 
+      justify-content:space-around - 컨텐츠 배치위치 가로정렬 전체 여백자동조절 ( 양쪽끝에도 여백존재 )
+      justify-content:space-between - 컨텐츠 배치위치 가로정렬 컨텐츠사이 여백자동조절 ( 양쪽끝에도 여백없음  - 가장많이 쓰임 )
+
+      align-content:flex-start - 컨텐츠 배치위치 세로정렬 위쪽정렬 
+      align-content:center - 컨텐츠 배치위치 세로정렬 가운데정렬 
+      align-content:flex-end - 컨텐츠 배치위치 세로정렬 아래정렬 
+      align-content:space-around - 컨텐츠 배치위치 세로정렬 전체 여백자동조절 ( 위아래끝에도 여백존재 )
+      align-content:space-between - 컨텐츠 배치위치 세로정렬 컨텐츠사이 여백자동조절 ( 위아래끝에도 없음 )
+
+
+      중요) 부모요소의 flex-direction 방향에 따라 justify-content, align-content 방향이 반대 
+      중요) justify-content:center; align-content:center - 전체컨텐츠를 정중앙정렬 
+
+
+      각 자식요소(컨텐츠) 속성  ( justify-self, align-self, flex, order )
+
+
+      justify-self : 각 해당 컨텐츠 영역 가로 정렬 ( 값은 부모요소 justify-content 속성값과 같음 - flex-start, center, flex-end )
+      algin-self : 각 해당 컨텐츠 영역 세로 정렬 ( 값은 부모요소 align-content 속성값과 같음 - flex-start, center, flex-end )
+
+      주의) 각 컨텐츠 안의 자식요소들 자체의 정렬이 아닌 각 컨텐츠 영역 자체 정렬 
+      주의) 컨텐츠 배치는 각 컨텐츠에 지정하는 것보다 부모요소의 전체 컨텐츠 속성으로 지정 ( 부모요소의 전체 컨텐츠 배치가 우선적용 )
+      - 각각의 컨테츠 배치를 따로 정렬하는 것은 거의 사용안함    
+
+      flex속성: 각컨텐츠 분할 비율 ( flex:1, flex:2, flex:1  - 컨텐츠 분할비율을 1:2:1 로 분할 - 전체영역을 각 컨텐츠의 flex값 총합으로 나누어 분할계산 ) 
+      
+      주의) 기본 컨텐츠가 가지고 있던 가로크기 세로크기 무시 
+      주의) 특정컨텐츠의 크기를 px 고정하고 다른컨텐츠들을 flex값을 1 로 지정하여 유동적으로 분할가능 
+      
+      order: 각 컨텐츠 배치순서 정의  ( 숫자가 작을수록 우선배치 )
+
+      
+      ** flex속성 단점  **      
+      
+      사용자 해상도에 조절에 따라 원하는 단의 갯수를 일정하게 지정 할 수 없다. - 해상도에 따른 반응형 보다는 간단한 유동적인 컨텐츠 배치할때 사용       
+
+      */
+
+      body,p{
+        margin:0px; padding:0px; 
+      }
+
+      html,body{
+        height:100%; 
+      }
+
+     
+      section#contents_wrap{
+        width:80%; min-width:560px; height:auto; min-height:300px; padding:20px 0px;  
+        background:#eeeeee; border:solid 1px #cccccc; margin:100px auto;
+        display:flex; flex-direction:row; flex-wrap:wrap; 
+        justify-content:space-around;
+        align-content:center; 
+      }
+      
+      section.contents p{
+        margin-bottom:10px; text-align:center;
+      }
+      p.contents_title{
+        font:bold 14px "돋움";
+      }
+      p.contents_text{
+        font:normal 12px "돋움"; 
+      } 
+         
+      /*
+      각 컨텐츠 따로 지정
+      section.contents:nth-child(1){
+        align-self:flex-end; flex:1; order:4;
+        주의) align-self 속성은 부모요소 속성이 우선순위  
+      }
+      */
+     
+    
+    </style>
+  </head>
+  <body>
+    <section id="contents_wrap">
+      <section class="contents">
+        <p class="contents_img"><img src="images/img01.jpg" alt="이미지설명"></p>
+        <p class="contents_title">01프런트LED</p>
+        <p class="contents_text">XE의 J 블레이드 LED로 둘러싸인 헤드램프</p>
+      </section>
+      <section class="contents">
+        <p class="contents_img"><img src="images/img02.jpg" alt="이미지설명"></p>
+        <p class="contents_title">02에어로다이나믹스</p>
+        <p class="contents_text">XE의 형태는 공기역학적 효율 및 안정성</p>
+      </section>
+      <section class="contents">
+        <p class="contents_img"><img src="images/img03.jpg" alt="이미지설명"></p>
+        <p class="contents_title">03럭셔리패시아</p>
+        <p class="contents_text">운전자의 몸을 감싸는 XE 럭셔리 시트</p>
+      </section>
+      <section class="contents">
+        <p class="contents_img"><img src="images/img04.jpg" alt="이미지설명"></p>
+        <p class="contents_title">04디자인디테일</p>
+        <p class="contents_text">나만의 유니크한 스타일과 감각의 XE의 실내</p>
+      </section>
+    </section>
+  </body>
+</html>

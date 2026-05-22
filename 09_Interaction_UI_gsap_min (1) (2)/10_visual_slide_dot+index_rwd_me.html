@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">  
+
+  <style>
+
+    html,body{
+	    height:100%; overflow:hidden; 
+    }
+    
+    body,p,ul,li{
+      margin:0px; padding:0px; list-style:none;
+    }
+
+    body{
+      background:url("images/index_back.gif");
+    }
+
+    div#visual_wrap{
+      width:100%; height:469px; float:left; margin-top:100px; overflow: hidden;   
+    }
+
+    div#visual_inner{
+      width:1200px; height:100%; margin:0px auto; position:relative; left:0px; top:0px; 
+      border:solid 1px white; box-sizing:border-box; overflow: hidden;
+    }
+
+    ul#visual_list{
+      width:100%; height:100%;  position:absolute; left:0px; top:0px; 
+    }
+
+    ul#visual_list li{
+      width:100%; height:100%;  position: absolute;
+    }
+    ul#visual_list li img{
+      display:block; 
+    }
+
+    
+    ul#dot_list{
+      width:130px; position:absolute; left:50%; margin-left:-65px; bottom:20px; 
+    }
+
+    ul#dot_list li{
+      width:16px; height:16px; float:left; margin-right:10px; border-radius:8px; background:#FFF;
+      -webkit-transition:0.2s ease;
+    }
+
+    ul#dot_list li.selected{
+      background:orange;  
+    }
+
+
+
+    @media screen and (max-width:1200px) {
+
+      div#visual_inner{
+        width:100%; 
+      }
+
+    }
+
+   
+ 
+  </style>
+
+
+  <title> visual_slide_dot_rwd </title>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.4.2/gsap.min.js "></script>
+  <!--GSAP CDN 코드 -->
+
+  <script> 
+    window.addEventListener('load',()=>{
+      visualEffect()
+    })
+
+    function visualEffect(){
+      const visualWrap=document.querySelector('#visual_wrap')
+      const visualInner=document.querySelector('#visual_inner')
+      const visualLi=document.querySelectorAll('#visual_list>li')
+      const visualImg=document.querySelectorAll('#visual_list>li>img')
+      const dot=document.querySelectorAll('#dot_list>li')
+
+      let visualLength=visualLi.length
+      let visualWidth=visualInner.offsetWidth
+      let showNum=0
+      let selectedNum=0
+      let showDot=dot[0]
+      let isSlide=false
+
+      init()
+      visualReset()
+      initEvent()
+      autoSlide()
+
+      function init(){
+        gsap.set(visualLi,{left:visualWidth,opacity:0})
+        gsap.set(visualLi[0],{left:0,opacity:1,scale:1})
+      }
+      function initEvent(){
+        window.addEventListener('resize',visualReset)
+        dot.forEach((item,index)=>{
+          item.addEventListener('mouseenter',()=>{
+            selectedNum=index
+            //alert(currentNum)
+            dotActivate(selectedNum)
+            slideVisual(selectedNum)
+            // slideCount(selectedNum)
+        })
+        visualWrap.addEventListener('mouseenter',stopAutoPlay)
+        visualWrap.addEventListener('mouseleave',autoSlide)
+      })
+      }
+      function visualReset(){
+        visualWidth=visualInner.offsetWidth
+        gsap.set(visualImg,{width:visualWidth})
+        gsap.set(visualWrap,{height:visualImg[0].offsetHeight})
+        gsap.set(visualLi,{width:visualWidth,left:visualWidth})
+        gsap.set(visualLi[showNum],{left:0})
+      }
+      function dotActivate(index){
+        if(showDot!=dot[index]&&isSlide==false){
+          showDot.classList.remove('selected')
+          showDot=dot[index]
+          showDot.classList.add('selected')
+      }}
+      function slideVisual(index){
+        if(showNum<index&&isSlide==false){
+          isSlide=true
+          gsap.to(visualLi[showNum],{left:-visualWidth,opacity:0})
+          gsap.set(visualLi[index],{left:visualWidth,opacity:0})
+          gsap.to(visualLi[index],{left:0,opacity:1, onComplete:()=>{
+            isSlide=false
+            showNum=index
+          }})
+        }else if(showNum>index&&isSlide==false){
+          isSlide=true
+          gsap.to(visualLi[showNum],{left:visualWidth,opacity:0})
+          gsap.set(visualLi[index],{left:-visualWidth,opacity:0})
+          gsap.to(visualLi[index],{left:0,opacity:1, onComplete:()=>{
+            isSlide=false
+            showNum=index
+          }})
+        }
+      }
+      function autoSlide(){
+        timer=setInterval(slideCount,2000)
+      }
+      function slideCount(){
+        selectedNum++;
+        if(selectedNum>=visualLength){
+          selectedNum=0
+        }
+        dotActivate(selectedNum);
+        slideVisual(selectedNum);
+      }
+      function stopAutoPlay(){
+        clearInterval(timer)
+      }
+    }
+  </script>
+
+
+</head>
+<body>
+   
+  <div id="visual_wrap">   
+    
+      <div id="visual_inner">
+
+        <ul id="visual_list">
+            <li><img src="images/img1.gif" alt="" /></li>
+            <li><img src="images/img2.gif" alt="" /></li>
+            <li><img src="images/img3.gif" alt="" /></li>
+            <li><img src="images/img4.gif" alt="" /></li> 
+            <li><img src="images/img5.gif" alt="" /></li>           
+        </ul>       
+            
+        <ul id="dot_list">
+            <li class="selected"></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>           
+        </ul>       
+    
+      </div>
+
+</div>
+
+
+
+
+
+  
+</body>
+</html>

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge"> 
+
+  <style> 
+
+    body,html{
+      height:100%;
+    }
+
+    body,ul,li,p{
+      margin:0px; padding:0px; list-style:none;
+    }
+
+    header{
+      width:100%; height:120px; float:left; position:fixed; left:0px; top:0px;  z-index:1000; 
+      background:#FFFFFF; box-shadow:2px 2px 2px gray; 
+    }
+   
+    nav#menu{
+      width:500px; height:65px; position:absolute; right:200px; top:65px; 
+    }
+    ul#menu_list li{
+      width:120px; height:50px; float:left; margin-right:30px; 
+      -webkit-transition:0.3s ease; border-bottom:solid 5px white; 
+    }
+    ul#menu_list li a{
+      display:block; width:100%; height:50px; 
+      font:bold 18px Arial; color:#333333; text-align:center; text-decoration:none;
+     
+    }   
+    ul#menu_list li.selected{
+      border-bottom:solid 5px green; 
+    }
+
+    ul#menu_list li.selected a{
+      color:green;
+    }
+
+    div#contents_wrap{
+      width:100%; height:900px; position:absolute; top:0px; left:0px; 
+    }
+    
+    .contents {  
+      
+      width: 100%; height:100%; float:left;    
+      position: relative; left:0px; top:0px;       
+      background-repeat: repeat; 
+      color:#FFF; 
+      
+    }
+
+    #par1 {
+      background:url("images/bg1.jpg");
+    } 
+    
+    #par3 { 
+      background:url("images/bg3.jpg");
+    }
+
+
+    .contents article { 
+      width: 70%; height:50%;
+      text-align: center; 
+      margin:200px auto;       
+      padding:20px 40px 40px;
+      background: rgba(1, 54, 54, 0.8);
+      border-radius:20px;
+    }   
+
+    article h1 {
+      font-size:40px;
+    } 
+    article p {
+      line-height:24px; 
+      font-size:18px; 
+      margin-top:15px;
+      text-align:left;
+    } 
+    article p a {
+      color:#FFF; 
+      text-decoration:none; 
+      font-size:10px;
+    }
+
+   
+  </style>
+
+  <title> scrollSlide </title>  
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/3.4.0/gsap.min.js'></script>
+  <!--GSAP CDN 코드 -->
+  
+  <script> 
+  //컨텐츠 높이=윈도우 크기로 맞춰주기
+  //네비게이션 활성화 비활성화
+  //컨텐츠를 스크롤하는 게 아니라 부모를 움직이는 것
+    window.addEventListener('load',()=>{
+      const mainMenu=document.querySelectorAll('#menu_list>li')
+      const contents=document.querySelectorAll('.contents')
+      let selectedMenu=mainMenu[0]
+      let clickIndex=0
+      let isWheel=false//상태변수
+      let menuLength=mainMenu.length
+
+      let windowHeight=window.innerHeight
+      //alert(windowHeight)
+      gsap.set(contents,{height:windowHeight})
+
+      mainMenu.forEach((item,index)=>{
+        item.addEventListener('click',()=>{
+          //alert(index)
+          clickIndex=index//같이 쓰려고 전역변수로
+          activateMainMenu(clickIndex)
+          slideContents(clickIndex)
+        })
+      })
+      window.addEventListener('mousewheel',windowWheel)
+
+      function activateMainMenu(index){
+        if(selectedMenu!=null&&selectedMenu!=mainMenu[index]){
+          selectedMenu.classList.remove('selected')
+        }
+        if(selectedMenu!=mainMenu[index]){
+          selectedMenu=mainMenu[index]
+          selectedMenu.classList.add('selected')
+        }
+      }
+      function slideContents(index){
+        gsap.to('body,html',{scrollTop:windowHeight*index,onComplete:()=>{
+          isWheel=false//휠이 동작하도록 값을 바꿔줌
+        }})
+        //태그는 ''이용, scrolltop은 올라갈수록 +됨
+      }
+      function windowWheel(e){//마우스 휠 값을 가져옴 
+        if(e.wheelDelta<=-120&&isWheel==false&&clickIndex<menuLength-1){//값이 정해져있음. 그냥 외우기
+          //alert('아래로 휠')
+          isWheel=true
+          clickIndex++
+          activateMainMenu(clickIndex)
+          slideContents(clickIndex)
+        }else if(e.wheelDelta>-120&&isWheel==false&&clickIndex>0){
+          //alert('위로 휠')
+          isWheel=true
+          clickIndex--
+          activateMainMenu(clickIndex)
+          slideContents(clickIndex)
+        }
+      }
+    })
+
+
+
+
+
+
+
+
+        
+    
+  </script>
+
+
+</head>
+<body> 
+
+  <header>   
+    
+    <nav id="menu">
+        <ul id="menu_list">
+            <li class="selected"><a href="#;">contents1</a></li>
+            <li><a href="#;">contents2</a></li>
+            <li><a href="#;">contents3</a></li>
+          </ul>  	
+    </nav>     
+  
+</header>
+
+<div id="contents_wrap">
+  <div id="par1" class="contents"> 
+    <article> 
+      <h1>contents1</h1> 
+      <p>Parallax scrolling is a concept that when the user scrolls or moves about the page, the background object seems to move with them. This can be done by repositioning the background through javascript. Objects that seem to be further away are actually only moving slower or in an opposite direction than the objects in front of them.</p> 
+    </article> 
+  </div> 
+  <div id="par2" class="contents"> 
+    <article> 
+      <h1>contents2</h1> 
+      <p>Scrolling is actually disabled on this page, however it uses scrolling events in order for it to decide whether the page is to go up or down. Reducing the height of the browser will cause problems with visibility of elements on the page - and will overlap the info. - TOFIX</p> 
+    </article> 
+  </div> 
+  <div id="par3" class="contents"> 
+    <article> 
+      <h1>contents3</h1> 
+      <p>You know this next slide has class, it has style and it doesn't judge the person reading it. Did you ever think that a page could be judgemental? Well I think you may have some trouble with self esteem in that case. If not: you should protrude any thought that the author of this article is making no sense, and that you should disregard any prior information read.</p> 
+    </article> 
+  </div> 
+</div>
+  
+  
+  
+</body>
+</html>

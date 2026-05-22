@@ -1,0 +1,9 @@
+div.box{
+    width:200px;
+    height:100px; 
+    background:blue;
+    margin:30px auto;
+    color:white; 
+    text-align:center; 
+    line-height:100px; 
+}

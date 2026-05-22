@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title> setInterval() </title>
+  <script>
+
+    /*
+    window.setInterval(함수명,시간간격) : 일정한 시간간격으로 함수를 반복 실행시켜주는 함수 (메서드 - window구문생략 )  
+
+    시간단위 : 밀리언세컨즈  (1000밀리언세컨즈 1초)
+
+    clearInterval(변수) : 실행중인 setInterval()을 멈춤 
+
+   */  
+
+    document.addEventListener('DOMContentLoaded',()=>{
+
+      let count=0; // count 초기값 0 설정 
+      let timer=setInterval(addCount,1000); // 1초에 한번씩 addCount 함수를 실행 
+      // setInterval()은 수정될 수 있으므로 let 으로 선언하는게 좋음 
+
+      function addCount(){
+
+        count++; // count를 1씩 증가 
+        document.write(count+"<br>") // 문서에 count를 출력 
+
+      }
+
+      //clearInterval(timer) // timer 변수에 대입된 setInterval()함수를 제거 
+
+    })
+
+  </script>
+  
+</head>
+<body>
+  
+  
+</body>
+</html>

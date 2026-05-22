@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">  
+
+  <style>
+  
+  #wrap{
+    width:220px; height:220px; position:absolute; left:50%; margin-left:-110px; top:200px;
+  }
+  
+  #img_wrap{
+			border:1px #000000 solid;
+			width:220px;
+			height:220px;		
+			text-align:center;
+      margin-bottom:20px;
+      box-sizing:border-box; overflow:hidden;       
+					
+	}
+  #navi{
+    width:100%; text-align:center; 
+  }
+  
+  
+  
+  </style>
+
+  <title> fadeIn_fadeOut </title>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.4.2/gsap.min.js "></script>    
+  <!--GSAP CDN 코드 -->
+  
+  <script>  
+
+    document.addEventListener('DOMContentLoaded',()=>{
+     
+      const imgWrap=document.querySelector('#img_wrap'); // 에니메이션 대상인 #img_wrap 찾음             
+
+      document.querySelector('#fadeOut_btn').addEventListener('click',imgFadeOutAni); // fadeOut 버튼 클릭시 imgFadeOutAni() 함수실행 
+      document.querySelector('#fadeIn_btn').addEventListener('click',imgFadeInAni); // fadeIn 버튼 클릭시 imgFadeInAni() 함수실행 
+
+      
+      function imgFadeOutAni(){ // imgFadeOutAni() 함수
+
+        gsap.to(imgWrap,{opacity:0, duration:1, ease:'power1.out', onComplete:()=>{
+          alert('fadeOut종료')
+        }})        
+
+      }
+
+      function imgFadeInAni(){ // imgFadeInAni() 함수        
+
+        gsap.to(imgWrap,{opacity:1,duration:1, ease:'power1.out', onComplete:()=>{
+          alert('fadeIn종료')
+        }})        
+       
+      } 
+      
+      
+    })      
+  
+  </script>
+
+
+</head>
+<body>
+
+  <div id="wrap">
+    <div id="img_wrap">
+      <img id="img1" src="images/img1.jpg">
+    </div>
+    
+    <div id="navi">
+      <button id="fadeIn_btn">fadeIn</button>
+      <button id="fadeOut_btn">fadeOut</button>     
+    </div>
+
+  </div>
+  
+</body>
+</html>

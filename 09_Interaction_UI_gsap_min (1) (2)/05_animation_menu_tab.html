@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <style>    
+    
+    ul,li{
+      margin:0px; padding:0px; list-style:none;
+    }
+		body{
+			background:url(images/index_back.gif);
+		}
+		ul#menu_list{			
+			background:url(images/bg.jpg) repeat-x;
+			width:700px;
+			height:50px;
+			position:absolute;
+			left:300px;
+			top:200px;
+			overflow:hidden;
+			padding-left:80px;
+			border:solid 1px #999;
+			border-radius:10px;
+			box-shadow:2px 2px 2px #333;
+		}
+		
+		ul#menu_list li{
+			margin-top:10px;			
+			overflow:hidden;
+			width:120px;
+			height:30px;	
+			float:left;
+			cursor:pointer;
+      position:relative; left:0px; top:0px; 
+		}
+		
+		ul#menu_list li a{		
+			position:absolute; left:0px; top:0px; 
+		}
+  
+  </style>
+
+  <title> animation_menu -Tab키적용(웹접근성) </title>  
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.4.2/gsap.min.js "></script>
+  <!--GSAP CDN 코드 -->
+
+  <script>
+  
+  document.addEventListener('DOMContentLoaded',()=>{
+
+    const menu=document.querySelectorAll('#menu_list>li>a'); // 모든 메뉴 찾음 
+    // 중요) Tab키 사용을 위해 'a' 요소를 메뉴로 적용 ( 웹접근성 )
+
+    for(const item of menu){ // 모든 메뉴 이벤트 적용 
+      item.addEventListener('mouseenter',menuOver); // 메뉴 마우스오버 하면 메뉴 활성화 함수 실행 
+      item.addEventListener('focus',menuOver) // 중요) focus 이벤트 추가 적용 (웹접근성 - Tab키 사용 ) 
+      // 주의) addEventListener() 메서드는 두개이상의 이벤트를 동시적용 안됨 - 따로 추가 적용 
+      item.addEventListener('mouseleave',menuOut); // 메뉴 마우스아웃 하면 메뉴 비활성화 함수 실행 
+      item.addEventListener('focusout',menuOut);  //중요) focusout 이벤트 추가 적용 (웹접근성 - Tab키 사용 )
+      
+    }
+
+    function menuOver(){ // 메뉴 활성화 함수 
+
+      gsap.to(this, {top:-30, duration:.3, ease:'power1.out'}) // 주의) 선택한 메뉴자체 ('a요소') 에니메이션 적용 
+
+    }
+
+    function menuOut(){ // 메뉴 비활화 함수 
+
+      gsap.to(this, {top:0, duration:.3, ease:'power1.out'})
+
+    }
+
+  })   
+    
+  </script>
+
+
+</head>
+<body>
+
+    <ul id="menu_list">
+      <li> <a href="#"><img src="images/menu_1.png"></a> </li>
+      <li> <a href="#"><img src="images/menu_2.png"></a> </li>
+      <li> <a href="#"><img src="images/menu_3.png"></a> </li>
+      <li> <a href="#"><img src="images/menu_4.png"></a> </li>
+      <li> <a href="#"><img src="images/menu_5.png"></a> </li>        
+    </ul>
+  
+</body>
+</html>

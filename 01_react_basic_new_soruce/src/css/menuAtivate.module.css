@@ -1,0 +1,15 @@
+
+
+  ul#menu_list{
+    width:200px; margin:100px auto;
+  }
+
+  ul#menu_list li{
+    width:200px; height:40px; margin-bottom:20px; line-height:40px; background:#eeeeee;  text-align:center;
+    -webkit-transition:0.2s ease;
+    cursor: pointer; 
+  }
+
+  ul#menu_list li.selected{
+    background:orange; color:white; 
+  }  

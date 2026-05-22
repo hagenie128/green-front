@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">  
+
+  <style>
+  
+  ul,li{
+	  margin:0;	padding:0; list-style:none;
+  }
+
+  #wrap{
+    width:500px;	position:absolute; left:50%; margin-left:-250px; top:200px; 
+  }
+  ul#tabmenu_list li{	
+    width:100px; height:40px; float:left;
+    background:url("images/tab.jpg");    
+  }
+  ul#tabmenu_list li.selected{
+    background:url("images/tab_selected.jpg");   
+    -webkit-transition:0.3s ease;   
+  }  
+  ul#tabmenu_list li a{       
+    display:block; font:normal 12px/40px Arial; color:#000000; text-align:center; text-decoration:none;
+  }
+
+  ul#tabmenu_list li.selected a{
+    color:#069
+  }  
+
+  div#panel{
+    clear:both; border:1px solid #9FB7D4; 
+    border-top:none;
+    padding:10px;
+    text-indent:1em;
+    color:#333;
+    background:#FFFFFF;
+   
+  }  
+  
+  </style>
+
+  <title> ajax 2 </title>
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js'></script>
+		<!--axios 라이브러리 링크 -->
+
+  <script>
+
+    /*
+
+    Ajax ( Asynchronous javascript and XML) 
+    
+    - 사용자의 웹브라우저와 웹서버와의 비동기 데이터 통신을 위한 Javascript 객체를 다루는 기술 
+    
+    
+    Ajax 적용방법 
+    
+    - XMLHttpRequest 객체활용 
+    - jQuery 라이브러리 활용 - $.ajax() 
+    - axios 라이브러리 활용 ( 최근 promise 객체를 기반으로 적용 )
+
+    axios 객체 기본사용방법 (외부 Axios 라이브러리 소스 링크 )
+
+    1.
+
+    axios({
+      url:'서버url경로',
+      method:'get', // 데이터 통신방식 (get, post) 생략가능 ( 기본 get 방식 )
+    }).then((response)=>{ // 매개변수명 달라도 됨 
+      통신이 성공했을때 실행할 명령       
+    },()=>{
+      통신이 실패했을때 실행할 명령 
+    })
+
+    
+    2.
+    
+    axios.get('url', data).then((response)=>{ // get 생략가능
+      통신이 성공했을때 실행할 명령
+    },()=>{
+      통신이 실패했을때 실행할 명령 
+    })
+    
+
+    중요)     
+    - axios는 통신된 데이터를 자동으로 json 형식으로 변환 시켜주기 때문에 통신된 데이터를 접근할때는 반드시 response.data 속성 사용 
+    - ajax 기술은 반드시 실 서버에서 결과확인 
+
+    */
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+  </script>
+
+
+</head>
+<body>
+
+  <div id="wrap">
+    <ul id="tabmenu_list">
+      <li><a href="#">JavaScript</a></li>
+      <li><a href="#">CSS</a></li>
+      <li><a href="#">HTML</a></li>
+      <li><a href="#">jQuery</a></li>
+      <li><a href="#">XHTML</a></li>
+    </ul>
+    
+    <div id="panel">
+     
+      <!--데이터를 불러들일 장소-->
+
+
+    </div>
+  
+  
+  </div>
+  
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">  
+
+  <style>
+  
+    #wrap{
+      width:880px;
+      height:300px;
+      position:absolute; left:50%; margin-left:-440px; top:200px;      
+    }
+    
+    #panel{
+      width:100%; height:220px; 
+      border:1px #000000 solid; 		
+      margin-bottom:10px; 
+      position:absolute; left:0px; top:0px; 
+      
+    }
+		
+		#ball{			
+			width:50px; 
+			height:50px;
+      border-radius:25px; 
+			position:absolute; left:0px; top:85px; 
+      background:red;		
+    }	
+    
+    #start_btn{
+      position:absolute; bottom:20px; left:50%; margin-left:-20px; 
+    }
+  
+  
+  
+  </style>
+
+  <title> ballMoving - gsap Animation 1 </title>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.4.2/gsap.min.js "></script>
+
+  <script>    
+
+   /* 
+      GreenSock Animation API ( https://greensock.com )      
+
+      - 퍼포먼스 최적화, JS ES6 버전  호환, 효율적 에니메이션 적용, react.js/vue.js 호환등  
+      
+      - CDN 코드 : https://cdnjs.cloudflare.com/ajax/libs/gsap/3.4.2/gsap.min.js 
+
+      
+      gsap.set('해댱요소',{속성1:값1, 속성2:값2})  - 해당요소에 CSS 스타일 적용 ( 해당요소.style.속성='값' )
+
+      - 여러개의 요소들을 한번에 스타일 지정가능 ( for구문 사용안함 )
+      - 여러개의 CSS 스타일 속성을 한번에 적용가능 
+      
+      gsap.to('에니메이션대상',{속성1:값1, 속성2:값2, duration:시간(초), ease:'감속가속값', delay:시간(초), onStart:콜백함수명, onComplete: 콜백함수명 })
+
+      gsap.from('에니메이션대상',{속성1:값1, 속성2:값2, duration:시간(초), ease:'감속가속값', delay:시간(초), onStart:콜백함수명, onComplete: 콜백함수명 })
+
+      gsap.fromTo('에니메이션대상',{시작속성1:값1, 시작속성2:값2}, {끝속성1:값1, 끝속성2:값2, duration:시간(초), ease:'감속가속값', delay:시간(초), onStart:콜백함수명, onComplete: 콜백함수명 })
+          
+    */	
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+    
+		
+    
+  </script>
+
+
+</head>
+<body>
+
+  <div id="wrap">
+
+    <div id="panel">
+
+      <div id="ball"> 
+      
+      </div>    
+
+    </div>
+
+     
+  </div>
+  
+</body>
+</html>

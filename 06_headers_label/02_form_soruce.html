@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ko"> 
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form 웹접근성</title>
+
+  <style>
+
+  body,p{
+    margin:0px; padding:0px; 
+  }
+  table{
+    border-spacing:0px; border-collapse:collapse; 
+  }
+
+
+  form#user_join{
+    width:1000px; margin:200px auto; 
+  }
+
+  table.join{
+    width:1000px; margin:0px auto; border-top:solid 3px gray; border-bottom:solid 3px gray;
+  }
+
+  table.join th{
+    width:160px;  height:70px; border-bottom:dotted 1px gray; border-right:dotted 1px gray; font:bold 14px/20px "돋움"; letter-spacing:2px; 
+    background:#F9F9F9; text-align:left; text-indent:30px; 
+  }
+
+  table.join td{
+    width:340px; height:70px; border-bottom:dotted 1px gray; text-indent:30px; font:normal 14px/20px "돋움"; 
+  }
+
+  .txt_box{
+    border:solid 1px #CCCCCC; background:#FCFCFC; height:25px; text-indent:10px; 
+  }
+  .size150{
+    width:150px; 
+  }
+  .size240{
+    width:240px; 
+  }
+  .select_box{
+    width:80px; height:30px; 
+  }
+
+  </style>
+
+
+
+</head>
+
+<body>  
+
+    <!--
+
+    Form 요소 웹접근성 
+    
+    <label> 요소를 사용하여 각 폼요소의 의미를 정확히 전달  ( <label> 요소에 Tab키 ( 클릭 )  접근되면 연동된 폼 요소에 커서 자동접근 ) 
+
+       - 각 폼요소 id 지정 > 각 폼요소에 해당하는 제목 텍스트 앞에 <label> 적용 
+       - <label> 요소와 폼요소가 바로 붙어있을 경우 <label> 요소로 같이 묶음  
+
+    -->
+        
+   
+     <form id="user_join" method="post" action="">	
+	
+            <table class="join" summary="회원가입양식">            
+              <tr>
+                <th>아이디</th> 
+                <td>
+                  <input type="text" class="txt_box size240" /> <!-- 중복클래스 적용 -->
+                </td>
+                <th>비밀번호</th> 
+                <td>
+                  <input type="password" class="txt_box size240" /> <!-- 중복클래스 적용 -->
+                </td>
+              </tr>
+              <tr>
+                <th>이름</th>
+              
+                <td>
+                  <input type="text" class="txt_box size240" />              
+                </td>
+                <th>이메일</th>
+              
+                <td>
+                  <input type="text" class="txt_box size240" />              
+                </td>
+              </tr>
+              <tr>                
+                <th>SNS</th>
+                <td>
+                  <select class="select_box">
+                    <option>Instagram</option>
+                    <option>Tweeter</option>
+                    <option>Facebook</option>
+                  </select>
+                  &nbsp;<input type="text" class="txt_box size150">
+                </td>
+                <th>프로필이미지</th>
+                <td>
+                  <input type="file">
+                </td>
+              </tr> 
+              <tr>
+                <th>성 &nbsp;별</th> 
+                <td>
+                  
+                    남성<input type="radio" name="gender"/>              
+                    여성<input type="radio" name="gender" />
+                
+               </td>
+                <th>관심분야</th> 
+                <td>
+                  
+                    독서<input type="checkbox" name="hobit"/>
+                    영화<input type="checkbox" name="hobit"/>
+                    음악<input type="checkbox" name="hobit"/>
+                    IT<input type="checkbox" name="hobit"/>               
+                
+               </td>
+              </tr>
+         </table>
+         
+     </form>    
+    
+    
+    
+    
+   
+   
+    
+
+
+
+
+
+</body>
+</html>

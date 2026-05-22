@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">  
+
+  <style>   
+  
+  body{
+    height:3000px; 
+  } 
+
+  #box{
+    
+    position:absolute;
+    width:500px;
+    height:400px;
+    top:200px;
+    left:500px;
+    opacity:1;
+    background:white;
+    border:solid 1px black;  box-sizing:border-box; 
+  }
+
+  #box p{
+    text-align:center;
+  }  
+ 
+  </style>
+
+  <title> mousePosition </title>  
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.4.2/gsap.min.js "></script>
+  <!--GSAP CDN 코드 -->
+
+  <script>      
+	
+    /* 마우스 x좌표 , y좌표
+    
+    
+    요소기준 : e.offsetX; e.offsetY    
+    
+    문서기준 :  e.pageX ,  e.pageY
+
+    윈도우기준 : e.clientX , e.clientY
+
+    스크린(모니터) 기준 : e.screenX , e.screenY
+    
+    */ 
+
+    document.addEventListener('DOMContentLoaded',()=>{
+
+      const box=document.querySelector('#box')
+
+      box.addEventListener('click',getMousePosition)
+
+      function getMousePosition(e){ // 중요) 이벤트객체(e)를 사용할때는 실행할 함수의 매개변수로 받드시 e 를 설정 
+
+        // box요소 기준 마우스 좌표 
+
+        console.log('요소기준 마우스X: ' + e.offsetX);
+        console.log('요소기준 마우스Y: ' + e.offsetY);
+
+        // 문서기준 마우스 좌표 
+
+        console.log('문서기준 마우스X: ' + e.pageX);
+        console.log('문서기준 마우스Y: ' + e.pageY);
+        
+        // 브라우저(윈도우) 기준  좌표 
+
+        console.log('윈도우기준 마우스X: ' + e.clientX)
+        console.log('윈도우기준 마우스Y: ' + e.clientY)
+
+
+      }
+
+    })
+	
+    
+    
+  </script>
+
+
+</head>
+<body>
+
+  <div id="box">
+   
+
+    <p> 클릭하면 mouseX 좌표와 mouseY 좌표가 출력됩니다. </p>
+
+
+  </div>
+
+  
+</body>
+</html>

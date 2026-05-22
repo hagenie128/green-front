@@ -1,0 +1,26 @@
+div.total_wrap{
+    width: 420px;
+    height: 48px;
+    box-shadow: 2px 2px 2px #ccc;
+    border: solid 1px #aaa;
+    margin: 48px auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    border-radius: 12px;
+}
+div.total{
+    width: 40%;
+    height: 100%;
+    font: normal 24px/42px '맑은고딕';
+    text-align: center;
+}
+div.totalResult{
+    width: 40%;
+    height: 100%;
+    font:normal 24px/46px '맑은고딕';
+    text-align: center;
+    padding-right: 20px;
+    box-sizing: border-box;
+}

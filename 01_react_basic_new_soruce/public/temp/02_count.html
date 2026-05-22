@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+
+    *{
+        margin:0px; 
+        padding:0px; 
+    }
+
+    div.count_wrap{
+        width:420px; 
+        height:48px; 
+        box-shadow:2px 2px 16px rgb(204, 204, 204);
+        border:solid 1px #e2e2e2;
+        margin:50px auto;
+        display:flex;
+        border-radius:12px;
+        
+    }
+
+    div.remove{
+        width:20%;
+        height:100%; 
+        border-right:solid 1px #e2e2e2;
+    }
+
+    button.remove_btn{
+        width:100%;
+        height:100%;
+        border:none;
+        background:none;        
+        font:normal 42px/16px "맑은고딕"; 
+        position:relative;
+        top:-4px; 
+        cursor: pointer;
+        
+    }
+
+    div.count{
+        width:60%;
+        height:100%;
+        text-align:center;           
+        font:normal 24px/48px "맑은고딕"; 
+           
+    }
+
+   
+    div.add{
+        width:20%;
+        height:100%; 
+        border-left:solid 1px #e2e2e2;
+    }
+
+    button.add_btn{
+        width:100%;
+        height:100%;
+        border:none;
+        background:none;
+        font:normal 32px/32px "맑은고딕"; 
+        position:relative;
+        top:-2px; 
+        cursor: pointer;
+    }
+    
+
+    
+</style>
+
+<body>
+
+    <div class="count_wrap">
+        <div class="remove">
+            <button class="remove_btn">-</button>
+        </div>
+        <div class="count">
+            0
+        </div>
+        <div class="add">
+            <button class="add_btn">+</button>
+        </div>
+    </div>
+
+    
+    
+</body>
+</html>

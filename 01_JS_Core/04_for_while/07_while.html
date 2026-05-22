@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title> 조건 무한반복 </title>
+  <script>
+    /*
+         무한 루프를 돌며 숫자를 입력받고 입력받은 수의 합을 화면에 출력 (단, 입력 값이 0이면 즉시종료 )          
+    */    
+        
+        let sum =0; // 더할숫자의 초기값 
+        let count=0; //더한 횟수를 지정 
+
+        // 무한루프 시작
+        while(true){
+            
+            let value = prompt("더할숫자를 입력하세요",1);  // 1은 기본값으로 지정 ( 숫자를 안넣을수도 있으니까 )
+            
+            value=parseInt(value)
+            
+            if(value==0){
+                document.write("종료합니다.<br>");
+                break;   // 반복문만 종료              
+            }else{
+              sum+=value; // 입력 값 더하기             
+              document.write("합계:"+sum+"<br>");  
+              // 누적합계 단계별 출력하기 (총 누적값 한번에 출력할려면 while구문 밖에서 실행)
+              count++;
+            }            
+           
+        }
+
+        document.write("총"+count+"번 실행했습니다.");     
+  
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">  
+
+  <style>
+  
+    #wrap{
+      width:880px;
+      height:300px;
+      position:absolute; left:50%; margin-left:-440px; top:200px;      
+    }
+    
+    #panel{
+      width:100%; height:220px; 
+      border:1px #000000 solid; 		
+      margin-bottom:10px; 
+      position:absolute; left:0px; top:0px; 
+      
+    }
+		
+		#ball{			
+			width:50px; 
+			height:50px;
+      border-radius:25px; 
+			position:absolute; left:0px; top:85px; 
+      background:red;		
+    }	
+    
+    #start_btn{
+      position:absolute; bottom:20px; left:50%; margin-left:-20px; 
+    }
+  
+  
+  
+  </style>
+
+  <title> ballMoving - GSAP Animation 1 </title>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.4.2/gsap.min.js "></script>
+  <!--GSAP CDN 코드 -->
+
+  <script>    
+
+   /* 
+      GreenSock Animation API ( https://greensock.com )      
+
+      - 퍼포먼스 최적화, JS ES6 버전  호환, 효율적 에니메이션 적용, react.js/vue.js 호환등  
+      
+      - CDN 코드 : https://cdnjs.cloudflare.com/ajax/libs/gsap/3.4.2/gsap.min.js 
+
+      
+      gsap.to('에니메이션대상',{속성1:값1, 속성2:값2, duration:시간(초), ease:'감속가속값', delay:시간(초), repeat:반복횟수(-1무한반복), yoyo:true(reverse반복), onStart:콜백함수명, onComplete: 콜백함수명 })
+
+      gsap.from('에니메이션대상',{속성1:값1, 속성2:값2, duration:시간(초), ease:'감속가속값', delay:시간(초), repeat:반복횟수(-1무한반복), yoyo:true(reverse반복), onStart:콜백함수명, onComplete: 콜백함수명 })
+
+      gsap.fromTo('에니메이션대상',{시작속성1:값1, 시작속성2:값2}, {끝속성1:값1, 끝속성2:값2, duration:시간(초), ease:'감속가속값', delay:시간(초), repeat:반복횟수(-1무한반복), yoyo:true(reverse반복), onStart:콜백함수명, onComplete: 콜백함수명 })
+
+      
+      gsap.set('해댱요소',{속성1:값1, 속성2:값2})  - 해당요소에 CSS 스타일 적용 ( 해당요소.style.속성='값' )
+
+      - 여러개의 요소들을 한번에 스타일 지정가능 ( for구문 사용안함 )
+      - 여러개의 CSS 스타일 속성을 한번에 적용가능 
+          
+    */	
+
+    document.addEventListener('DOMContentLoaded',()=>{
+
+      const ball=document.querySelector('#ball'); // 에니메이션 대상인 #ball 찾음 
+      const panel=document.querySelector('#panel'); // 에니메이션 거리를 체크할 수 있는 #panel 찾음 
+
+      let endX=panel.clientWidth-ball.offsetWidth; // 공의 움직임이 끝나는 X좌표  중요) panel의 가로크기 - ball의 가로크기 ( 그림으로 이해 )
+      
+      gsap.to(ball,{left:endX, opacity:0, duration:3, ease:'power1.out', onComplete:()=>{
+        alert('에니메이션종료')
+      }})       
+     
+    })
+    
+    /* 중요 ) GSAP 에니메이션 장점 ( WAAP 에니메이션과 차이 )
+
+    - 코드가 간단하고 효율적 ( 시작에니메이션과 끝 에니메이션을 따로 지정할 필요가 없음 )
+    - fill:'forwards' 사용하여 끝나는 모습으로 유지하지 않아도 자동으로 끝나는 모습으로 유지됨 
+    - 다양한 ease 효과적용 가능 
+    - onfinish와 같은 이벤트 필요없이 시작전 onStart, 끝난후 onComplete 속성값으로 콜백함수 사용이 쉬움     
+    - 여러요소를 한꺼번에 스타일을 주거나 에니메이션을 주기위해 for구문 사용안해도됨 
+    - 기본단위를 사용안해도됨 
+
+    */
+    
+  </script>
+
+
+</head>
+<body>
+
+  <div id="wrap">
+
+    <div id="panel">
+
+      <div id="ball"> 
+      
+      </div>    
+
+    </div>
+
+     
+  </div>
+  
+</body>
+</html>

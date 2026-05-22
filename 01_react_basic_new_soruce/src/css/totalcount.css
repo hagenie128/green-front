@@ -1,0 +1,20 @@
+div.total_wrap{
+    width:420px; 
+    height:48px; 
+    box-shadow:2px 2px 16px rgb(204, 204, 204);
+    border:solid 1px #e2e2e2;          
+    border-radius:12px;
+    text-align:center;       
+    font:bold 24px/48px "맑은고딕";
+    position:absolute;
+    left:50%;
+    margin-left:-210px;
+    bottom:100px; 
+}
+
+div.total_wrap span{
+    position:absolute; 
+    left:30px;
+    top:0px;
+    font:normal 18px/48px "맑은고딕"; 
+}
