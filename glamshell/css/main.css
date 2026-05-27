@@ -1,0 +1,72 @@
+/* 비주얼영역 시작 */
+div#visual_wrap{
+    width: 100%;
+    height: 468px;
+    margin-top: 114px;
+    overflow: hidden;
+}
+section#visual{
+    width: 980px;
+    height: 100%;
+    margin: 0 auto;
+    position: relative;
+    left: 0;
+    top: 0;
+}
+ul#visual_list{
+    width: 2940px;
+    height: 100%;
+    position: absolute;
+    left: 50%;
+    margin-left: -1470px;
+}
+ul#visual_list li{
+    width: 980px;
+    height: 100%;
+    float: left;
+}
+/* 비주얼 영역 끝 */
+/* 컨텐츠 영역 시작 */
+div#contents_wrap{
+    width: 100%;
+    min-width: 800px;
+    background: #ececec;
+}
+section#contents{
+    width: 980px;
+    height: auto;
+    margin: 0 auto;
+    padding-top: 64px;
+}
+section#HowInstall{
+    width: 100%;
+    height: 160px;
+}
+ul#HowInstall_list{
+    width: 100%;
+    height: 100%;
+}
+ul#HowInstall_list li{
+    width: 233px;
+    height: 100%;
+    float: left;
+    margin-right: 16px;
+    /* text-align: center; */
+}
+ul#HowInstall_list li:last-child{
+    margin-right: 0;
+}
+p.HowInstall_title{
+    font:bold 14px 'pretendard';
+    text-align: center;
+    margin-bottom: 12px;
+    color: rgb(66, 66, 66);
+}
+p.HowInstall_img{
+    margin-bottom: 12px;
+}
+p.HowInstall_text{
+    font:normal 12px 'pretendard';
+    text-align: center;
+    color: rgb(78, 78, 78);
+}
