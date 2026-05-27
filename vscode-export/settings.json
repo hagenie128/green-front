@@ -1,0 +1,40 @@
+{
+    "workbench.iconTheme": "material-icon-theme",
+    "editor.wordWrap": "on",
+    "workbench.colorTheme": "MacOS Modern Light - Ventura Xcode",
+    "workbench.editor.empty.hint": "hidden",
+    "liveServer.settings.donotShowInfoMsg": true,
+    "liveServer.settings.donotVerifyTags": true,
+    "git.postCommitCommand": "sync",
+    "git.autofetch": true,
+    "workbench.secondarySideBar.defaultVisibility": "visible",
+    "dineug.erd-editor.theme.appearance": "light",
+    "dineug.erd-editor.theme.grayColor": "slate",
+    "dineug.erd-editor.theme.accentColor": "ruby",
+    "terminal.integrated.profiles.windows": {
+        "PowerShell": {
+            "source": "PowerShell",
+            "icon": "terminal-powershell"
+        },
+        "Command Prompt": {
+            "path": "C:\\Windows\\System32\\cmd.exe",
+            "args": []
+        },
+        "Git Bash": {
+            "source": "Git Bash",
+            "icon": "terminal-git-bash"
+        }
+    },
+    "terminal.integrated.defaultProfile.windows": "Command Prompt",
+    "editor.unicodeHighlight.nonBasicASCII": false,
+    "[html]": {
+        "editor.defaultFormatter": "vscode.html-language-features"
+    },
+    "[javascript]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "[javascriptreact]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "workbench.productIconTheme": "macos-modern"
+}
