@@ -24,7 +24,6 @@ export const store = configureStore({
     reducer:{
         counter : counterPersistReducer,
     }
-
 });
 // 내보내기
 export const persistor = persistStore(store)
